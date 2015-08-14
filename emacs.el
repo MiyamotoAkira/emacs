@@ -146,3 +146,25 @@
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+
+
+; let's pretify those lambdas
+;; (defun my-pretty-lambda-scheme ()
+;;   "make some word or string show as pretty Unicode symbols"
+;;   (setq prettify-symbols-alist
+;;         '(
+;;           ("lambda" . 955) ; λ
+;;           )))
+
+;(add-hook 'scheme-mode-hook 'my-pretty-lambda-scheme)
+
+(defun my-pretty-lambda-clojure ()
+  "make some word or string show as pretty Unicode symbols"
+  (setq prettify-symbols-alist
+        '(
+          ("fn" . 955) ; λ
+          )))
+
+(add-hook 'clojure-mode-hook 'my-pretty-lambda-scheme)
+
+(global-prettify-symbols-mode 1)
