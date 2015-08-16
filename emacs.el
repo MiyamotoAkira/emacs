@@ -6,8 +6,8 @@
  '(custom-enabled-themes (quote (misterioso)))
  '(package-archives
    (quote
-	(("elpa" . "http://elpa.gnu.org/packages/")
-	 ("melpa-stable" . "http://stable.melpa.org/packages/"))))
+	(("melpa-stable" . "http://stable.melpa.org/packages/")
+	 ("org" . "http://orgmode.org/elpa/"))))
 '(tab-width 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -16,7 +16,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(require 'package-x)
+(require 'package)
 
 (package-initialize)
 
@@ -27,16 +27,19 @@
 ; we define the packages that we weant to upload
 (defvar my-packages
   '(
+   auto-complete
    paredit
    clojure-mode
    clojure-mode-extra-font-locking
    cider
+   ac-cider
    ido-ubiquitous
    smex
    rainbow-delimiters
    tagedit
    magit
    elixir-mode
+   alchemist
    go-mode
    haskell-mode))
 
@@ -74,6 +77,9 @@
 ;; no bell
 (setq ring-bell-function 'ignore)
 
+; auto complete
+(ac-config-default)
+
 ; Go modifications
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
@@ -105,7 +111,7 @@
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
 ; Clojure modifications
-(add-hook 'clojure-mode-hook 'enable-paredit-mode)
+(add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'subword-mode)
 (require 'clojure-mode-extra-font-locking)
 (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
@@ -123,8 +129,22 @@
             (define-clojure-indent (fact 1))
             (define-clojure-indent (facts 1))))
 
+; cider hooks
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
+(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+(add-hook 'cider-mode-hook 'ac-cider-setup)
+(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+(eval-after-load "auto-complete"
+  '(progn
+     (add-to-list 'ac-modes 'cider-mode)
+     (add-to-list 'ac-modes 'cider-repl-mode)))
+
+(defun set-auto-complete-as-completion-at-point-function ()
+  (setq completion-at-point-functions '(auto-complete)))
+
+(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+(add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
 
 
 ; lisp modifications
