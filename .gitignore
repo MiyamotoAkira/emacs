@@ -35,4 +35,6 @@ tramp
 
 ac-comphist.dat
 
-ido.last
+ido.last*
+
+.smex-items
