@@ -42,7 +42,8 @@
    company
    alchemist
    go-mode
-   haskell-mode))
+   haskell-mode
+   yaml-mode))
 
 ; macos special path info (shell and non-shell apps get different paths)
 ; not sure if needed due to the below
