@@ -16,6 +16,8 @@
  ;; If there is more than one, they won't work right.
  )
 
+(add-to-list 'load-path "~/.emacs.d/vendor")
+
 (require 'package)
 
 (package-initialize)
@@ -43,7 +45,8 @@
    alchemist
    go-mode
    haskell-mode
-   yaml-mode))
+   yaml-mode
+   markdown-mode))
 
 ; macos special path info (shell and non-shell apps get different paths)
 ; not sure if needed due to the below
@@ -81,6 +84,12 @@
 
 ; auto complete
 (ac-config-default)
+
+
+;; markdown settings
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ; Go modifications
 (defun set-exec-path-from-shell-PATH ()
