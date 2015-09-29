@@ -122,7 +122,7 @@
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
 ; Clojure modifications
-(add-hook 'clojure-mode-hook 'paredit-mode)
+(add-hook 'clojure-mode-hook #'enable-paredit-mode)
 (add-hook 'clojure-mode-hook 'subword-mode)
 (require 'clojure-mode-extra-font-locking)
 (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
@@ -145,6 +145,7 @@
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
 (add-hook 'cider-mode-hook 'ac-cider-setup)
+(add-hook 'cider-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
 (add-hook 'cider-mode-hook #'eldoc-mode)
 ;; (eval-after-load "auto-complete"
