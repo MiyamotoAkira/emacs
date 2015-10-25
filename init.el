@@ -6,7 +6,8 @@
  '(custom-enabled-themes (quote (misterioso)))
  '(package-archives
    (quote
-	(("melpa-stable" . "http://stable.melpa.org/packages/")
+	(("gnu" . "http://elpa.gnu.org/packages/")
+	 ("melpa-stable" . "http://stable.melpa.org/packages/")
 	 ("org" . "http://orgmode.org/elpa/"))))
 '(tab-width 4))
 (custom-set-faces
