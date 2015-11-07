@@ -201,6 +201,6 @@
           ("fn" . 955) ; λ
           )))
 
-(add-hook 'clojure-mode-hook 'my-pretty-lambda-scheme)
+(add-hook 'clojure-mode-hook 'my-pretty-lambda-clojure)
 
 (global-prettify-symbols-mode 1)
