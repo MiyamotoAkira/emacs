@@ -47,7 +47,8 @@
    go-mode
    haskell-mode
    yaml-mode
-   markdown-mode))
+   markdown-mode
+   puppet-mode))
 
 ; macos special path info (shell and non-shell apps get different paths)
 ; not sure if needed due to the below
