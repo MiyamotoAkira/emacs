@@ -77,6 +77,9 @@
 ; line numbers
 (global-linum-mode)
 
+; column numbers
+(setq column-number-mode t)
+
 ;; full path in title bar
 (setq-default frame-title-format "%b (%f)")
 
