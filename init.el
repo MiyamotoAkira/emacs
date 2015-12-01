@@ -36,7 +36,9 @@
    clojure-mode-extra-font-locking
    cider
    ac-cider
+   clj-refactor
    ido-ubiquitous
+   magit
    smex
    rainbow-delimiters
    tagedit
@@ -72,6 +74,7 @@
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 
+
 (show-paren-mode 1)
 ; highlight current line
 ;(global-hl-line-mode 1)
@@ -87,6 +90,9 @@
 
 ;; no bell
 (setq ring-bell-function 'ignore)
+
+;;magit
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ; auto complete
 (ac-config-default)
@@ -132,6 +138,13 @@
 (add-hook 'clojure-mode-hook 'subword-mode)
 (require 'clojure-mode-extra-font-locking)
 (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+
+(require 'clj-refactor)
+(defun clj-refactor-setup ()
+  (clj-refactor-mode 1)
+  (yas-minor-mode 1)
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
+(add-hook 'clojure-mode-hook #'clj-refactor-setup)
 
 ;; syntax hilighting for midje
 (add-hook 'clojure-mode-hook
