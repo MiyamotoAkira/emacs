@@ -51,6 +51,8 @@
    yaml-mode
    markdown-mode
    puppet-mode
+   flycheck
+   flycheck-color-mode-line
    scala-mode2))
 
 ; macos special path info (shell and non-shell apps get different paths)
@@ -74,6 +76,8 @@
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
 
 (show-paren-mode 1)
 ; highlight current line
