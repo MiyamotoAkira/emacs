@@ -64,7 +64,8 @@
    puppet-mode
    flycheck
 ;   flycheck-color-mode-line
-   scala-mode2))
+   scala-mode2
+   fsharp-mode))
 
 ; macos special path info (shell and non-shell apps get different paths)
 ; not sure if needed due to the below
@@ -116,7 +117,7 @@
 (require 'init-go)
 (require 'init-haskell)
 (require 'init-clojure)
-
+(require 'init-fsharp)
 
 ; let's pretify those lambdas
 ;; (defun my-pretty-lambda-scheme ()
