@@ -65,6 +65,7 @@
    flycheck
 ;   flycheck-color-mode-line
    scala-mode2
+   web-mode
    fsharp-mode))
 
 ; macos special path info (shell and non-shell apps get different paths)
@@ -85,6 +86,7 @@
 (require 'init-rainbow)
 (require 'init-eldoc)
 (require 'init-smex)
+(require 'init-web-mode)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 ;(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
@@ -118,6 +120,7 @@
 (require 'init-haskell)
 (require 'init-clojure)
 (require 'init-fsharp)
+(require 'init-elixir)
 
 ; let's pretify those lambdas
 ;; (defun my-pretty-lambda-scheme ()
