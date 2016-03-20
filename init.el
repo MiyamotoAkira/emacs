@@ -121,6 +121,7 @@
 (require 'init-clojure)
 (require 'init-fsharp)
 (require 'init-elixir)
+(require 'init-lfe)
 
 ; let's pretify those lambdas
 ;; (defun my-pretty-lambda-scheme ()
