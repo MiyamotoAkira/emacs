@@ -1,3 +1,4 @@
+
 ;;; This is the configuration of emacs. At the moment, most of it is in this file
 ;;; thought the idea is to move things out.
 
@@ -16,7 +17,8 @@
 	(("gnu" . "https://elpa.gnu.org/packages/")
 	 ("melpa-stable" . "https://stable.melpa.org/packages/")
 	 ("org" . "http://orgmode.org/elpa/")
-	 ("marmalade" . "https://marmalade-repo.org/packages/"))))
+	 ("marmalade" . "https://marmalade-repo.org/packages/")
+	 ("melpa" . "https://melpa.org/packages/"))))
  
 '(tab-width 4))
 (custom-set-faces
@@ -66,6 +68,7 @@
 ;   flycheck-color-mode-line
    scala-mode2
    web-mode
+   omnisharp
    fsharp-mode))
 
 ; macos special path info (shell and non-shell apps get different paths)
@@ -120,6 +123,7 @@
 (require 'init-haskell)
 (require 'init-clojure)
 (require 'init-fsharp)
+(require 'init-csharp)
 (require 'init-elixir)
 (require 'init-lfe)
 
