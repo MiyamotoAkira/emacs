@@ -43,33 +43,33 @@
 ; we define the packages that we weant to upload
 (defvar my-packages
   '(
+   ac-cider
+   alchemist
    auto-complete
-   paredit
+   cider
+   clj-refactor
    clojure-mode
    clojure-mode-extra-font-locking
-   cider
-   ac-cider
-   clj-refactor
-   ido-ubiquitous
-   magit
-   smex
-   rainbow-delimiters
-   tagedit
-   magit
-   elixir-mode
    company
-   alchemist
+   elixir-mode
+   flycheck
+   fsharp-mode
    go-mode
    haskell-mode
-   yaml-mode
+   ido-ubiquitous
+   magit
    markdown-mode
+;   omnisharp
+   paredit
    puppet-mode
-   flycheck
-;   flycheck-color-mode-line
+   rainbow-delimiters
    scala-mode2
+   smex
+   tagedit
    web-mode
-   omnisharp
-   fsharp-mode))
+   yaml-mode
+;   flycheck-color-mode-line
+   ))
 
 ; macos special path info (shell and non-shell apps get different paths)
 ; not sure if needed due to the below
@@ -84,6 +84,7 @@
 
 ; general modifications
 ; Settings for different tools
+(require 'init-company)
 (require 'init-ido)
 (require 'init-paredit)
 (require 'init-rainbow)
