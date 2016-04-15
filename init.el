@@ -52,6 +52,7 @@
    clojure-mode-extra-font-locking
    company
    elixir-mode
+   erlang
    flycheck
    fsharp-mode
    go-mode
@@ -59,11 +60,11 @@
    ido-ubiquitous
    magit
    markdown-mode
-;   omnisharp
    paredit
    puppet-mode
    rainbow-delimiters
    scala-mode2
+   shut-up
    smex
    tagedit
    web-mode

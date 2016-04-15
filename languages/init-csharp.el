@@ -1,4 +1,5 @@
 
+(add-to-list 'load-path (expand-file-name "vendor/omnisharp" user-emacs-directory))
 (setq omnisharp-server-executable-path "~/code/playground/omnisharp-roslyn/artifacts/publish/OmniSharp/osx.10.11-x64/dnxcore50/omnisharp")
 
 (require 'omnisharp)
