@@ -53,6 +53,7 @@
    company
    elixir-mode
    erlang
+   exec-path-from-shell
    flycheck
    fsharp-mode
    go-mode
@@ -82,6 +83,8 @@
   (unless (package-installed-p pa)
 	(package-install pa)))
 
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 ; general modifications
 ; Settings for different tools
