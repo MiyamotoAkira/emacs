@@ -55,7 +55,6 @@
    erlang
    exec-path-from-shell
    flycheck
-   fsharp-mode
    go-mode
    haskell-mode
    ido-ubiquitous
@@ -127,8 +126,6 @@
 (require 'init-go)
 (require 'init-haskell)
 (require 'init-clojure)
-(require 'init-fsharp)
-(require 'init-csharp)
 (require 'init-elixir)
 (require 'init-lfe)
 
