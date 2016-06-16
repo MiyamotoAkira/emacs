@@ -1,3 +1,6 @@
+;;; package --- Summary
+;;; Commentary:
+;;; Code:
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
 						  "[ \t\n]*$"
@@ -18,6 +21,7 @@
 (add-to-list 'exec-path "~/code/bin")
 
 (defun my-go-mode-hook ()
+  "Set some default behaviour for Go."
   ; Call Gofmt before saving
   (add-hook 'before-save-hook 'gofmt-before-save)
   ; Godef jump key binding
@@ -25,3 +29,4 @@
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 
 (provide 'init-go)
+;;; init-go.el ends here

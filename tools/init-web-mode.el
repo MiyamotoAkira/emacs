@@ -1,3 +1,6 @@
+;;; package --- Summary
+;;; Commentary:
+;;; Code:
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
@@ -13,3 +16,4 @@
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 (provide 'init-web-mode)
+;;; init-web-mode.el ends here

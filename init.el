@@ -1,7 +1,6 @@
-
-;;; This is the configuration of emacs. At the moment, most of it is in this file
-;;; thought the idea is to move things out.
-
+;;; package --- Summary
+;;; Commentary:
+;;; This is the configuration of Emacs.
 
 ;;; Code:
 (custom-set-variables
@@ -43,9 +42,7 @@
 ; we define the packages that we weant to upload
 (defvar my-packages
   '(
-   ac-cider
    alchemist
-   auto-complete
    cider
    clj-refactor
    clojure-mode
@@ -120,10 +117,6 @@
 ;;magit
 (global-set-key (kbd "C-x g") 'magit-status)
 
-; auto complete
-(ac-config-default)
-
-
 ;; Settings for different languages
 (require 'init-markdown)
 (require 'init-go)
@@ -146,3 +139,4 @@
 
 
 (global-prettify-symbols-mode 1)
+;;; init.el ends here
