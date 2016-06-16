@@ -3,9 +3,7 @@
 ;;; thought the idea is to move things out.
 
 
-;;;
-
-
+;;; Code:
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -19,14 +17,16 @@
 	 ("org" . "http://orgmode.org/elpa/")
 	 ("marmalade" . "https://marmalade-repo.org/packages/")
 	 ("melpa" . "https://melpa.org/packages/"))))
- 
-'(tab-width 4))
+ '(tab-width 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "red"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "yellow"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "cornflower blue"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "orange")))))
 
 (add-to-list 'load-path (expand-file-name "vendor" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "languages" user-emacs-directory))
@@ -57,12 +57,15 @@
    flycheck
    go-mode
    haskell-mode
+   highlight-indentation
    ido-ubiquitous
    magit
    markdown-mode
+   neotree
    paredit
    puppet-mode
    rainbow-delimiters
+   robe
    scala-mode2
    shut-up
    smex
@@ -128,6 +131,7 @@
 (require 'init-clojure)
 (require 'init-elixir)
 (require 'init-lfe)
+(require 'init-ruby)
 
 ; let's pretify those lambdas
 ;; (defun my-pretty-lambda-scheme ()

@@ -1,11 +1,16 @@
-; Clojure modifications
+;;; pakage --- Summary
+;Clojure modifications
+
+;;; Commentary:
+
+;;; Code:
 (add-hook 'clojure-mode-hook #'enable-paredit-mode)
 (add-hook 'clojure-mode-hook 'subword-mode)
 (require 'clojure-mode-extra-font-locking)
-(add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
 
 (require 'clj-refactor)
 (defun clj-refactor-setup ()
+  "Set Emacs to be able to use refactor for clojure."
   (clj-refactor-mode 1)
   (yas-minor-mode 1)
   (cljr-add-keybindings-with-prefix "C-c C-m"))
@@ -40,13 +45,14 @@
 (add-hook 'cider-repl-mode-hook #'company-mode)
 
 (defun set-auto-complete-as-completion-at-point-function ()
+  "Set autocompletion."
   (setq completion-at-point-functions '(auto-complete)))
 
 (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
 (add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
 
 (defun my-pretty-lambda-clojure ()
-  "make some word or string show as pretty Unicode symbols"
+  "Make some word or string show as pretty Unicode symbols."
   (setq prettify-symbols-alist
         '(
           ("fn" . 955) ; λ
@@ -55,4 +61,4 @@
 (add-hook 'clojure-mode-hook 'my-pretty-lambda-clojure)
 
 (provide 'init-clojure)
-
+;;; init-clojure.el ends here
