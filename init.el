@@ -63,7 +63,7 @@
    puppet-mode
    rainbow-delimiters
    robe
-   scala-mode2
+   scala-mode
    shut-up
    smex
    tagedit
