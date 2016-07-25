@@ -39,6 +39,8 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
+(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+
 ; we define the packages that we weant to upload
 (defvar my-packages
   '(
