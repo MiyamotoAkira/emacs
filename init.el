@@ -35,11 +35,14 @@
 
 (package-initialize)
 
+(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(clojure-mode . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(clojure-mode-extra-font-locking . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(clj-refactor . "melpa-stable") t)
+
 ; less refresh the packages
 (unless package-archive-contents
   (package-refresh-contents))
-
-(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 
 ; we define the packages that we weant to upload
 (defvar my-packages
