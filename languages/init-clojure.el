@@ -5,6 +5,7 @@
 
 ;;; Code:
 (add-hook 'clojure-mode-hook 'subword-mode)
+(add-hook 'clojure-mode-hook #'aggressive-indent-mode)
 (require 'clojure-mode-extra-font-locking)
 
 (require 'clj-refactor)

@@ -47,6 +47,7 @@
 ; we define the packages that we weant to upload
 (defvar my-packages
   '(
+   aggressive-indent
    alchemist
    cider
    clj-refactor
@@ -54,9 +55,11 @@
    clojure-mode-extra-font-locking
    company
    elixir-mode
+   elm-mode
    erlang
    exec-path-from-shell
    flycheck
+   fsharp-mode
    go-mode
    haskell-mode
    highlight-indentation
@@ -123,6 +126,7 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; Settings for different languages
+(require 'init-elisp)
 (require 'init-markdown)
 (require 'init-go)
 (require 'init-haskell)
