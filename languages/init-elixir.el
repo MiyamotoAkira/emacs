@@ -10,5 +10,9 @@
 
 (add-hook 'elixir-mode-hook 'my-pretty-lambda-elixir)
 
+(add-hook 'elixir-mode-hook (lambda ()
+							  (setq tab-width 2)
+							  (setq indent-tabs-mode nil)))
+
 (provide 'init-elixir)
 ;;; init-elixir.el ends here
