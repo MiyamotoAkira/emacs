@@ -39,46 +39,49 @@
 (add-to-list 'package-pinned-packages '(clojure-mode . "melpa-stable") t)
 (add-to-list 'package-pinned-packages '(clojure-mode-extra-font-locking . "melpa-stable") t)
 (add-to-list 'package-pinned-packages '(clj-refactor . "melpa-stable") t)
+;;(add-to-list 'package-pinned-packages '(omnisharp . "melpa-stable") t)
 
-; less refresh the packages
+
+;; less refresh the packages
 (unless package-archive-contents
   (package-refresh-contents))
 
 ; we define the packages that we weant to upload
 (defvar my-packages
   '(
-   aggressive-indent
-   alchemist
-   cider
-   clj-refactor
-   clojure-mode
-   clojure-mode-extra-font-locking
-   company
-   elixir-mode
-   elm-mode
-   erlang
-   exec-path-from-shell
-   flycheck
-   fsharp-mode
-   go-mode
-   haskell-mode
-   highlight-indentation
-   ido-ubiquitous
-   magit
-   markdown-mode
-   neotree
-   paredit
-   puppet-mode
-   rainbow-delimiters
-   robe
-   scala-mode
-   shut-up
-   smex
-   tagedit
-   web-mode
-   yaml-mode
-;   flycheck-color-mode-line
-   ))
+	aggressive-indent
+	alchemist
+	cider
+	clj-refactor
+	clojure-mode
+	clojure-mode-extra-font-locking
+	company
+	elixir-mode
+	elm-mode
+	erlang
+	exec-path-from-shell
+	flycheck
+	fsharp-mode
+	go-mode
+	haskell-mode
+	highlight-indentation
+	ido-ubiquitous
+	magit
+	markdown-mode
+	neotree
+	omnisharp
+	paredit
+	puppet-mode
+	rainbow-delimiters
+	robe
+	scala-mode
+	shut-up
+	smex
+	tagedit
+	web-mode
+	yaml-mode
+	;;flycheck-color-mode-line
+	))
 
 ; macos special path info (shell and non-shell apps get different paths)
 ; not sure if needed due to the below
@@ -125,6 +128,9 @@
 ;;magit
 (global-set-key (kbd "C-x g") 'magit-status)
 
+
+(global-set-key (kbd "C-c C-;") 'comment-region)
+
 ;; Settings for different languages
 (require 'init-elisp)
 (require 'init-markdown)
@@ -134,8 +140,10 @@
 (require 'init-elixir)
 (require 'init-lfe)
 (require 'init-ruby)
+(require 'init-csharp)
 
-; let's pretify those lambdas
+
+;; let's pretify those lambdas
 ;; (defun my-pretty-lambda-scheme ()
 ;;   "make some word or string show as pretty Unicode symbols"
 ;;   (setq prettify-symbols-alist
@@ -143,7 +151,7 @@
 ;;           ("lambda" . 955) ; λ
 ;;           )))
 
-;(add-hook 'scheme-mode-hook 'my-pretty-lambda-scheme)
+										;(add-hook 'scheme-mode-hook 'my-pretty-lambda-scheme)
 
 
 
