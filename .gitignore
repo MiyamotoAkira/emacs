@@ -40,3 +40,6 @@ ido.last*
 .smex-items
 
 url/
+
+#session files
+session*
