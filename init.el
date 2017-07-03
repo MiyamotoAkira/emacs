@@ -11,11 +11,11 @@
  '(custom-enabled-themes (quote (misterioso)))
  '(package-archives
    (quote
-	(("gnu" . "https://elpa.gnu.org/packages/")
-	 ("melpa-stable" . "https://stable.melpa.org/packages/")
-	 ("org" . "http://orgmode.org/elpa/")
-	 ("marmalade" . "https://marmalade-repo.org/packages/")
-	 ("melpa" . "https://melpa.org/packages/"))))
+    (("gnu" . "https://elpa.gnu.org/packages/")
+     ("melpa-stable" . "https://stable.melpa.org/packages/")
+     ("org" . "http://orgmode.org/elpa/")
+     ("marmalade" . "https://marmalade-repo.org/packages/")
+     ("melpa" . "https://melpa.org/packages/"))))
  '(tab-width 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -25,7 +25,12 @@
  '(rainbow-delimiters-depth-1-face ((t (:foreground "red"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "yellow"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "cornflower blue"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "orange")))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "orange"))))
+ '(rainbow-delimiters-depth-5-face ((t (:foreground "magenta"))))
+ '(rainbow-delimiters-depth-6-face ((t (:foreground "sandy brown"))))
+ '(rainbow-delimiters-depth-7-face ((t (:foreground "medium turquoise"))))
+ '(rainbow-delimiters-depth-8-face ((t (:foreground "deep pink"))))
+ '(rainbow-delimiters-depth-9-face ((t (:foreground "gold")))))
 
 (add-to-list 'load-path (expand-file-name "vendor" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "languages" user-emacs-directory))
@@ -46,7 +51,7 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-; we define the packages that we weant to upload
+;; we define the packages that we weant to upload
 (defvar my-packages
   '(
 	aggressive-indent
@@ -84,12 +89,12 @@
 	;;flycheck-color-mode-line
 	))
 
-; macos special path info (shell and non-shell apps get different paths)
-; not sure if needed due to the below
-;(if (eq system-type 'darwin)
-;	(add-to-list 'my-packages 'exec-path-from-shell))
+;; macos special path info (shell and non-shell apps get different paths)
+;; not sure if needed due to the below
+;;(if (eq system-type 'darwin)
+;;	(add-to-list 'my-packages 'exec-path-from-shell))
 
-; we upload the whole lot
+;; we upload the whole lot
 (dolist (pa my-packages)
   (unless (package-installed-p pa)
 	(package-install pa)))
@@ -97,8 +102,8 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-; general modifications
-; Settings for different tools
+;; general modifications
+;; Settings for different tools
 (require 'init-company)
 (require 'init-ido)
 (require 'init-paredit)
@@ -108,16 +113,19 @@
 (require 'init-web-mode)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
-;(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+;;(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
 
 (show-paren-mode 1)
-; highlight current line
-;(global-hl-line-mode 1)
+;; highlight current line
+;;(global-hl-line-mode 1)
 
-; line numbers
+;; line numbers
 (global-linum-mode)
 
-; column numbers
+;; Use tabs instead of spaces
+(setq-default indent-tabs-mode nil)
+
+;; column numbers
 (setq column-number-mode t)
 
 ;; full path in title bar
@@ -143,6 +151,7 @@
 (require 'init-ruby)
 (require 'init-csharp)
 (require 'init-java)
+(require 'init-html)
 
 
 ;; let's pretify those lambdas
