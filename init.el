@@ -82,12 +82,14 @@
 	paredit
 	puppet-mode
 	rainbow-delimiters
+    rust-mode
 	robe
 	scala-mode
 	shut-up
 	smex
 	tagedit
 	web-mode
+    which-key
 	yaml-mode
 	;;flycheck-color-mode-line
 	))
@@ -114,6 +116,8 @@
 (require 'init-eldoc)
 (require 'init-smex)
 (require 'init-web-mode)
+
+(which-key-mode)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 ;;(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
