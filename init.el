@@ -147,6 +147,9 @@
 
 (global-set-key (kbd "C-c C-;") 'comment-region)
 
+
+(global-set-key [f8] 'neotree-toggle)
+
 ;; Settings for different languages
 (require 'init-elisp)
 (require 'init-markdown)
