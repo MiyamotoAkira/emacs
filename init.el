@@ -27,10 +27,13 @@
  '(rainbow-delimiters-depth-3-face ((t (:foreground "cornflower blue"))))
  '(rainbow-delimiters-depth-4-face ((t (:foreground "orange"))))
  '(rainbow-delimiters-depth-5-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-6-face ((t (:foreground "sandy brown"))))
+ '(rainbow-delimiters-depth-6-face ((t (:foreground "peru"))))
  '(rainbow-delimiters-depth-7-face ((t (:foreground "medium turquoise"))))
  '(rainbow-delimiters-depth-8-face ((t (:foreground "deep pink"))))
  '(rainbow-delimiters-depth-9-face ((t (:foreground "gold")))))
+
+(tool-bar-mode -1)
+(menu-bar-mode -1)
 
 (add-to-list 'load-path (expand-file-name "vendor" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "languages" user-emacs-directory))
