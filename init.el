@@ -34,6 +34,7 @@
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+(scroll-bar-mode -1)
 
 (add-to-list 'load-path (expand-file-name "vendor" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "languages" user-emacs-directory))
