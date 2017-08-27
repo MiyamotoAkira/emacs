@@ -83,7 +83,6 @@
 	highlight-indentation
 	ido-ubiquitous
 	jdee
-	magit
 	neotree
 	omnisharp
 	paredit
@@ -149,10 +148,6 @@
 ;; no bell
 (setq ring-bell-function 'ignore)
 
-;;magit
-(global-set-key (kbd "C-x g") 'magit-status)
-
-
 (global-set-key (kbd "C-c C-;") 'comment-region)
 
 
@@ -192,6 +187,10 @@
   :config
   (require 'spaceline-config)
   (spaceline-emacs-theme))
+
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status)))
 
 (use-package command-log-mode
   :ensure t)
