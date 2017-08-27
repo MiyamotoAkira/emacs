@@ -58,6 +58,8 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 ;; we define the packages that we weant to upload
 (defvar my-packages
   '(
@@ -82,7 +84,6 @@
 	ido-ubiquitous
 	jdee
 	magit
-	markdown-mode
 	neotree
 	omnisharp
 	paredit
@@ -159,7 +160,6 @@
 
 ;; Settings for different languages
 (require 'init-elisp)
-(require 'init-markdown)
 (require 'init-go)
 (require 'init-haskell)
 (require 'init-clojure)
@@ -191,4 +191,13 @@
 ;;                (file-writable-p buffer-file-name))
 ;;     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
+(use-package markdown-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+  (custom-set-variables
+   '(markdown-command "/usr/bin/pandoc")))
 ;;; init.el ends here
