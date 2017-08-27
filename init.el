@@ -185,11 +185,16 @@
 
 (global-prettify-symbols-mode 1)
 
-;; (defadvice ido-find-file (after find-file-sudo activate)
-;;   "Find file as root if necessary."
-;;   (unless (and buffer-file-name
-;;                (file-writable-p buffer-file-name))
-;;     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+(use-package spaceline
+  :ensure t
+  :init
+  (setq powerline-default-separator 'utf-8)
+  :config
+  (require 'spaceline-config)
+  (spaceline-emacs-theme))
+
+(use-package command-log-mode
+  :ensure t)
 
 (use-package markdown-mode
   :ensure t
