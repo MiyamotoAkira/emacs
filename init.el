@@ -16,6 +16,9 @@
      ("org" . "http://orgmode.org/elpa/")
      ("marmalade" . "https://marmalade-repo.org/packages/")
      ("melpa" . "https://melpa.org/packages/"))))
+ '(package-selected-packages
+   (quote
+    (projectile yaml-mode which-key web-mode tagedit smex scala-mode rust-mode robe rainbow-delimiters puppet-mode omnisharp neotree markdown-mode magit jdee ido-ubiquitous highlight-indentation haskell-mode go-mode fsharp-mode flx-ido exec-path-from-shell erlang elm-mode clojure-mode-extra-font-locking clj-refactor alchemist aggressive-indent)))
  '(tab-width 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -69,6 +72,8 @@
 	elm-mode
 	erlang
 	exec-path-from-shell
+    flx
+    flx-ido
 	flycheck
 	fsharp-mode
 	go-mode
@@ -81,6 +86,7 @@
 	neotree
 	omnisharp
 	paredit
+    projectile
 	puppet-mode
 	rainbow-delimiters
     rust-mode
