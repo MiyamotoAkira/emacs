@@ -72,8 +72,6 @@
 	clojure-mode-extra-font-locking
 	company
 	elixir-mode
-	elm-mode
-	erlang
 	exec-path-from-shell
     flx
     flx-ido
@@ -87,10 +85,7 @@
 	omnisharp
 	paredit
 	puppet-mode
-	rainbow-delimiters
-    rust-mode
 	robe
-	scala-mode
 	shut-up
 	smex
 	tagedit
@@ -116,7 +111,6 @@
 (require 'init-company)
 (require 'init-ido)
 (require 'init-paredit)
-(require 'init-rainbow)
 (require 'init-eldoc)
 (require 'init-smex)
 (require 'init-web-mode)
@@ -145,8 +139,6 @@
 
 (global-set-key (kbd "C-c C-;") 'comment-region)
 
-(use-package neotree
-  :bind (([f8] . neotree-toggle)))
 
 ;; Settings for different languages
 (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
@@ -174,6 +166,18 @@
 
 
 (global-prettify-symbols-mode 1)
+
+(use-package scala-mode
+  :ensure t)
+
+(use-package erlang
+  :ensure t)
+
+(use-package elm-mode
+  :ensure t)
+
+(use-package rust-mode
+  :ensure t)
 
 (use-package powerline
   :ensure t
@@ -203,4 +207,18 @@
 
   (custom-set-variables
    '(markdown-command "/usr/bin/pandoc")))
+
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'rainbow-delimiters-mode)
+  (add-hook 'ielm-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'lisp-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'lisp-interaction-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'scheme-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode))
+
+(use-package neotree
+  :bind (([f8] . neotree-toggle)))
 ;;; init.el ends here
