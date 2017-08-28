@@ -83,10 +83,8 @@
 	highlight-indentation
 	ido-ubiquitous
 	jdee
-	neotree
 	omnisharp
 	paredit
-    projectile
 	puppet-mode
 	rainbow-delimiters
     rust-mode
@@ -96,9 +94,7 @@
 	smex
 	tagedit
 	web-mode
-    which-key
 	yaml-mode
-	;;flycheck-color-mode-line
 	))
 
 ;; macos special path info (shell and non-shell apps get different paths)
@@ -124,14 +120,12 @@
 (require 'init-smex)
 (require 'init-web-mode)
 
-(which-key-mode)
-
 (add-hook 'after-init-hook #'global-flycheck-mode)
 ;;(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
 
 (show-paren-mode 1)
 ;; highlight current line
-;;(global-hl-line-mode 1)
+(global-hl-line-mode 1)
 
 ;; line numbers
 (global-linum-mode)
@@ -150,11 +144,11 @@
 
 (global-set-key (kbd "C-c C-;") 'comment-region)
 
-
-(global-set-key [f8] 'neotree-toggle)
+(use-package neotree
+  :bind (([f8] . neotree-toggle)))
 
 ;; Settings for different languages
-(require 'init-elisp)
+(add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
 (require 'init-go)
 (require 'init-haskell)
 (require 'init-clojure)
@@ -180,13 +174,10 @@
 
 (global-prettify-symbols-mode 1)
 
-(use-package spaceline
+(use-package powerline
   :ensure t
-  :init
-  (setq powerline-default-separator 'utf-8)
   :config
-  (require 'spaceline-config)
-  (spaceline-emacs-theme))
+  (powerline-default-theme))
 
 (use-package magit
   :ensure t
@@ -194,6 +185,13 @@
 
 (use-package command-log-mode
   :ensure t)
+
+(use-package projectile-mode
+  :ensure t)
+
+(use-package which-key
+  :config
+  (which-key-mode))
 
 (use-package markdown-mode
   :ensure t
