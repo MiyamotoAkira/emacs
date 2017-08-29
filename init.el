@@ -72,15 +72,11 @@
 	clojure-mode-extra-font-locking
 	company
 	elixir-mode
-	exec-path-from-shell
-    flx
-    flx-ido
 	flycheck
 	fsharp-mode
 	go-mode
 	haskell-mode
 	highlight-indentation
-	ido-ubiquitous
 	jdee
 	omnisharp
 	paredit
@@ -109,7 +105,6 @@
 ;; general modifications
 ;; Settings for different tools
 (require 'init-company)
-(require 'init-ido)
 (require 'init-paredit)
 (require 'init-eldoc)
 (require 'init-smex)
@@ -194,6 +189,12 @@
 (use-package projectile-mode
   :ensure t)
 
+(use-package flx
+  :ensure t)
+
+(use-package flx-ido
+  :ensure t)
+
 (use-package which-key
   :config
   (which-key-mode))
@@ -218,6 +219,13 @@
   (add-hook 'lisp-interaction-mode-hook #'rainbow-delimiters-mode)
   (add-hook 'scheme-mode-hook #'rainbow-delimiters-mode)
   (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode))
+
+(use-package ido-ubiquitous
+  :ensure t
+  :config
+  (ido-mode t)
+  (ido-ubiquitous-mode 1)
+  (setq ido-auto-merge-work-directories-length -1))
 
 (use-package neotree
   :bind (([f8] . neotree-toggle)))
