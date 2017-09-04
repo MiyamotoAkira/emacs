@@ -227,6 +227,20 @@
   (ido-ubiquitous-mode 1)
   (setq ido-auto-merge-work-directories-length -1))
 
+(use-package org-present
+  :ensure t
+  :config
+  (add-hook 'org-present-mode-hook
+            (lambda ()
+              (org-present-big)
+              (org-display-inline-images)
+              (global-linum-mode -1)))
+  (add-hook 'org-present-mode-quit-hook
+            (lambda ()
+              (org-present-small)
+              (org-remove-inline-images)
+              (global-linum-mode))))
+
 (use-package neotree
   :bind (([f8] . neotree-toggle)))
 ;;; init.el ends here
