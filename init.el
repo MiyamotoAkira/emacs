@@ -220,7 +220,7 @@
   (add-hook 'scheme-mode-hook #'rainbow-delimiters-mode)
   (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode))
 
-(use-package ido-ubiquitous
+(use-package ido-completing-read+
   :ensure t
   :config
   (ido-mode t)
