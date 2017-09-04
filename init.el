@@ -234,12 +234,14 @@
             (lambda ()
               (org-present-big)
               (org-display-inline-images)
-              (global-linum-mode -1)))
+              (global-linum-mode -1)
+              (global-hl-line-mode -1)))
   (add-hook 'org-present-mode-quit-hook
             (lambda ()
               (org-present-small)
               (org-remove-inline-images)
-              (global-linum-mode))))
+              (global-linum-mode)
+              (global-hl-line-mode 1))))
 
 (use-package neotree
   :bind (([f8] . neotree-toggle)))
