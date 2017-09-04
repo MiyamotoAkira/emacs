@@ -18,7 +18,7 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (projectile-mode command-log-mode powerline use-package projectile yaml-mode which-key web-mode tagedit smex scala-mode rust-mode robe rainbow-delimiters puppet-mode omnisharp neotree markdown-mode magit jdee ido-ubiquitous highlight-indentation haskell-mode go-mode fsharp-mode flx-ido exec-path-from-shell erlang elm-mode clojure-mode-extra-font-locking clj-refactor alchemist aggressive-indent)))
+    (org-present projectile-mode command-log-mode powerline use-package projectile yaml-mode which-key web-mode tagedit smex scala-mode rust-mode robe rainbow-delimiters puppet-mode omnisharp neotree markdown-mode magit jdee ido-ubiquitous highlight-indentation haskell-mode go-mode fsharp-mode flx-ido exec-path-from-shell erlang elm-mode clojure-mode-extra-font-locking clj-refactor alchemist aggressive-indent)))
  '(tab-width 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
