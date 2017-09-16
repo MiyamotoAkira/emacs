@@ -9,6 +9,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (misterioso)))
+ '(markdown-command "/usr/bin/pandoc")
  '(package-archives
    (quote
     (("gnu" . "https://elpa.gnu.org/packages/")
@@ -18,7 +19,7 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (org-present projectile-mode command-log-mode powerline use-package projectile yaml-mode which-key web-mode tagedit smex scala-mode rust-mode robe rainbow-delimiters puppet-mode omnisharp neotree markdown-mode magit jdee ido-ubiquitous highlight-indentation haskell-mode go-mode fsharp-mode flx-ido exec-path-from-shell erlang elm-mode clojure-mode-extra-font-locking clj-refactor alchemist aggressive-indent)))
+    (lfe-mode fsharp csharp cljr-refactor elixir-mode-hook aggresive-indent ido-completing-read+ flx flycheck cider org-present projectile-mode command-log-mode powerline use-package projectile yaml-mode which-key web-mode tagedit smex scala-mode rust-mode robe rainbow-delimiters puppet-mode omnisharp neotree markdown-mode magit jdee ido-ubiquitous highlight-indentation haskell-mode go-mode fsharp-mode flx-ido exec-path-from-shell erlang elm-mode clojure-mode-extra-font-locking clj-refactor alchemist aggressive-indent)))
  '(tab-width 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -48,13 +49,6 @@
 
 (package-initialize)
 
-(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
-(add-to-list 'package-pinned-packages '(clojure-mode . "melpa-stable") t)
-(add-to-list 'package-pinned-packages '(clojure-mode-extra-font-locking . "melpa-stable") t)
-(add-to-list 'package-pinned-packages '(clj-refactor . "melpa-stable") t)
-;;(add-to-list 'package-pinned-packages '(omnisharp . "melpa-stable") t)
-
-
 ;; less refresh the packages
 (unless package-archive-contents
   (package-refresh-contents))
@@ -64,30 +58,9 @@
 ;; we define the packages that we weant to upload
 (defvar my-packages
   '(
-	aggressive-indent
-	alchemist
-	cider
-	clj-refactor
-	clojure-mode
-	clojure-mode-extra-font-locking
-	company
-	elixir-mode
-	flycheck
-	fsharp-mode
 	go-mode
-	haskell-mode
-	highlight-indentation
 	jdee
-	omnisharp
-	paredit
-	puppet-mode
-	robe
-	shut-up
-	smex
-	tagedit
-	web-mode
-	yaml-mode
-	))
+	omnisharp))
 
 ;; macos special path info (shell and non-shell apps get different paths)
 ;; not sure if needed due to the below
@@ -103,17 +76,6 @@
   (exec-path-from-shell-initialize))
 
 ;; general modifications
-;; Settings for different tools
-(require 'init-company)
-(require 'init-paredit)
-(require 'init-eldoc)
-(require 'init-smex)
-(require 'init-web-mode)
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
-;;(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
-
-(show-paren-mode 1)
 ;; highlight current line
 (global-hl-line-mode 1)
 
@@ -136,33 +98,89 @@
 
 
 ;; Settings for different languages
-(add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
 (require 'init-go)
-(require 'init-haskell)
-(require 'init-clojure)
-(require 'init-elixir)
-(require 'init-lfe)
-(require 'init-ruby)
 (require 'init-csharp)
 (require 'init-java)
-(require 'init-html)
-
 
 ;; let's pretify those lambdas
-;; (defun my-pretty-lambda-scheme ()
-;;   "make some word or string show as pretty Unicode symbols"
-;;   (setq prettify-symbols-alist
-;;         '(
-;;           ("lambda" . 955) ; λ
-;;           )))
-
-										;(add-hook 'scheme-mode-hook 'my-pretty-lambda-scheme)
-
+(defun my-pretty-lambda (lambda-string)
+  "Make some word or string show as pretty Unicode symbols.  LAMBDA-STRING is the way that the language declares lambda functions."
+  (setq prettify-symbols-alist
+        '(
+          (lambda-string . 955) ; λ
+          )))
 
 
 (global-prettify-symbols-mode 1)
 
+(defun my-web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-markup-indent-offset 2))
+
+;; eldoc configuration
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+
+(use-package smex
+  :ensure t
+  :bind (("M-x" . smex))
+  :config
+  (setq smex-save-file (concat user-emacs-directory ".smex-items"))
+  (smex-initialize))
+
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (add-hook 'web-mode-hook  'my-web-mode-hook))
+
+(use-package flycheck
+  :ensure t
+  :config
+  ;;(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+  (show-paren-mode 1)  (add-hook 'after-init-hook #'global-flycheck-mode))
+
+(add-hook 'html-mode-hook
+		  (lambda ()
+			;; Default indentation is usually 2 spaces, changing to 4.
+			(set (make-local-variable 'sgml-basic-offset) 4)))
+
+(use-package tagedit
+  :ensure t)
+
+(use-package yaml-mode
+  :ensure t)
+
+(use-package highlight-indentation
+  :ensure t)
+
+(use-package puppet-mode
+  :ensure t)
+
+(use-package shut-up
+  :ensure t)
+
+(use-package aggresive-indent
+  :ensure t
+  :config
+  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
+
 (use-package scala-mode
+  :ensure t)
+
+(use-package robe
+  :ensure t
+  :config
+  (add-hook 'ruby-mode-hook 'robe-mode))
+
+(use-package lfe-mode
   :ensure t)
 
 (use-package erlang
@@ -173,6 +191,11 @@
 
 (use-package rust-mode
   :ensure t)
+
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package powerline
   :ensure t
@@ -243,6 +266,88 @@
               (global-linum-mode)
               (global-hl-line-mode 1))))
 
+(use-package elixir-mode-hook
+  :ensure t
+  :config
+  (add-hook 'elixir-mode-hook (lambda () (my-pretty-lambda "fn")))
+  (add-hook 'elixir-mode-hook (lambda ()
+                                (setq tab-width 2)
+                                (setq indent-tabs-mode nil))))
+(use-package alchemist
+  :ensure t)
+
+(use-package cljr-refactor
+  :ensure t
+  :pin melpa-stable
+  :config
+  (cljr-refactor-mode 1)
+  (yas-minor-mode 1)
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
+
+(use-package cider
+  :ensure t
+  :pin melpa-stable
+  :config
+  (add-hook 'cider-repl-mode-hook 'paredit-mode)
+  (add-hook 'cider-mode-hook 'paredit-mode)
+  (add-hook 'cider-mode-hook #'eldoc-mode)
+  (add-hook 'cider-mode-hook #'company-mode)
+  (add-hook 'cider-repl-mode-hook #'company-mode))
+
+(use-package clojure-mode
+  :ensure t
+  :pin melpa-stable
+  :config
+  (add-hook 'clojure-mode-hook 'subword-mode)
+  (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
+  (add-hook 'clojure-mode-hook
+            (lambda ()
+              (setq inferior-lisp-program "lein repl")
+              (font-lock-add-keywords
+               nil
+               '(("(\\(facts?\\)"
+                  (1 font-lock-keyword-face))
+                 ("(\\(background?\\)"
+                  (1 font-lock-keyword-face))))
+              (define-clojure-indent (fact 1))
+              (define-clojure-indent (facts 1))))
+  (add-hook 'clojure-mode-hook #'cider-mode)
+  (add-hook 'clojure-mode-hook (lambda () (my-pretty-lambda "fn"))))
+
+(use-package clojure-mode-extra-font-locking
+  :ensure t
+  :pin melpa-stable)
+
+(use-package csharp
+  :ensure t)
+
+(use-package fsharp-mode
+  :ensure t)
+
+(use-package haskell-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
+  (add-hook 'haskell-mode-hook 'haskell-indentation-mode))
+
+
+;; This one has to happen after all modes that use parens are loaded
+(use-package paredit
+  :ensure t
+  :init
+  (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+  :config
+  (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+  (add-hook 'ielm-mode-hook #'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook #'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+  (add-hook 'scheme-mode-hook #'enable-paredit-mode)
+  (add-hook 'clojure-mode-hook #'enable-paredit-mode)
+  (add-hook 'lfe-mode-hook #'enable-paredit-mode))
+
+
 (use-package neotree
+  :ensure t
   :bind (([f8] . neotree-toggle)))
 ;;; init.el ends here
