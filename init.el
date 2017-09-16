@@ -19,7 +19,7 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (lfe-mode fsharp csharp cljr-refactor elixir-mode-hook aggresive-indent ido-completing-read+ flx flycheck cider org-present projectile-mode command-log-mode powerline use-package projectile yaml-mode which-key web-mode tagedit smex scala-mode rust-mode robe rainbow-delimiters puppet-mode omnisharp neotree markdown-mode magit jdee ido-ubiquitous highlight-indentation haskell-mode go-mode fsharp-mode flx-ido exec-path-from-shell erlang elm-mode clojure-mode-extra-font-locking clj-refactor alchemist aggressive-indent)))
+    (lfe-mode ido-completing-read+ flx flycheck cider org-present command-log-mode powerline use-package projectile yaml-mode which-key web-mode tagedit smex scala-mode rust-mode robe rainbow-delimiters puppet-mode omnisharp neotree markdown-mode magit jdee ido-ubiquitous highlight-indentation haskell-mode go-mode fsharp-mode flx-ido exec-path-from-shell erlang elm-mode clojure-mode-extra-font-locking clj-refactor alchemist aggressive-indent)))
  '(tab-width 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -57,10 +57,7 @@
   (package-install 'use-package))
 ;; we define the packages that we weant to upload
 (defvar my-packages
-  '(
-	go-mode
-	jdee
-	omnisharp))
+  '(omnisharp))
 
 ;; macos special path info (shell and non-shell apps get different paths)
 ;; not sure if needed due to the below
@@ -98,18 +95,20 @@
 
 
 ;; Settings for different languages
-(require 'init-go)
 (require 'init-csharp)
-(require 'init-java)
 
 ;; let's pretify those lambdas
 (defun my-pretty-lambda (lambda-string)
   "Make some word or string show as pretty Unicode symbols.  LAMBDA-STRING is the way that the language declares lambda functions."
   (setq prettify-symbols-alist
-        '(
-          (lambda-string . 955) ; λ
-          )))
+        ;; λ
+        '((lambda-string . 955))))
 
+(defun my-pretty-lambda-clojure ()
+  "Make some word or string show as pretty Unicode symbols.  LAMBDA-STRING is the way that the language declares lambda functions."
+  (setq prettify-symbols-alist
+        ;; λ
+        '(("fn" . 955))))
 
 (global-prettify-symbols-mode 1)
 
@@ -161,7 +160,7 @@
 (use-package shut-up
   :ensure t)
 
-(use-package aggresive-indent
+(use-package aggressive-indent
   :ensure t
   :config
   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
@@ -203,7 +202,7 @@
 (use-package command-log-mode
   :ensure t)
 
-(use-package projectile-mode
+(use-package projectile
   :ensure t)
 
 (use-package flx
@@ -213,6 +212,7 @@
   :ensure t)
 
 (use-package which-key
+  :ensure t
   :config
   (which-key-mode))
 
@@ -222,17 +222,6 @@
   :config
   (custom-set-variables
    '(markdown-command "/usr/bin/pandoc")))
-
-(use-package rainbow-delimiters
-  :ensure t
-  :config
-  (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'eval-expression-minibuffer-setup-hook #'rainbow-delimiters-mode)
-  (add-hook 'ielm-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'lisp-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'lisp-interaction-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'scheme-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode))
 
 (use-package ido-completing-read+
   :ensure t
@@ -257,7 +246,7 @@
               (global-linum-mode)
               (global-hl-line-mode 1))))
 
-(use-package elixir-mode-hook
+(use-package elixir-mode
   :ensure t
   :config
   (add-hook 'elixir-mode-hook (lambda () (my-pretty-lambda "fn")))
@@ -267,11 +256,8 @@
 (use-package alchemist
   :ensure t)
 
-(use-package cljr-refactor
-  :ensure t
-  :pin melpa-stable
-  :config
-  (cljr-refactor-mode 1)
+(defun clj-clojure-hook ()
+  (clj-refactor-mode 1)
   (yas-minor-mode 1)
   (cljr-add-keybindings-with-prefix "C-c C-m"))
 
@@ -303,13 +289,19 @@
               (define-clojure-indent (fact 1))
               (define-clojure-indent (facts 1))))
   (add-hook 'clojure-mode-hook #'cider-mode)
-  (add-hook 'clojure-mode-hook (lambda () (my-pretty-lambda "fn"))))
+  (add-hook 'clojure-mode-hook 'my-pretty-lambda-clojure))
+
+(use-package clj-refactor
+  :ensure t
+  :pin melpa-stable
+  :config
+  (add-hook 'clojure-mode-hook #'clj-clojure-hook))
 
 (use-package clojure-mode-extra-font-locking
   :ensure t
   :pin melpa-stable)
 
-(use-package csharp
+(use-package csharp-mode
   :ensure t)
 
 (use-package fsharp-mode
@@ -337,6 +329,16 @@
   (add-hook 'clojure-mode-hook #'enable-paredit-mode)
   (add-hook 'lfe-mode-hook #'enable-paredit-mode))
 
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'rainbow-delimiters-mode)
+  (add-hook 'ielm-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'lisp-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'lisp-interaction-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'scheme-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode))
 
 (use-package neotree
   :ensure t
