@@ -347,8 +347,9 @@
   :ensure t
   :bind (([f8] . neotree-toggle)))
 
-(use-package auctex
-  :ensure t
+(use-package tex
+  :defer t
+  :ensure auctex
   :config
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
