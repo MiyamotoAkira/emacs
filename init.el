@@ -107,6 +107,12 @@
         ;; λ
         '((lambda-string . 955))))
 
+(defun my-pretty-lambda-elixir ()
+  "Make some word or string show as pretty Unicode symbols.  LAMBDA-STRING is the way that the language declares lambda functions."
+  (setq prettify-symbols-alist
+        ;; λ
+        '(("fn" . 955))))
+
 (defun my-pretty-lambda-clojure ()
   "Make some word or string show as pretty Unicode symbols.  LAMBDA-STRING is the way that the language declares lambda functions."
   (setq prettify-symbols-alist
@@ -252,7 +258,7 @@
 (use-package elixir-mode
   :ensure t
   :config
-  (add-hook 'elixir-mode-hook (lambda () (my-pretty-lambda "fn")))
+  (add-hook 'elixir-mode-hook 'my-pretty-lambda-elixir)
   (add-hook 'elixir-mode-hook (lambda ()
                                 (setq tab-width 2)
                                 (setq indent-tabs-mode nil))))
