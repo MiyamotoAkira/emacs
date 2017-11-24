@@ -314,7 +314,8 @@
   :ensure t)
 
 (use-package fsharp-mode
-  :ensure t)
+  :ensure t
+  :config 'auto-mode-alist '("\\.fs[iylx]?$" . fsharp-mode))
 
 (use-package haskell-mode
   :ensure t
