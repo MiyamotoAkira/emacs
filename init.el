@@ -19,7 +19,7 @@
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (geiser latex-preview-pane company-auctex auctex lfe-mode ido-completing-read+ flx flycheck cider org-present command-log-mode powerline use-package projectile yaml-mode which-key web-mode tagedit smex scala-mode rust-mode robe rainbow-delimiters puppet-mode omnisharp neotree markdown-mode magit jdee ido-ubiquitous highlight-indentation haskell-mode go-mode fsharp-mode flx-ido exec-path-from-shell erlang elm-mode clojure-mode-extra-font-locking clj-refactor alchemist aggressive-indent)))
+    (eclim geiser latex-preview-pane company-auctex auctex lfe-mode ido-completing-read+ flx flycheck cider org-present command-log-mode powerline use-package projectile yaml-mode which-key web-mode tagedit smex scala-mode rust-mode robe rainbow-delimiters puppet-mode omnisharp neotree markdown-mode magit ido-ubiquitous highlight-indentation haskell-mode go-mode fsharp-mode flx-ido exec-path-from-shell erlang elm-mode clojure-mode-extra-font-locking clj-refactor alchemist aggressive-indent)))
  '(tab-width 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -373,4 +373,13 @@
 
 (use-package geiser
   :ensure t)
+
+(defun my-java-hook ()
+  (eclim-mode t))
+
+(use-package eclim
+  :ensure t
+  :config
+  (setq eclimd-autostart t)
+  (add-hook 'java-mode-hook 'my-java-hook))
 ;;; init.el ends here
