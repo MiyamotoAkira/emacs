@@ -382,4 +382,11 @@
   :config
   (setq eclimd-autostart t)
   (add-hook 'java-mode-hook 'my-java-hook))
+(defun fullscreen ()
+  ;; puts emacs on fullscreen mode
+  (interactive)
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                         '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+
+(fullscreen)
 ;;; init.el ends here
