@@ -384,6 +384,11 @@
   :config
   (dimmer-mode))
 
+(use-package spu
+  :ensure t
+  :defer 5 ;; defer package loading for 5 second
+  :config (spu-package-upgrade-daily))
+
 (defun fullscreen ()
   ;; puts emacs on fullscreen mode
   (interactive)
