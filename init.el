@@ -1,51 +1,35 @@
 ;;; package --- Summary
 ;;; Commentary:
-;;; This is the configuration of Emacs.
+;;; This is my configuration of Emacs.
 
 ;;; Code:
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (misterioso)))
- '(markdown-command "/usr/bin/pandoc")
- '(package-archives
-   (quote
-    (("gnu" . "https://elpa.gnu.org/packages/")
-     ("melpa-stable" . "https://stable.melpa.org/packages/")
-     ("org" . "http://orgmode.org/elpa/")
-     ("marmalade" . "https://marmalade-repo.org/packages/")
-     ("melpa" . "https://melpa.org/packages/"))))
- '(package-selected-packages
-   (quote
-    (dimmer geiser latex-preview-pane company-auctex auctex lfe-mode ido-completing-read+ flx flycheck cider org-present command-log-mode powerline use-package projectile yaml-mode which-key web-mode tagedit smex scala-mode rust-mode robe rainbow-delimiters puppet-mode omnisharp neotree markdown-mode magit ido-ubiquitous highlight-indentation haskell-mode go-mode fsharp-mode flx-ido exec-path-from-shell erlang elm-mode clojure-mode-extra-font-locking clj-refactor alchemist aggressive-indent)))
- '(tab-width 4))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(hl-line ((t (:underline t))))
- '(rainbow-delimiters-depth-1-face ((t (:foreground "red"))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "yellow"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "cornflower blue"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "orange"))))
- '(rainbow-delimiters-depth-5-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-6-face ((t (:foreground "peru"))))
- '(rainbow-delimiters-depth-7-face ((t (:foreground "medium turquoise"))))
- '(rainbow-delimiters-depth-8-face ((t (:foreground "deep pink"))))
- '(rainbow-delimiters-depth-9-face ((t (:foreground "gold")))))
+(setq tab-width 4)
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+
 (add-to-list 'load-path (expand-file-name "vendor" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "languages" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "tools" user-emacs-directory))
 
+(setq ansi-color-faces-vector
+      [default default default italic underline success warning error])
+
+(hl-line-mode)
+(set-face-attribute hl-line-face nil :underline t)
+
 (require 'package)
+
+(setq package-archives
+      (quote
+       (("gnu" . "https://elpa.gnu.org/packages/")
+        ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("org" . "http://orgmode.org/elpa/")
+        ("marmalade" . "https://marmalade-repo.org/packages/")
+        ("melpa" . "https://melpa.org/packages/"))))
 
 (package-initialize)
 
@@ -55,6 +39,7 @@
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
+
 ;; we define the packages that we weant to upload
 (defvar my-packages
   '(omnisharp))
@@ -70,10 +55,9 @@
 	(package-install pa)))
 
 (use-package exec-path-from-shell
-  :ensure t
-  :config
-  (when (memq window-system '(mac ns x))
-	(exec-path-from-shell-initialize)))
+  :ensure t)
+
+(exec-path-from-shell-initialize)
 
 ;; general modifications
 ;; highlight current line
@@ -95,7 +79,6 @@
 (setq ring-bell-function 'ignore)
 
 (global-set-key (kbd "C-c C-;") 'comment-region)
-
 
 ;; Settings for different languages
 (require 'init-csharp)
@@ -138,6 +121,7 @@
   (smex-initialize))
 
 (use-package web-mode
+  :defer t
   :ensure t
   :mode ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'")
   :config
@@ -158,12 +142,14 @@
   :ensure t)
 
 (use-package yaml-mode
+  :defer t
   :ensure t)
 
 (use-package highlight-indentation
   :ensure t)
 
 (use-package puppet-mode
+  :defer t
   :ensure t)
 
 (use-package shut-up
@@ -175,23 +161,29 @@
   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
 
 (use-package scala-mode
+  :defer t
   :ensure t)
 
 (use-package robe
+  :defer t
   :ensure t
   :config
   (add-hook 'ruby-mode-hook 'robe-mode))
 
 (use-package lfe-mode
+  :defer t
   :ensure t)
 
 (use-package erlang
+  :defer t
   :ensure t)
 
 (use-package elm-mode
+  :defer t
   :ensure t)
 
 (use-package rust-mode
+  :defer t
   :ensure t)
 
 (use-package company
@@ -226,6 +218,7 @@
   (which-key-mode))
 
 (use-package markdown-mode
+  :defer t
   :ensure t
   :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'")
   :config
@@ -240,6 +233,7 @@
   (setq ido-auto-merge-work-directories-length -1))
 
 (use-package org-present
+  :defer t
   :ensure t
   :config
   (add-hook 'org-present-mode-hook
@@ -256,6 +250,7 @@
               (global-hl-line-mode 1))))
 
 (use-package elixir-mode
+  :defer t
   :ensure t
   :config
   (add-hook 'elixir-mode-hook 'my-pretty-lambda-elixir)
@@ -263,6 +258,7 @@
                                 (setq tab-width 2)
                                 (setq indent-tabs-mode nil))))
 (use-package alchemist
+  :defer t
   :ensure t)
 
 (defun clj-clojure-hook ()
@@ -271,6 +267,7 @@
   (cljr-add-keybindings-with-prefix "C-c C-m"))
 
 (use-package cider
+  :defer t
   :ensure t
   :pin melpa-stable
   :config
@@ -281,6 +278,7 @@
   (add-hook 'cider-repl-mode-hook #'company-mode))
 
 (use-package clojure-mode
+  :defer t
   :ensure t
   :pin melpa-stable
   :config
@@ -301,28 +299,32 @@
   (add-hook 'clojure-mode-hook 'my-pretty-lambda-clojure))
 
 (use-package clj-refactor
+  :defer t
   :ensure t
   :pin melpa-stable
   :config
   (add-hook 'clojure-mode-hook #'clj-clojure-hook))
 
 (use-package clojure-mode-extra-font-locking
+  :defer t
   :ensure t
   :pin melpa-stable)
 
 (use-package csharp-mode
+  :defer t
   :ensure t)
 
 (use-package fsharp-mode
+  :defer t
   :ensure t
   :config 'auto-mode-alist '("\\.fs[iylx]?$" . fsharp-mode))
 
 (use-package haskell-mode
+  :defer t
   :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode))
-
 
 ;; This one has to happen after all modes that use parens are loaded
 (use-package paredit
@@ -364,14 +366,17 @@
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex))
 
 (use-package company-auctex
+  :defer t
   :ensure t)
 
 (use-package latex-preview-pane
   :ensure t
+  :defer t
   :config
   (latex-preview-pane-enable))
 
 (use-package geiser
+  :defer t
   :ensure t)
 
 (use-package dimmer
@@ -385,5 +390,24 @@
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
 
-(fullscreen)
+(use-package solarized-theme
+  :ensure t)
+
+(load-theme 'solarized-light t)
+
+;;(fullscreen)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (yaml-mode which-key web-mode use-package tagedit solarized-theme smex scala-mode rust-mode robe rainbow-delimiters puppet-mode projectile powerline org-present omnisharp neotree markdown-mode magit lfe-mode latex-preview-pane ido-completing-read+ highlight-indentation haskell-mode go-mode geiser fsharp-mode flx-ido exec-path-from-shell erlang elm-mode dimmer diminish company-emacs-eclim company-auctex command-log-mode clojure-mode-extra-font-locking clj-refactor alchemist aggressive-indent))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
