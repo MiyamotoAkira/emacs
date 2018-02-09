@@ -393,21 +393,7 @@
 (use-package solarized-theme
   :ensure t)
 
-(load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
 
 ;;(fullscreen)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (yaml-mode which-key web-mode use-package tagedit solarized-theme smex scala-mode rust-mode robe rainbow-delimiters puppet-mode projectile powerline org-present omnisharp neotree markdown-mode magit lfe-mode latex-preview-pane ido-completing-read+ highlight-indentation haskell-mode go-mode geiser fsharp-mode flx-ido exec-path-from-shell erlang elm-mode dimmer diminish company-emacs-eclim company-auctex command-log-mode clojure-mode-extra-font-locking clj-refactor alchemist aggressive-indent))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
