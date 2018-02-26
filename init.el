@@ -386,6 +386,17 @@
   :config
   (dimmer-mode))
 
+(use-package lua-mode
+  :defer t
+  :ensure t)
+
+(use-package company-lua
+  :defer t
+  :ensure t)
+
+(use-package luarocks
+  :defer t
+  :ensure t)
 
 (defun fullscreen ()
   ;; puts emacs on fullscreen mode
