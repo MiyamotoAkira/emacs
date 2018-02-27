@@ -122,13 +122,6 @@
   (setq smex-save-file (concat user-emacs-directory ".smex-items"))
   (smex-initialize))
 
-(use-package web-mode
-  :defer t
-  :ensure t
-  :mode ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'")
-  :config
-  (add-hook 'web-mode-hook  'my-web-mode-hook))
-
 (use-package flycheck
   :ensure t
   :config
@@ -143,15 +136,7 @@
 (use-package tagedit
   :ensure t)
 
-(use-package yaml-mode
-  :defer t
-  :ensure t)
-
 (use-package highlight-indentation
-  :ensure t)
-
-(use-package puppet-mode
-  :defer t
   :ensure t)
 
 (use-package shut-up
@@ -161,6 +146,26 @@
   :ensure t
   :config
   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
+
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
+
+(use-package web-mode
+  :defer t
+  :ensure t
+  :mode ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'")
+  :config
+  (add-hook 'web-mode-hook  'my-web-mode-hook))
+
+(use-package yaml-mode
+  :defer t
+  :ensure t)
+
+(use-package puppet-mode
+  :defer t
+  :ensure t)
 
 (use-package scala-mode
   :defer t
@@ -187,11 +192,6 @@
 (use-package rust-mode
   :defer t
   :ensure t)
-
-(use-package company
-  :ensure t
-  :config
-  (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package powerline
   :ensure t
