@@ -175,7 +175,8 @@
   :defer t
   :ensure t
   :config
-  (add-hook 'ruby-mode-hook 'robe-mode))
+  (add-hook 'ruby-mode-hook 'robe-mode)
+  (push 'company-robe company-backend))
 
 (use-package lfe-mode
   :defer t
