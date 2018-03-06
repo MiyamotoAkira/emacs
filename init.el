@@ -410,5 +410,17 @@
 
 (load-theme 'solarized-dark t)
 
+(defvar current-dark t)
+
+(defun toggle-theme ()
+  (interactive)
+  (if current-dark
+      (load-theme 'solarized-light t)
+    (load-theme 'solarized-dark t)
+    )
+  (setq current-dark (not current-dark)))
+
+(global-set-key (kbd "C-c C-.") 'toggle-theme)
+
 ;;(fullscreen)
 ;;; init.el ends here
