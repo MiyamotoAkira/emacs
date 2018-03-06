@@ -422,5 +422,7 @@
 
 (global-set-key (kbd "C-c C-.") 'toggle-theme)
 
+(setq split-height-threshold nil)
+(setq split-width-threshold 80)
 ;;(fullscreen)
 ;;; init.el ends here
