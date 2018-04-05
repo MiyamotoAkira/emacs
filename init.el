@@ -235,6 +235,14 @@
   (ido-ubiquitous-mode 1)
   (setq ido-auto-merge-work-directories-length -1))
 
+(use-package org
+  :defer t
+  :ensure t)
+
+(use-package org-plus-contrib
+  :defer t
+  :ensure t)
+
 (use-package org-present
   :defer t
   :ensure t
@@ -260,6 +268,11 @@
   (add-hook 'elixir-mode-hook (lambda ()
                                 (setq tab-width 2)
                                 (setq indent-tabs-mode nil))))
+
+(use-package ob-elixir
+  :ensure t
+  :defer t)
+
 (use-package alchemist
   :defer t
   :ensure t)
@@ -424,5 +437,16 @@
 
 (setq split-height-threshold nil)
 (setq split-width-threshold 80)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (elixir . t)
+   (clojure . t)
+   (sh . t)))
+
+(setq org-confirm-babel-evaluate nil
+      org-src-fontify-natively t
+      org-src-tab-acts-natively t)
 ;;(fullscreen)
 ;;; init.el ends here
