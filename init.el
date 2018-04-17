@@ -443,7 +443,7 @@
  '((emacs-lisp . t)
    (elixir . t)
    (clojure . t)
-   (sh . t)))
+   (shell . t)))
 
 (setq org-confirm-babel-evaluate nil
       org-src-fontify-natively t
