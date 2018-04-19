@@ -190,6 +190,12 @@
   :defer t
   :ensure t)
 
+(use-package java-imports
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'java-mode-hook 'java-imports-scan-file))
+
 (use-package rust-mode
   :defer t
   :ensure t)
