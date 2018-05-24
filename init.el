@@ -336,6 +336,27 @@
   :defer t
   :ensure t)
 
+(use-package lsp-mode
+  :defer t
+  :ensure t) 
+
+(use-package lsp-java
+  :ensure t
+  :config
+  (add-hook 'java-mode-hook #'lsp-java-enable))
+
+(use-package lsp-ui
+  :defer t
+  :ensure t
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(use-package company-lsp
+  :defer t
+  :ensure t
+  :config
+  (push 'company-lsp company-backend))
+
 (use-package fsharp-mode
   :defer t
   :ensure t
@@ -412,6 +433,9 @@
 
 (use-package company-lua
   :defer t
+  :ensure t)
+
+(use-package floobits
   :ensure t)
 
 (use-package luarocks
