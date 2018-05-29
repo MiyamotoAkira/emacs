@@ -159,6 +159,10 @@
   :config
   (add-hook 'web-mode-hook  'my-web-mode-hook))
 
+(use-package gradle-mode
+  :defer t
+  :ensure t)
+
 (use-package yaml-mode
   :defer t
   :ensure t)
@@ -368,6 +372,10 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode))
+
+(use-package groovy-mode
+  :defer t
+  :ensure t)
 
 ;; This one has to happen after all modes that use parens are loaded
 (use-package paredit
