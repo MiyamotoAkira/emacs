@@ -149,6 +149,7 @@
 
 (use-package company
   :ensure t
+  :bind (([C-S-i] . company-complete))
   :config
   (add-hook 'after-init-hook 'global-company-mode))
 
@@ -194,12 +195,6 @@
   :defer t
   :ensure t)
 
-(use-package java-imports
-  :ensure t
-  :defer t
-  :config
-  (add-hook 'java-mode-hook 'java-imports-scan-file))
-
 (use-package rust-mode
   :defer t
   :ensure t)
@@ -224,6 +219,12 @@
 
 (use-package flx-ido
   :ensure t)
+
+(use-package ido-vertical-mode
+  :ensure t
+  :config
+  (ido-vertical-mode 1)
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
 (use-package which-key
   :ensure t
@@ -287,7 +288,8 @@
   :defer t
   :ensure t)
 
-(defun clj-clojure-hook ()
+(defun clj-clojure-setup ()
+  "Functionality to be added for Clojure."
   (clj-refactor-mode 1)
   (yas-minor-mode 1)
   (cljr-add-keybindings-with-prefix "C-c C-m"))
@@ -329,7 +331,7 @@
   :ensure t
   :pin melpa-stable
   :config
-  (add-hook 'clojure-mode-hook #'clj-clojure-hook))
+  (add-hook 'clojure-mode-hook #'clj-clojure-setup))
 
 (use-package clojure-mode-extra-font-locking
   :defer t
@@ -340,9 +342,15 @@
   :defer t
   :ensure t)
 
+(use-package java-imports
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'java-mode-hook 'java-imports-scan-file))
+
 (use-package lsp-mode
   :defer t
-  :ensure t) 
+  :ensure t)
 
 (use-package lsp-java
   :ensure t
@@ -353,10 +361,10 @@
   :defer t
   :ensure t
   :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (add-hook 'java-mode-hook 'flycheck-mode))
 
 (use-package company-lsp
-  :defer t
   :ensure t
   :config
   (push 'company-lsp company-backend))
@@ -376,6 +384,19 @@
 (use-package groovy-mode
   :defer t
   :ensure t)
+
+(use-package slime
+  :defer t
+  :ensure t
+  :config
+  (setq inferior-lisp-program "/usr/bin/sbcl")
+  (setq slime-contribs '(slime-fancy)))
+
+(use-package slime-company
+  :defer t
+  :ensure t
+  :config
+  (slime-setup '(slime-fancy slime-company)))
 
 ;; This one has to happen after all modes that use parens are loaded
 (use-package paredit
@@ -401,7 +422,8 @@
   (add-hook 'lisp-mode-hook #'rainbow-delimiters-mode)
   (add-hook 'lisp-interaction-mode-hook #'rainbow-delimiters-mode)
   (add-hook 'scheme-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode))
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'java-mode-hook #'rainbow-delimiters-mode))
 
 (use-package neotree
   :ensure t
@@ -451,7 +473,7 @@
   :ensure t)
 
 (defun fullscreen ()
-  ;; puts emacs on fullscreen mode
+  "Puts Emacs on fullscreen mode."
   (interactive)
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
@@ -464,6 +486,7 @@
 (defvar current-dark t)
 
 (defun toggle-theme ()
+  "Change the theme used on Emacs between a dark and a light themes."
   (interactive)
   (if current-dark
       (load-theme 'solarized-light t)
@@ -481,7 +504,8 @@
  '((emacs-lisp . t)
    (elixir . t)
    (clojure . t)
-   (shell . t)))
+   (shell . t)
+   (ruby . t)))
 
 (setq org-confirm-babel-evaluate nil
       org-src-fontify-natively t
