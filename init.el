@@ -390,13 +390,13 @@
   :ensure t
   :config
   (setq inferior-lisp-program "/usr/bin/sbcl")
-  (setq slime-contribs '(slime-fancy)))
+  (setq slime-contribs '(slime-fancy))
+  (slime-setup '(slime-fancy slime-company)))
 
 (use-package slime-company
-  :defer t
   :ensure t
   :config
-  (slime-setup '(slime-fancy slime-company)))
+  (setq slime-company-major-modes (quote (lisp-mode slime-repl-mode scheme-mode))))
 
 ;; This one has to happen after all modes that use parens are loaded
 (use-package paredit
