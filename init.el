@@ -286,7 +286,11 @@
 
 (use-package alchemist
   :defer t
-  :ensure t)
+  :ensure t
+  :init
+  (add-hook 'alchemist-mode-hook 'company-mode)
+  :hook
+  ((elixir-mode . alchemist-mode)))
 
 (defun clj-clojure-setup ()
   "Functionality to be added for Clojure."
