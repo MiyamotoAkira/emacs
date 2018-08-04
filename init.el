@@ -246,6 +246,12 @@
   (ido-ubiquitous-mode 1)
   (setq ido-auto-merge-work-directories-length -1))
 
+(use-package smooth-scrolling
+  :ensure t
+  :config
+  (smooth-scrolling-mode 1)
+  (setq smooth-scroll-margin 5))
+
 (use-package org
   :defer t
   :ensure t)
