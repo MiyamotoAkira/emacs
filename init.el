@@ -23,6 +23,10 @@
 (hl-line-mode)
 (set-face-attribute hl-line-face nil :underline t)
 
+;; Now selecting a region behaves as in most applications
+;; you overwrite the region
+(delete-selection-mode 1)
+
 (require 'package)
 
 (setq package-archives
