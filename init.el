@@ -486,6 +486,23 @@
   :defer t
   :ensure t)
 
+(use-package purescript-mode
+  :defer t
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.purs\\'" . purescript-mode))
+  (add-hook 'purescript-mode-hook 'turn-on-purescript-indentation))
+
+(use-package psc-ide
+  :defer t
+  :ensure t
+  :config
+  (add-hook 'purescript-mode-hook
+            (lambda ()
+              (psc-ide-mode)
+              (company-mode)
+              (flycheck-mode))))
+
 (defun fullscreen ()
   "Puts Emacs on fullscreen mode."
   (interactive)
