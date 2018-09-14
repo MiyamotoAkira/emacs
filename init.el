@@ -340,6 +340,17 @@
   (add-hook 'clojure-mode-hook #'cider-mode)
   (add-hook 'clojure-mode-hook 'my-pretty-lambda-clojure))
 
+;; (use-package midje-mode
+;;   :defer t
+;;   :ensure t
+;;   :pin melpa-stable
+;;   :config
+;;   (add-hook 'clojure-mode-hook 'midje-mode))
+
+;; (use-package clojure-jump-to-file
+;;   :defer t
+;;   :ensure t)
+
 (use-package clj-refactor
   :defer t
   :ensure t
