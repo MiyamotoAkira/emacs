@@ -89,6 +89,11 @@
 
 (global-prettify-symbols-mode 1)
 
+(use-package powerline
+  :ensure t
+  :config
+  (powerline-default-theme))
+
 (use-package flx
   :ensure t)
 
