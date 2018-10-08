@@ -2,14 +2,16 @@
 ;;;Languages setup
 
 ;;; Commentary:
+;;; Here we are setting up all the neccessary elements for
+;;; the support of several languages.
 
 ;;; Code:
 
 (use-package flycheck
   :ensure t
   :config
-  ;;(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
-  (show-paren-mode 1)  (add-hook 'after-init-hook #'global-flycheck-mode))
+  (show-paren-mode 1)
+  (add-hook 'after-init-hook #'global-flycheck-mode))
 
 (add-hook 'html-mode-hook
 	  (lambda ()
