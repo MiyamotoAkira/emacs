@@ -28,17 +28,18 @@
 
 (global-set-key (kbd "C-c C-;") 'comment-region)
 
+;; eliminate all visual elements external to emacs buffers.
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 (defun fullscreen ()
   "Puts Emacs on fullscreen mode."
   (interactive)
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
+
+(fullscreen)
 
 (use-package solarized-theme
   :ensure t)
@@ -56,9 +57,8 @@
     )
   (setq current-dark (not current-dark)))
 
+;; Doesn't work under Cider. Need to investigate.
 (global-set-key (kbd "C-c C-.") 'toggle-theme)
-
-(fullscreen)
 
 (setq ansi-color-faces-vector
       [default default default italic underline success warning error])
@@ -76,13 +76,13 @@
         '((lambda-string . 955))))
 
 (defun my-pretty-lambda-elixir ()
-  "Make some word or string show as pretty Unicode symbols.  LAMBDA-STRING is the way that the language declares lambda functions."
+  "Make some word or string show as pretty Unicode symbols."
   (setq prettify-symbols-alist
         ;; λ
         '(("fn" . 955))))
 
 (defun my-pretty-lambda-clojure ()
-  "Make some word or string show as pretty Unicode symbols.  LAMBDA-STRING is the way that the language declares lambda functions."
+  "Make some word or string show as pretty Unicode symbols."
   (setq prettify-symbols-alist
         ;; λ
         '(("fn" . 955))))
@@ -136,6 +136,7 @@
   (setq smex-save-file (concat user-emacs-directory ".smex-items"))
   (smex-initialize))
 
+;; Favour vertical split over horizontal split
 (setq split-height-threshold nil)
 (setq split-width-threshold 80)
 
