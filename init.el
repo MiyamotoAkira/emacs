@@ -19,7 +19,7 @@
 
 (package-initialize)
 
-;; less refresh the packages
+;; lets refresh the packages
 (unless package-archive-contents
   (package-refresh-contents))
 
