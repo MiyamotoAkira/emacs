@@ -40,6 +40,8 @@
 ;;   (unless (package-installed-p pa)
 ;; 	(package-install pa)))
 
+;; This is to get the path variable read from
+;; the shell environment.
 (use-package exec-path-from-shell
   :ensure t)
 
