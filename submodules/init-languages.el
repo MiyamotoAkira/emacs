@@ -31,7 +31,7 @@
 
 (use-package company
   :ensure t
-  :bind (([C-S-i] . company-complete))
+  :bind (("C-S-i" . company-complete))
   :config
   (add-hook 'after-init-hook 'global-company-mode))
 
@@ -332,28 +332,30 @@
 (use-package omnisharp
   :defer t
   :ensure t
-  :bind (([C-c o s s] . omnisharp-start-omnisharp-server)
-         ([C-c o s p] . omnisharp-stop-server)
-         ([C-c o a] . omnisharp-auto-complete)
-         ([C-c o c r] . recompile)
-         ([C-c o i t] . omnisharp-current-type-information)
-         ([C-c o i d] . omnisharp-current-type-documentation)
-         ([C-c o i s] . omnisharp-show-overloads-at-point)
-         ([C-c o g d] . omnisharp-go-to-definition)
-         ([C-c o g w] . omnisharp-go-to-definition-other-window)
-         ([C-c o g u] . omnisharp-find-usages)
-         ([C-c o g i] . omnisharp-find-implementations)
-         ([C-c o g s] . omnisharp-navigate-to-solution-member)
-         ([C-c o g m] . omnisharp-navigate-to-current-file-member)
-         ([C-c o g f] . omnisharp-navigate-to-solution-file-then-file-member)
-         ([C-c o k d] . omnisharp-code-format-entire-file)
-         ([C-c o r r] . omnisharp-rename)
-         ([C-c o r f] . omnisharp-fix-usings)
-         ([C-c o r c] . omnisharp-fix-code-issue-at-point)
-         ([C-c o r a] . omnisharp-run-code-action-refactoring))
+  :bind (
+         ("C-c o s s" . omnisharp-start-omnisharp-server)
+         :map omnisharp-mode-map
+         ("C-c o s p" . omnisharp-stop-server)
+         ("C-c o a" . omnisharp-auto-complete)
+         ("C-c o c r" . recompile)
+         ("C-c o i t" . omnisharp-current-type-information)
+         ("C-c o i d" . omnisharp-current-type-documentation)
+         ("C-c o i s" . omnisharp-show-overloads-at-point)
+         ("C-c o g d" . omnisharp-go-to-definition)
+         ("C-c o g w" . omnisharp-go-to-definition-other-window)
+         ("C-c o g u" . omnisharp-find-usages)
+         ("C-c o g i" . omnisharp-find-implementations)
+         ("C-c o g s" . omnisharp-navigate-to-solution-member)
+         ("C-c o g m" . omnisharp-navigate-to-current-file-member)
+         ("C-c o g f" . omnisharp-navigate-to-solution-file-then-file-member)
+         ("C-c o k d" . omnisharp-code-format-entire-file)
+         ("C-c o r r" . omnisharp-rename)
+         ("C-c o r f" . omnisharp-fix-usings)
+         ("C-c o r c" . omnisharp-fix-code-issue-at-point)
+         ("C-c o r a" . omnisharp-run-code-action-refactoring))
   :config
   (push 'company-omnisharp company-backends)
-  (add-hook 'csharp-mode-hook 'omnisharp-mode))
+  (add-hook 'csharp-mode-hook #'omnisharp-mode))
 
 (provide 'init-languages)
 ;;; init-languages.el ends here

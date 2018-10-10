@@ -12,7 +12,9 @@
   :ensure t)
 
 (use-package command-log-mode
-  :ensure t)
+  :ensure t
+  :custom
+  (command-log-mode-key-binding-open-log "C-c C-o"))
 
 (use-package projectile
   :ensure t)
