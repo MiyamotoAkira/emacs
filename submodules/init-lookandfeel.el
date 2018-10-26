@@ -140,5 +140,19 @@
 (setq split-height-threshold nil)
 (setq split-width-threshold 80)
 
+(defun shell-horizontal ()
+  "This function is to display the shell on a horizontal split, whcih is usually more adequate."
+  (interactive)
+  (let ((split-width-threshold nil)
+        (split-height-threshold 0))
+    (progn
+      (shell)
+      (setq current (selected-window))
+      (setq window (get-buffer-window "*shell*"))
+      (select-window window)
+      (setq height (window-height window))
+      (shrink-window (- height 10))
+      (select-window current))))
+
 (provide 'init-lookandfeel)
 ;;; init-lookandfeel.el ends here
