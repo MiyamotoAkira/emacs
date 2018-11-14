@@ -12,7 +12,7 @@
 (global-hl-line-mode 1)
 
 ;; line numbers
-(global-linum-mode)
+(global-display-line-numbers-mode)
 
 ;; Use tabs instead of spaces
 (setq-default indent-tabs-mode nil)
@@ -33,13 +33,7 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
-(defun fullscreen ()
-  "Puts Emacs on fullscreen mode."
-  (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
-
-(fullscreen)
+(toggle-frame-fullscreen)
 
 (use-package solarized-theme
   :ensure t)

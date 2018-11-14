@@ -42,10 +42,9 @@
 
 ;; This is to get the path variable read from
 ;; the shell environment.
-(use-package exec-path-from-shell
-  :ensure t)
-
-(exec-path-from-shell-initialize)
+(if (eq system-type 'windows-nt)
+    (require 'init-windows)
+  (require 'init-nix))
 
 (require 'init-lookandfeel)
 (require 'init-languages)

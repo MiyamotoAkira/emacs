@@ -357,5 +357,9 @@
   (push 'company-omnisharp company-backends)
   (add-hook 'csharp-mode-hook #'omnisharp-mode))
 
+(use-package powershell
+  :defer t
+  :ensure t)
+
 (provide 'init-languages)
 ;;; init-languages.el ends here
