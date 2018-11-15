@@ -10,6 +10,10 @@ auto-save-list
 tramp
 .\#*
 
+#custom information
+custom.el
+network-security.data
+
 # Org-mode
 .org-id-locations
 *_archive
