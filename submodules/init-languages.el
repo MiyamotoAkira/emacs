@@ -85,6 +85,28 @@
   :defer t
   :ensure t)
 
+(use-package cargo
+  :defer t
+  :ensure t
+  :config
+  (add-hook 'rust-mode-hook 'cargo-minor-mode))
+
+(use-package flycheck-rust
+  :defer t
+  :ensure t
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+(use-package racer
+  :defer t
+  :ensure t
+  :config
+  (setq racer-cmd "~/.cargo/bin/racer")
+  (setq racer-rust-src-path "~/code/externals/rust/src")
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'racer-mode-hook #'eldoc-mode)
+  (add-hook 'racer-mode-hook #'company-mode))
+
 (use-package markdown-mode
   :defer t
   :ensure t
