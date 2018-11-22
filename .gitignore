@@ -9,6 +9,7 @@
 auto-save-list
 tramp
 .\#*
+.cache/
 
 #custom information
 custom.el
