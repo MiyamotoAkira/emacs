@@ -65,8 +65,9 @@
 (use-package robe
   :defer t
   :ensure t
+  :hook
+  ((ruby-mode . robe-mode))
   :config
-  (add-hook 'ruby-mode-hook 'robe-mode)
   (push 'company-robe company-backend))
 
 (use-package lfe-mode
@@ -88,8 +89,8 @@
 (use-package cargo
   :defer t
   :ensure t
-  :config
-  (add-hook 'rust-mode-hook 'cargo-minor-mode))
+  :hook
+  ((rust-mode . cargo-minor-mode)))
 
 (use-package flycheck-rust
   :defer t
