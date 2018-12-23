@@ -130,6 +130,11 @@
   (setq smex-save-file (concat user-emacs-directory ".smex-items"))
   (smex-initialize))
 
+(use-package disable-mouse
+  :ensure t
+  :config
+  (global-disable-mouse-mode))
+
 ;; Favour vertical split over horizontal split
 (setq split-height-threshold nil)
 (setq split-width-threshold 80)
