@@ -8,6 +8,10 @@
   :ensure t
   :bind (("C-x g" . magit-status)))
 
+(use-package monky
+  :ensure t
+  :bind (("C-x C-g" . monky-status)))
+
 (use-package ag
   :ensure t)
 
