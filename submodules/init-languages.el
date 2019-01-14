@@ -58,6 +58,15 @@
   :defer t
   :ensure t)
 
+(use-package terraform-mode
+  :defer t
+  :ensure t)
+
+(use-package company-terraform
+  :ensure t
+  :config
+  (company-terraform-init))
+
 (use-package scala-mode
   :defer t
   :ensure t)
@@ -255,6 +264,11 @@
 (use-package groovy-mode
   :defer t
   :ensure t)
+
+(use-package slime-company
+  :ensure t
+  :config
+  (setq slime-company-major-modes (quote (lisp-mode slime-repl-mode scheme-mode))))
 
 (use-package slime
   :defer t
