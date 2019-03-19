@@ -398,5 +398,9 @@
   :defer t
   :ensure t)
 
+(use-package graphviz-dot-mode
+  :defer t
+  :ensure t)
+
 (provide 'init-languages)
 ;;; init-languages.el ends here
