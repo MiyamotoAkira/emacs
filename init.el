@@ -26,19 +26,10 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
-;; we define the packages that we weant to upload
-;; (defvar my-packages
-;;   '())
-
 ;; ;; macos special path info (shell and non-shell apps get different paths)
 ;; ;; not sure if needed due to the below
 ;; ;;(if (eq system-type 'darwin)
 ;; ;;	(add-to-list 'my-packages 'exec-path-from-shell))
-
-;; ;; we upload the whole lot
-;; (dolist (pa my-packages)
-;;   (unless (package-installed-p pa)
-;; 	(package-install pa)))
 
 ;; This is to get the path variable read from
 ;; the shell environment.
