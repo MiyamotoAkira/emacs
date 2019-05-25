@@ -398,6 +398,10 @@
   :defer t
   :ensure t)
 
+(use-package kotlin-mode
+  :defer t
+  :ensure t)
+
 (use-package graphviz-dot-mode
   :defer t
   :ensure t)
