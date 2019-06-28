@@ -75,5 +75,18 @@
       org-src-fontify-natively t
       org-src-tab-acts-natively t)
 
+(use-package undo-tree
+  :ensure t
+  :defer t)
+
+(use-package goto-chg
+  :ensure t
+  :defer t)
+
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode 1))
+
 (provide 'init-tools)
 ;;; init-tools.el ends here
