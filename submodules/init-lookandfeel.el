@@ -13,13 +13,10 @@
 
 ;; line numbers
 (global-display-line-numbers-mode)
+(setq display-line-numbers-type 'relative)
 
 ;; Use tabs instead of spaces
 (setq-default indent-tabs-mode nil)
-
-;; column numbers as relative
-(display-line-numbers-mode)
-(setq display-line-numbers 'relative)
 
 ;; full path in title bar
 (setq-default frame-title-format "%b (%f)")
