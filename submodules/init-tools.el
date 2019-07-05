@@ -62,6 +62,10 @@
   :ensure t
   :defer t)
 
+(use-package ob-fsharp
+  :ensure t
+  :defer t)
+
 ;; Setting up babel for running code  in org mode
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -69,7 +73,8 @@
    (elixir . t)
    (clojure . t)
    (shell . t)
-   (ruby . t)))
+   (ruby . t)
+   (fsharp . t)))
 
 (setq org-confirm-babel-evaluate nil
       org-src-fontify-natively t
