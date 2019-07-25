@@ -88,10 +88,5 @@
   :ensure t
   :defer t)
 
-(use-package evil
-  :ensure t
-  :config
-  (evil-mode 1))
-
 (provide 'init-tools)
 ;;; init-tools.el ends here
