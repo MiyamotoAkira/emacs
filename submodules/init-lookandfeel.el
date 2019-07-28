@@ -13,7 +13,7 @@
 
 ;; line numbers
 (global-display-line-numbers-mode)
-(setq display-line-numbers-type 'relative)
+;;(setq display-line-numbers-type 'relative)
 
 ;; Use tabs instead of spaces
 (setq-default indent-tabs-mode nil)
@@ -84,7 +84,7 @@
 (use-package powerline
   :ensure t
   :config
-  (powerline-center-evil-theme))
+  (powerline-center-theme))
 
 (use-package flx
   :ensure t)
