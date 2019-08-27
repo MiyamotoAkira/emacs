@@ -406,5 +406,13 @@
   :defer t
   :ensure t)
 
+(use-package tide
+  :defer t
+  :ensure t
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
+
 (provide 'init-languages)
 ;;; init-languages.el ends here
