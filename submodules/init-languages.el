@@ -46,6 +46,11 @@
   :config
   (add-hook 'web-mode-hook  'my-web-mode-hook))
 
+(use-package dockerfile-mode
+  :defer t
+  :ensure t
+  :mode "\\.Dockerfile\\'")
+
 (use-package gradle-mode
   :defer t
   :ensure t)
