@@ -47,3 +47,4 @@
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 
 ;;; init.el ends here
+(put 'upcase-region 'disabled nil)
