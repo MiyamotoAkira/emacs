@@ -5,6 +5,7 @@
 
 ;;; Code:
 ;; general modifications
+(set-face-attribute 'default nil :font "Fira Code-10")
 
 (setq tab-width 4)
 
