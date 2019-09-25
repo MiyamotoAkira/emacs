@@ -21,6 +21,11 @@
 (use-package tagedit
   :ensure t)
 
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 (use-package highlight-indentation
   :ensure t)
 
@@ -417,7 +422,9 @@
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save)))
+         (before-save . tide-format-before-save))
+  :config
+  (setq typescript-indent-level 2))
 
 (provide 'init-languages)
 ;;; init-languages.el ends here
