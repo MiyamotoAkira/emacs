@@ -88,5 +88,8 @@
   :ensure t
   :defer t)
 
+(use-package multiple-cursors
+  :ensure t)
+
 (provide 'init-tools)
 ;;; init-tools.el ends here
