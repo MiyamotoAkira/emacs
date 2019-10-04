@@ -262,7 +262,8 @@
 (use-package fsharp-mode
   :defer t
   :ensure t
-  :config 'auto-mode-alist '("\\.fs[iylx]?$" . fsharp-mode))
+  ;; :config 'auto-mode-alist '("\\.fs[iylx]?$" . fsharp-mode)
+  )
 
 (use-package haskell-mode
   :defer t
