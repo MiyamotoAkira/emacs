@@ -7,7 +7,7 @@
 ;; general modifications
 (set-face-attribute 'default nil :font "Fira Code-10")
 
-(setq tab-width 4)
+(setq default-tab-width 4)
 
 ;; highlight current line
 (global-hl-line-mode 1)
