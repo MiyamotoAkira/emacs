@@ -23,9 +23,22 @@
 (use-package projectile
   :ensure t)
 
-(use-package neotree
+(use-package dired-sidebar
   :ensure t
-  :bind (([f8] . neotree-toggle)))
+  :commands (dired-sidebar-toggle-sidebar)
+  :bind (([f8] . dired-sidebar-toggle-sidebar)))
+
+(use-package ace-window
+  :ensure t
+  :bind (([M-o] . ace-window)))
+
+(use-package all-the-icons
+  :ensure t)
+
+(use-package all-the-icons-dired
+  :ensure t
+  :config
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
 (use-package floobits
   :ensure t)
