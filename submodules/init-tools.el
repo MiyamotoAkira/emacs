@@ -48,7 +48,11 @@
 
 (use-package org
   :defer t
-  :ensure t)
+  :ensure t
+  :config
+  (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+  (setq org-directory "~/org")
+  (setq org-mobile-inbox-for-pull "~/org/flagged.org"))
 
 (use-package org-plus-contrib
   :defer t
