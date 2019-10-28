@@ -51,6 +51,10 @@
   :config
   (add-hook 'web-mode-hook  'my-web-mode-hook))
 
+(use-package json-mode
+  :ensure t
+  :defer t)
+
 (use-package dockerfile-mode
   :defer t
   :ensure t
