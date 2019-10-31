@@ -429,7 +429,7 @@
          (typescript-mode . tide-hl-identifier-mode)
          (before-save . tide-format-before-save))
   :config
-  (setq tide-format-options '(:indentSize 2 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t)))
+  (setq tide-format-options '(:indentSize 2 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
 
 (provide 'init-languages)
 ;;; init-languages.el ends here
