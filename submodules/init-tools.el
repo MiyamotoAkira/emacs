@@ -49,10 +49,13 @@
 (use-package org
   :defer t
   :ensure t
+  :bind (("C-c m p" . org-mobile-push)
+         ("C-c m f" . org-mobile-pull))
   :config
   (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
   (setq org-directory "~/org")
-  (setq org-mobile-inbox-for-pull "~/org/flagged.org"))
+  (setq org-mobile-inbox-for-pull "~/org/flagged.org")
+  (setq org-agenda-files '("~/org/agendas/")))
 
 (use-package org-plus-contrib
   :defer t
