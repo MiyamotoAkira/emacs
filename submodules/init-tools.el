@@ -111,5 +111,11 @@
 (use-package multiple-cursors
   :ensure t)
 
+(use-package nov
+  :ensure t
+  :mode ("\\.epub\\'" . nov-mode)
+  :config
+  (setq nov-text-width 80))
+
 (provide 'init-tools)
 ;;; init-tools.el ends here
