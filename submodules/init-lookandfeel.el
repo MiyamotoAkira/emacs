@@ -61,6 +61,9 @@
 ;; you overwrite the region
 (delete-selection-mode 1)
 
+(use-package diminish
+  :ensure t)
+
 ;; let's pretify those lambdas
 (defun my-pretty-lambda (lambda-string)
   "Make some word or string show as pretty Unicode symbols.  LAMBDA-STRING is the way that the language declares lambda functions."
@@ -101,6 +104,7 @@
 
 (use-package which-key
   :ensure t
+  :diminish
   :config
   (which-key-mode))
 
@@ -131,6 +135,7 @@
 
 (use-package disable-mouse
   :ensure t
+  :diminish
   :config
   (global-disable-mouse-mode))
 

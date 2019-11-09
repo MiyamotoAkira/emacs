@@ -26,6 +26,11 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
+(eval-when-compile
+  (require 'use-package))
+
+(require 'diminish)
+(require 'bind-key)
 ;; ;; macos special path info (shell and non-shell apps get different paths)
 ;; ;; not sure if needed due to the below
 ;; ;;(if (eq system-type 'darwin)

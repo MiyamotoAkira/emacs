@@ -36,6 +36,7 @@
 
 (use-package company
   :ensure t
+  :diminish
   :bind (("C-S-i" . company-complete))
   :config
   (add-hook 'after-init-hook 'global-company-mode))
@@ -301,6 +302,7 @@
 ;; This one has to happen after all modes that use parens are loaded
 (use-package paredit
   :ensure t
+  :diminish
   :init
   (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
   :config
@@ -315,6 +317,7 @@
 
 (use-package rainbow-delimiters
   :ensure t
+  :diminish
   :config
   (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
   (add-hook 'eval-expression-minibuffer-setup-hook #'rainbow-delimiters-mode)
