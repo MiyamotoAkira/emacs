@@ -56,7 +56,6 @@
 (setq ansi-color-faces-vector
       [default default default italic underline success warning error])
 
-
 ;; Now selecting a region behaves as in most applications
 ;; you overwrite the region
 (delete-selection-mode 1)
@@ -135,7 +134,7 @@
 
 (use-package disable-mouse
   :ensure t
-  :diminish
+  :diminish disable-mouse-global-mode
   :config
   (global-disable-mouse-mode))
 

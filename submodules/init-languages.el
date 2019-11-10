@@ -7,6 +7,12 @@
 
 ;;; Code:
 
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :ensure t
+  :config
+  (yas-global-mode 1))
+
 (use-package flycheck
   :ensure t
   :config
@@ -22,6 +28,7 @@
   :ensure t)
 
 (use-package editorconfig
+  :diminish
   :ensure t
   :config
   (editorconfig-mode 1))
