@@ -13,6 +13,9 @@
   :config
   (yas-global-mode 1))
 
+(use-package yasnippet-snippets
+  :ensure t)
+
 (use-package flycheck
   :ensure t
   :config
