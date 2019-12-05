@@ -454,6 +454,10 @@
   :config
   (setq tide-format-options '(:indentSize 2 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
 
+(use-package tuareg
+  :defer t
+  :ensure t)
+
 (provide 'init-languages)
 ;;; init-languages.el ends here
 
