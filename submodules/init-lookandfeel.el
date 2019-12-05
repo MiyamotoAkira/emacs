@@ -46,8 +46,7 @@
   (interactive)
   (if current-dark
       (load-theme 'solarized-light t)
-    (load-theme 'solarized-dark t)
-    )
+    (load-theme 'solarized-dark t))
   (setq current-dark (not current-dark)))
 
 ;; Doesn't work under Cider. Need to investigate.

@@ -16,6 +16,12 @@
 (use-package yasnippet-snippets
   :ensure t)
 
+(use-package auto-yasnippet
+  :diminish yas-minor-mode
+  :ensure t
+  :bind (("C-c C-y C-c" . aya-create)
+         ("C-c C-y C-e" . aya-expand)))
+
 (use-package flycheck
   :ensure t
   :config
@@ -50,6 +56,9 @@
   :bind (("C-S-i" . company-complete))
   :config
   (add-hook 'after-init-hook 'global-company-mode))
+
+(use-package buttercup
+  :ensure t)
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
@@ -441,8 +450,10 @@
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
          (before-save . tide-format-before-save))
+  :bind (("C-c C-t C-f" . tide-fix))
   :config
   (setq tide-format-options '(:indentSize 2 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
 
 (provide 'init-languages)
 ;;; init-languages.el ends here
+
