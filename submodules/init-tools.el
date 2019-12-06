@@ -55,6 +55,8 @@
   :ensure t
   :bind (("C-c m p" . org-mobile-push)
          ("C-c m f" . org-mobile-pull))
+  :defines org-mobile-directory
+  :defines org-mobile-inbox-for-pull
   :config
   (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
   (setq org-directory "~/org")
