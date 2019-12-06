@@ -21,7 +21,11 @@
   (command-log-mode-key-binding-open-log "C-c C-o"))
 
 (use-package projectile
-  :ensure t)
+  :ensure t
+  :diminish
+  :bind-keymap (("C-c p" . projectile-command-map))
+  :config
+  (projectile-mode +1))
 
 (use-package dired-sidebar
   :ensure t
