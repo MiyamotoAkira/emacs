@@ -448,11 +448,18 @@
   :ensure t
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save))
+         (typescript-mode . tide-hl-identifier-mode))
   :bind (("C-c C-t C-f" . tide-fix))
   :config
+  (add-hook 'typescript-mode-hook (lambda ()
+                                    (setq typescript-indent-level 2)))
   (setq tide-format-options '(:indentSize 2 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
+
+(use-package prettier-js
+  :defer t
+  :ensure t
+  :diminish
+  :hook ((typescript-mode . prettier-js-mode)))
 
 (use-package tuareg
   :defer t
