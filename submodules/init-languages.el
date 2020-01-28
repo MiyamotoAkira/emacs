@@ -245,6 +245,7 @@
 
 (use-package lsp-mode
   :defer t
+  :defines lsp-highlight-symbol-at-point
   :ensure t
   :init (setq lsp-eldoc-render-all nil
               lsp-highlight-symbol-at-point nil))
