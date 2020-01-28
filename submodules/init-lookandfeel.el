@@ -86,7 +86,7 @@
 (use-package powerline
   :ensure t
   :config
-  (powerline-center-theme))
+  (powerline-center-evil-theme))
 
 (use-package flx
   :ensure t)

@@ -15,6 +15,11 @@
 (use-package ag
   :ensure t)
 
+(use-package evil
+  :ensure t
+  :hook
+  ((prog-mode . evil-mode)))
+
 (use-package command-log-mode
   :ensure t
   :custom
