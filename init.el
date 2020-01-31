@@ -46,8 +46,9 @@
   (require 'init-nix))
 
 (require 'init-lookandfeel)
-(require 'init-languages)
 (require 'init-tools)
+(require 'init-languages)
+
 
 ;; eldoc configuration
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
