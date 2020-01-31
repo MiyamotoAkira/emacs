@@ -12,20 +12,27 @@
 (use-package ag
   :ensure t)
 
+(defvar tools-map (make-sparse-keymap))
+(defvar languages-map (make-sparse-keymap))
+
+(use-package evil-leader
+  :ensure t
+  :config
+  (evil-leader/set-leader "<SPC>"))
+
 (use-package evil
   :ensure t
   :hook
-  ((prog-mode . evil-mode))
+  ((prog-mode . evil-mode)
+   (prog-mode . evil-leader-mode))
   :bind (:map tools-map
               ("g" . magit-status)
               ("m" . monky-status))
   :config
-  (define-prefix-command 'spaces-map)
-  (define-key evil-normal-state-map (kbd "SPC") 'spaces-map)
   (define-prefix-command 'languages-map)
-  (define-key spaces-map (kbd "l") 'languages-map)
+  (evil-leader/set-key "l" 'languages-map)
   (define-prefix-command 'tools-map)
-  (define-key spaces-map (kbd "t") 'tools-map)
+  (evil-leader/set-key "t" 'tools-map)
   )
 
 (use-package magit
