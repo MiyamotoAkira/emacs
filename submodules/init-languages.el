@@ -442,22 +442,24 @@
 (use-package tide
   :defer t
   :ensure t
+  :defines languages-map
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode))
-  ;; :bind-keymap ("SPC" . tide-mode-map)
-  :bind (:map tide-mode-map
-              ("t f" . tide-fix)
-              ("." . #'tide-jump-to-definition)
-              ("," . #'tide-jump-back)
-              ("/" . #'tide-jump-to-implementation))
+  ;; :bind-keymap (:map spaces-map ("t" . tide-mode-map))
+  :bind (
+         :map tide-mode-map
+         ("f" . tide-fix)
+         ("." . #'tide-jump-to-definition)
+         ("," . #'tide-jump-back)
+         ("/" . #'tide-jump-to-implementation))
   :config
   (define-prefix-command 'tide-mode-map)
   ;; (define-key tide-mode-map "," #'tide-jump-back)
   ;; (define-key tide-mode-map "." #'tide-jump-to-definition)
   ;; (define-key tide-mode-map "/" #'tide-jump-to-implementation)
   ;; (define-key tide-mode-map (kbd "t f") 'tide-fix)
-  (define-key evil-motion-state-map (kbd "SPC") 'tide-mode-map)
+  (define-key languages-map (kbd "t") 'tide-mode-map)
   (add-hook 'typescript-mode-hook (lambda ()
                                     (setq typescript-indent-level 2)))
   (setq tide-format-options '(:indentSize 2 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
