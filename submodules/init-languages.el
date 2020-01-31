@@ -433,7 +433,13 @@
 
 (use-package kotlin-mode
   :defer t
-  :ensure t)
+  :ensure t
+  :defines languages-map
+  :bind (:map kotlin-mode-map
+              ("z" . kotlin-repl))
+  :config
+  (define-prefix-command 'kotlin-mode-map)
+  (define-key languages-map (kbd "k") 'kotlin-mode-map))
 
 (use-package graphviz-dot-mode
   :defer t
