@@ -4,13 +4,10 @@
 ;;; Commentary:
 
 ;;; Code:
-(use-package magit
-  :ensure t
-  :bind (("C-x g" . magit-status)))
+
 
 (use-package monky
-  :ensure t
-  :bind (("C-x C-g" . monky-status)))
+  :ensure t)
 
 (use-package ag
   :ensure t)
@@ -19,12 +16,20 @@
   :ensure t
   :hook
   ((prog-mode . evil-mode))
+  :bind (:map tools-map
+              ("g" . magit-status)
+              ("m" . monky-status))
   :config
   (define-prefix-command 'spaces-map)
   (define-key evil-normal-state-map (kbd "SPC") 'spaces-map)
   (define-prefix-command 'languages-map)
   (define-key spaces-map (kbd "l") 'languages-map)
+  (define-prefix-command 'tools-map)
+  (define-key spaces-map (kbd "t") 'tools-map)
   )
+
+(use-package magit
+  :ensure t)
 
 (use-package command-log-mode
   :ensure t
