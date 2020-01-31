@@ -132,13 +132,48 @@
 
 (use-package rust-mode
   :defer t
-  :ensure t)
+  :ensure t
+  :defines languages-map
+  :bind (:map rust-evil-map
+              ("d" . rust-dbg-wrap-or-unwrap)
+              ("f" . rust-format-buffer))
+  :config
+  (defvar rust-evil-map (make-sparse-keymap))
+  (define-prefix-command 'rust-evil-map)
+  (define-key languages-map (kbd "r") 'rust-evil-map))
 
 (use-package cargo
   :defer t
   :ensure t
+  :bind (:map cargo-evil-map
+              ("a" . cargo-process-add)
+              ("b" . cargo-process-build)
+              ("c" . cargo-process-repeat)
+              ("d" . cargo-process-doc)
+              ("e" . cargo-process-bench)
+              ("f" . cargo-process-current-test)
+              ("TAB" . cargo-process-init)
+              ("k" . cargo-process-check)
+              ("l" . cargo-process-clean)
+              ("RET" . cargo-process-fmt)
+              ("n" . cargo-process-new)
+              ("o" . cargo-process-current-file-tests)
+              ("r" . cargo-process-run)
+              ("s" . cargo-process-search)
+              ("t" . cargo-process-test)
+              ("u" . cargo-process-update)
+              ("v" . cargo-process-doc-open)
+              ("x" . cargo-process-run-example)
+              ("C-a" . cargo-process-audit)
+              ("C-d" . cargo-process-rm)
+              ("C-k" . cargo-process-clippy)
+              ("C-o" . cargo-process-outdated))
   :hook
-  ((rust-mode . cargo-minor-mode)))
+  ((rust-mode . cargo-minor-mode))
+  :config
+  (defvar cargo-evil-map (make-sparse-keymap))
+  (define-prefix-command 'cargo-evil-map)
+  (define-key rust-evil-map (kbd "c") 'cargo-evil-map))
 
 (use-package flycheck-rust
   :defer t
