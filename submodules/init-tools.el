@@ -18,7 +18,13 @@
 (use-package evil
   :ensure t
   :hook
-  ((prog-mode . evil-mode)))
+  ((prog-mode . evil-mode))
+  :config
+  (define-prefix-command 'spaces-map)
+  (define-key evil-normal-state-map (kbd "SPC") 'spaces-map)
+  (define-prefix-command 'languages-map)
+  (define-key spaces-map (kbd "l") 'languages-map)
+  )
 
 (use-package command-log-mode
   :ensure t
