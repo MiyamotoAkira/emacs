@@ -502,6 +502,7 @@
          (typescript-mode . tide-hl-identifier-mode))
   :bind (
          :map tide-mode-map
+         ("r" . tide-rename-symbol)
          ("f" . tide-fix)
          ("." . #'tide-jump-to-definition)
          ("," . #'tide-jump-back)
