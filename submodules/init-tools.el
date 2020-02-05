@@ -30,10 +30,9 @@
               ("m" . monky-status))
   :config
   (define-prefix-command 'languages-map)
-  (evil-leader/set-key "l" 'languages-map)
+  (evil-leader/set-key (kbd "l") 'languages-map)
   (define-prefix-command 'tools-map)
-  (evil-leader/set-key "t" 'tools-map)
-  )
+  (evil-leader/set-key (kbd "t") 'tools-map))
 
 (use-package magit
   :ensure t)
