@@ -9,9 +9,6 @@
 (use-package monky
   :ensure t)
 
-(use-package ag
-  :ensure t)
-
 (defvar tools-map (make-sparse-keymap))
 (defvar languages-map (make-sparse-keymap))
 
@@ -33,6 +30,18 @@
   (evil-leader/set-key (kbd "l") 'languages-map)
   (define-prefix-command 'tools-map)
   (evil-leader/set-key (kbd "t") 'tools-map))
+
+(use-package ag
+  :ensure t
+  :bind (:map ag-map
+              ("a" . ag)
+              ("f" . ag-files)
+              ("d" . ag-dired)
+              ("r" . ag-regex)
+              ("p" . ag-project))
+  :config
+  (define-prefix-command 'ag-map)
+  (define-key tools-map (kbd "a") 'ag-map))
 
 (use-package magit
   :ensure t)
