@@ -29,14 +29,14 @@
   :ensure t
   :bind (:map yas-minor-mode-map
               ("c" . aya-create)
-              ("e" . aya-expand))
-  )
+              ("e" . aya-expand)))
 
 (use-package flycheck
   :ensure t
   :config
   (show-paren-mode 1)
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  :hook
+  ((after-init . global-flycheck-mode)))
 
 (use-package tagedit
   :ensure t)
@@ -52,15 +52,15 @@
 
 (use-package aggressive-indent
   :ensure t
-  :config
-  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
+  :hook
+  ((emacs-lisp-mode . aggressive-indent-mode)))
 
 (use-package company
   :ensure t
   :diminish
   :bind (("C-S-i" . company-complete))
-  :config
-  (add-hook 'after-init-hook 'global-company-mode))
+  :hook
+  ((after-init-hook . global-company-mode)))
 
 (use-package buttercup
   :ensure t)
