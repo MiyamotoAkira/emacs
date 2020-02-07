@@ -39,7 +39,7 @@
               ("d" . ag-dired)
               ("r" . ag-regex)
               ("p" . ag-project))
-  :config
+  :init
   (define-prefix-command 'ag-map)
   (define-key tools-map (kbd "a") 'ag-map))
 
