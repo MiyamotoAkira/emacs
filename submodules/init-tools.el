@@ -5,6 +5,8 @@
 
 ;;; Code:
 
+(use-package async
+  :ensure t)
 
 (use-package monky
   :ensure t)

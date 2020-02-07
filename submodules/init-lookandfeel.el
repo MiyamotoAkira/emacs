@@ -91,14 +91,14 @@
 (use-package flx
   :ensure t)
 
-(use-package flx-ido
-  :ensure t)
+;; (use-package flx-ido
+;;   :ensure t)
 
-(use-package ido-vertical-mode
-  :ensure t
-  :config
-  (ido-vertical-mode 1)
-  (setq ido-vertical-define-keys 'C-n-and-C-p-only))
+;; (use-package ido-vertical-mode
+;;   :ensure t
+;;   :config
+;;   (ido-vertical-mode 1)
+;;   (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
 (use-package which-key
   :ensure t
@@ -106,12 +106,12 @@
   :config
   (which-key-mode))
 
-(use-package ido-completing-read+
-  :ensure t
-  :config
-  (ido-mode t)
-  (ido-ubiquitous-mode 1)
-  (setq ido-auto-merge-work-directories-length -1))
+;; (use-package ido-completing-read+
+;;   :ensure t
+;;   :config
+;;   (ido-mode t)
+;;   (ido-ubiquitous-mode 1)
+;;   (setq ido-auto-merge-work-directories-length -1))
 
 (use-package smooth-scrolling
   :ensure t
@@ -124,12 +124,40 @@
   :config
   (dimmer-mode))
 
-(use-package smex
+;; (use-package smex
+;;   :ensure t
+;;   :bind (("M-x" . smex))
+;;   :config
+;;   (setq smex-save-file (concat user-emacs-directory ".smex-items"))
+;;   (smex-initialize))
+
+(use-package ivy
   :ensure t
-  :bind (("M-x" . smex))
+  :bind (("M-x" . 'counsel-M-x)
+         ("C-x b" . 'ivy-switch-buffer)
+         ("C-c v" . 'ivy-push-view)
+         ("C-c V" .  'ivy-pop-view))
   :config
-  (setq smex-save-file (concat user-emacs-directory ".smex-items"))
-  (smex-initialize))
+  (ivy-mode 1))
+
+(use-package counsel
+  :ensure t
+  :bind (("C-x C-f" . 'counsel-find-file)
+         ("M-y" . 'counsel-yank-pop)
+         :map counsel-mode-map
+         ("f" . 'counsel-describe-function)
+         ("v" . 'counsel-describe-variable)
+         ("l" . 'counsel-find-library)
+         ("i" . 'counsel-info-lookup-symbol)
+         ("u" . 'counsel-unicode-char)
+         ("j" .  'counsel-set-variable))
+  :config
+  (define-prefix-command 'counsel-mode-map)
+  (define-key tools-map (kbd "c") 'counsel-mode-map))
+
+(use-package swiper 
+  :ensure t
+  :bind (("C-s" . 'swiper-isearch)))
 
 (use-package disable-mouse
   :ensure t
