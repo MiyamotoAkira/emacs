@@ -138,7 +138,10 @@
          ("C-c v" . 'ivy-push-view)
          ("C-c V" .  'ivy-pop-view))
   :config
-  (ivy-mode 1))
+  (ivy-mode 1)
+  (setq ivy-re-builders-alist
+        '((read-file-name-internal . ivy--regex-fuzzy)
+          (t . ivy--regex-plus))))
 
 (use-package counsel
   :ensure t
@@ -153,7 +156,8 @@
          ("j" .  'counsel-set-variable))
   :config
   (define-prefix-command 'counsel-mode-map)
-  (define-key tools-map (kbd "c") 'counsel-mode-map))
+  (define-key tools-map (kbd "c") 'counsel-mode-map)
+  (setq counsel-find-file-ignore-regexp "(?:‘[#.])|(?:[#~]’)|(?:[~]’)"))
 
 (use-package swiper 
   :ensure t
