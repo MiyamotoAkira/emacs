@@ -60,7 +60,7 @@
   :diminish
   :bind (("C-S-i" . company-complete))
   :hook
-  ((after-init-hook . global-company-mode)))
+  ((after-init . global-company-mode)))
 
 (use-package buttercup
   :ensure t)
@@ -73,8 +73,8 @@
   :defer t
   :ensure t
   :mode ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'")
-  :config
-  (add-hook 'web-mode-hook  'my-web-mode-hook))
+  :hook
+  ((web-mode . my-web-mode-hook)))
 
 (use-package json-mode
   :ensure t
@@ -178,8 +178,8 @@
 (use-package flycheck-rust
   :defer t
   :ensure t
-  :config
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+  :hook
+  ((flycheck-mode . flycheck-rust-setup)))
 
 (use-package racer
   :defer t
@@ -187,9 +187,10 @@
   :config
   (setq racer-cmd "~/.cargo/bin/racer")
   (setq racer-rust-src-path "~/code/externals/rust/src")
-  (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'racer-mode-hook #'eldoc-mode)
-  (add-hook 'racer-mode-hook #'company-mode))
+  :hook
+  ((rust-mode . racer-mode)
+   (racer-mode . eldoc-mode)
+   (racer-mode . company-mode)))
 
 (use-package markdown-mode
   :defer t
@@ -202,11 +203,11 @@
 (use-package elixir-mode
   :defer t
   :ensure t
-  :config
-  (add-hook 'elixir-mode-hook 'my-pretty-lambda-elixir)
-  (add-hook 'elixir-mode-hook (lambda ()
-                                (setq tab-width 2)
-                                (setq indent-tabs-mode nil))))
+  :hook
+  ((elixir-mode-hook . my-pretty-lambda-elixir)
+   (elixir-mode-hook . (lambda ()
+                         (setq tab-width 2)
+                         (setq indent-tabs-mode nil)))))
 
 (use-package alchemist
   :defer t
@@ -226,33 +227,32 @@
   :defer t
   :ensure t
   :pin melpa-stable
-  :config
-  (add-hook 'cider-repl-mode-hook 'paredit-mode)
-  (add-hook 'cider-mode-hook 'paredit-mode)
-  (add-hook 'cider-mode-hook #'eldoc-mode)
-  (add-hook 'cider-mode-hook #'company-mode)
-  (add-hook 'cider-repl-mode-hook #'company-mode))
+  :hook
+  ((cider-repl-mode . paredit-mode)
+   (cider-mode . paredit-mode)
+   (cider-mode . eldoc-mode)
+   (cider-mode . company-mode)
+   (cider-repl-mode . company-mode)))
 
 (use-package clojure-mode
   :defer t
   :ensure t
   :pin melpa-stable
-  :config
-  (add-hook 'clojure-mode-hook 'subword-mode)
-  (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
-  (add-hook 'clojure-mode-hook
-            (lambda ()
-              (setq inferior-lisp-program "lein repl")
-              (font-lock-add-keywords
-               nil
-               '(("(\\(facts?\\)"
-                  (1 font-lock-keyword-face))
-                 ("(\\(background?\\)"
-                  (1 font-lock-keyword-face))))
-              (define-clojure-indent (fact 1))
-              (define-clojure-indent (facts 1))))
-  (add-hook 'clojure-mode-hook #'cider-mode)
-  (add-hook 'clojure-mode-hook 'my-pretty-lambda-clojure))
+  :hook
+  ((clojure-mode . subword-mode)
+   (clojure-mode . aggressive-indent-mode)
+   (clojure-mode . (lambda ()
+                     (setq inferior-lisp-program "lein repl")
+                     (font-lock-add-keywords
+                      nil
+                      '(("(\\(facts?\\)"
+                         (1 font-lock-keyword-face))
+                        ("(\\(background?\\)"
+                         (1 font-lock-keyword-face))))
+                     (define-clojure-indent (fact 1))
+                     (define-clojure-indent (facts 1))))
+   (clojure-mode . cider-mode)
+   (clojure-mode . my-pretty-lambda-clojure)))
 
 ;; (use-package midje-mode
 ;;   :defer t
@@ -269,8 +269,8 @@
   :defer t
   :ensure t
   :pin melpa-stable
-  :config
-  (add-hook 'clojure-mode-hook #'clj-clojure-setup))
+  :hook
+  (clojure-mode . clj-clojure-setup))
 
 (use-package clojure-mode-extra-font-locking
   :defer t
@@ -299,8 +299,9 @@
 (use-package company-lsp
   :after company
   :ensure t
+  :hook
+  ((java-mode . (lambda () (push 'company-lsp company-backends))))
   :config
-  (add-hook 'java-mode-hook (lambda () (push 'company-lsp company-backends)))
   (setq company-lsp-cache-candidates t)
   (push 'company-lsp company-backend))
 
@@ -317,25 +318,24 @@
 
 (use-package lsp-java
   :ensure t
-  :config
-  (add-hook 'java-mode-hook  'lsp-java-enable)
-  (add-hook 'java-mode-hook  'flycheck-mode)
-  (add-hook 'java-mode-hook  'company-mode)
-  (add-hook 'java-mode-hook  (lambda () (lsp-ui-flycheck-enable t)))
-  (add-hook 'java-mode-hook  'lsp-ui-mode))
+  :hook
+  ((java-mode . lsp-java-enable)
+   (java-mode . flycheck-mode)
+   (java-mode . company-mode)
+   (java-mode . (lambda () (lsp-ui-flycheck-enable t)))
+   (java-mode . lsp-ui-mode)))
 
 (use-package fsharp-mode
   :defer t
-  :ensure t
-  ;; :config 'auto-mode-alist '("\\.fs[iylx]?$" . fsharp-mode)
-  )
+  :ensure t)
 
 (use-package haskell-mode
   :defer t
   :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
-  (add-hook 'haskell-mode-hook 'haskell-indentation-mode))
+  :hook
+  ((haskell-mode . haskell-indentation-mode)))
 
 (use-package groovy-mode
   :defer t
@@ -365,28 +365,28 @@
   :diminish
   :init
   (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-  :config
-  (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
-  (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-  (add-hook 'ielm-mode-hook #'enable-paredit-mode)
-  (add-hook 'lisp-mode-hook #'enable-paredit-mode)
-  (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-  (add-hook 'scheme-mode-hook #'enable-paredit-mode)
-  (add-hook 'clojure-mode-hook #'enable-paredit-mode)
-  (add-hook 'lfe-mode-hook #'enable-paredit-mode))
+  :hook
+  ((emacs-lisp-mode . enable-paredit-mode)
+   (eval-expression-minibuffer-setup . enable-paredit-mode)
+   (ielm-mode . enable-paredit-mode)
+   (lisp-mode . enable-paredit-mode)
+   (lisp-interaction-mode . enable-paredit-mode)
+   (scheme-mode . enable-paredit-mode)
+   (clojure-mode . enable-paredit-mode)
+   (lfe-mode . enable-paredit-mode)))
 
 (use-package rainbow-delimiters
   :ensure t
   :diminish
-  :config
-  (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'eval-expression-minibuffer-setup-hook #'rainbow-delimiters-mode)
-  (add-hook 'ielm-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'lisp-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'lisp-interaction-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'scheme-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'java-mode-hook #'rainbow-delimiters-mode))
+  :hook
+  ((emacs-lisp-mode . rainbow-delimiters-mode)
+   (eval-expression-minibuffer-setup . rainbow-delimiters-mode)
+   (ielm-mode . rainbow-delimiters-mode)
+   (lisp-mode . rainbow-delimiters-mode)
+   (lisp-interaction-mode . rainbow-delimiters-mode)
+   (scheme-mode . rainbow-delimiters-mode)
+   (clojure-mode . rainbow-delimiters-mode)
+   (java-mode . rainbow-delimiters-mode)))
 
 (use-package tex
   :defer t
@@ -394,8 +394,9 @@
   :config
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
-  (add-hook 'latex-mode-hook 'turn-on-reftex)
-  (add-hook 'LaTeX-mode-hook 'turn-on-reftex))
+  :hook
+  ((latex-mode . turn-on-reftex)
+   (LaTeX-mode . turn-on-reftex)))
 
 (use-package company-auctex
   :defer t
@@ -428,17 +429,17 @@
   :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.purs\\'" . purescript-mode))
-  (add-hook 'purescript-mode-hook 'turn-on-purescript-indentation))
+  :hook
+  ((purescript-mode . turn-on-purescript-indentation)))
 
 (use-package psc-ide
   :defer t
   :ensure t
-  :config
-  (add-hook 'purescript-mode-hook
-            (lambda ()
-              (psc-ide-mode)
-              (company-mode)
-              (flycheck-mode))))
+  :hook
+  (purescript-mode . (lambda ()
+                       (psc-ide-mode)
+                       (company-mode)
+                       (flycheck-mode))))
 
 (use-package csharp-mode
   :defer t
@@ -473,7 +474,8 @@
   (define-prefix-command 'omnisharp-mode-map)
   (define-key languages-map (kbd "o") 'omnisharp-mode-map)
   (push 'company-omnisharp company-backends)
-  (add-hook 'csharp-mode-hook #'omnisharp-mode))
+  :hook
+  ((csharp-mode . omnisharp-mode)))
 
 (use-package powershell
   :defer t
@@ -499,7 +501,9 @@
   :defines languages-map
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode))
+         (typescript-mode . tide-hl-identifier-mode)
+         (typescript-mode . (lambda ()
+                              (setq typescript-indent-level 2))))
   :bind (
          :map tide-mode-map
          ("r" . tide-rename-symbol)
@@ -510,8 +514,6 @@
   :config
   (define-prefix-command 'tide-mode-map)
   (define-key languages-map (kbd "t") 'tide-mode-map)
-  (add-hook 'typescript-mode-hook (lambda ()
-                                    (setq typescript-indent-level 2)))
   (setq tide-format-options '(:indentSize 2 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
 
 (use-package prettier-js
