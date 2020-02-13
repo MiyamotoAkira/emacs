@@ -99,7 +99,9 @@
 
 (use-package terraform-mode
   :defer t
-  :ensure t)
+  :ensure t
+  :config
+  (terraform-format-on-save-mode t))
 
 (use-package company-terraform
   :ensure t
@@ -523,6 +525,10 @@
   :hook ((typescript-mode . prettier-js-mode)))
 
 (use-package tuareg
+  :defer t
+  :ensure t)
+
+(use-package go-mode
   :defer t
   :ensure t)
 
