@@ -80,6 +80,25 @@
   :ensure t
   :defer t)
 
+(use-package elpy
+  :ensure t
+  :defer t
+  :hook ((elpy-mode . flycheck-mode))
+  :bind (
+         :map elpy-mode-map
+         ("C-c ." . #'elpy-goto-definition)
+         ("C-c /" . #'elpy-goto-implementation))
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
+
+(use-package blacken
+  :ensure t
+  :defer t)
+
+(use-package pyvenv
+  :ensure t
+  :defer t)
+
 (use-package dockerfile-mode
   :defer t
   :ensure t
@@ -134,48 +153,13 @@
 
 (use-package rust-mode
   :defer t
-  :ensure t
-  :defines languages-map
-  :bind (:map rust-evil-map
-              ("d" . rust-dbg-wrap-or-unwrap)
-              ("f" . rust-format-buffer))
-  :config
-  (defvar rust-evil-map (make-sparse-keymap))
-  (define-prefix-command 'rust-evil-map)
-  (define-key languages-map (kbd "r") 'rust-evil-map))
+  :ensure t)
 
 (use-package cargo
   :defer t
   :ensure t
-  :bind (:map cargo-evil-map
-              ("a" . cargo-process-add)
-              ("b" . cargo-process-build)
-              ("c" . cargo-process-repeat)
-              ("d" . cargo-process-doc)
-              ("e" . cargo-process-bench)
-              ("f" . cargo-process-current-test)
-              ("TAB" . cargo-process-init)
-              ("k" . cargo-process-check)
-              ("l" . cargo-process-clean)
-              ("RET" . cargo-process-fmt)
-              ("n" . cargo-process-new)
-              ("o" . cargo-process-current-file-tests)
-              ("r" . cargo-process-run)
-              ("s" . cargo-process-search)
-              ("t" . cargo-process-test)
-              ("u" . cargo-process-update)
-              ("v" . cargo-process-doc-open)
-              ("x" . cargo-process-run-example)
-              ("C-a" . cargo-process-audit)
-              ("C-d" . cargo-process-rm)
-              ("C-k" . cargo-process-clippy)
-              ("C-o" . cargo-process-outdated))
   :hook
-  ((rust-mode . cargo-minor-mode))
-  :config
-  (defvar cargo-evil-map (make-sparse-keymap))
-  (define-prefix-command 'cargo-evil-map)
-  (define-key rust-evil-map (kbd "c") 'cargo-evil-map))
+  ((rust-mode . cargo-minor-mode)))
 
 (use-package flycheck-rust
   :defer t
@@ -454,27 +438,25 @@
   :bind (
          ("C-c o s s" . omnisharp-start-omnisharp-server)
          :map omnisharp-mode-map
-         ("s p" . omnisharp-stop-server)
-         ("a" . omnisharp-auto-complete)
-         ("c r" . recompile)
-         ("i t" . omnisharp-current-type-information)
-         ("i d" . omnisharp-current-type-documentation)
-         ("i s" . omnisharp-show-overloads-at-point)
-         ("g d" . omnisharp-go-to-definition)
-         ("g w" . omnisharp-go-to-definition-other-window)
-         ("g u" . omnisharp-find-usages)
-         ("g i" . omnisharp-find-implementations)
-         ("g s" . omnisharp-navigate-to-solution-member)
-         ("g m" . omnisharp-navigate-to-current-file-member)
-         ("g f" . omnisharp-navigate-to-solution-file-then-file-member)
-         ("k d" . omnisharp-code-format-entire-file)
-         ("r r" . omnisharp-rename)
-         ("r f" . omnisharp-fix-usings)
-         ("r c" . omnisharp-fix-code-issue-at-point)
-         ("r a" . omnisharp-run-code-action-refactoring))
+         ("C-c o s p" . omnisharp-stop-server)
+         ("C-C o a" . omnisharp-auto-complete)
+         ("C-C o c r" . recompile)
+         ("C-C o i t" . omnisharp-current-type-information)
+         ("C-C o i d" . omnisharp-current-type-documentation)
+         ("C-C o i s" . omnisharp-show-overloads-at-point)
+         ("C-C o g d" . omnisharp-go-to-definition)
+         ("C-C o g w" . omnisharp-go-to-definition-other-window)
+         ("C-C o g u" . omnisharp-find-usages)
+         ("C-C o g i" . omnisharp-find-implementations)
+         ("C-C o g s" . omnisharp-navigate-to-solution-member)
+         ("C-C o g m" . omnisharp-navigate-to-current-file-member)
+         ("C-C o g f" . omnisharp-navigate-to-solution-file-then-file-member)
+         ("C-C o k d" . omnisharp-code-format-entire-file)
+         ("C-C o r r" . omnisharp-rename)
+         ("C-C o r f" . omnisharp-fix-usings)
+         ("C-C o r c" . omnisharp-fix-code-issue-at-point)
+         ("C-C o r a" . omnisharp-run-code-action-refactoring))
   :config
-  (define-prefix-command 'omnisharp-mode-map)
-  (define-key languages-map (kbd "o") 'omnisharp-mode-map)
   (push 'company-omnisharp company-backends)
   :hook
   ((csharp-mode . omnisharp-mode)))
@@ -485,13 +467,7 @@
 
 (use-package kotlin-mode
   :defer t
-  :ensure t
-  :defines languages-map
-  :bind (:map kotlin-mode-map
-              ("z" . kotlin-repl))
-  :config
-  (define-prefix-command 'kotlin-mode-map)
-  (define-key languages-map (kbd "k") 'kotlin-mode-map))
+  :ensure t)
 
 (use-package graphviz-dot-mode
   :defer t
@@ -500,7 +476,6 @@
 (use-package tide
   :defer t
   :ensure t
-  :defines languages-map
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
@@ -508,14 +483,12 @@
                               (setq typescript-indent-level 2))))
   :bind (
          :map tide-mode-map
-         ("r" . tide-rename-symbol)
-         ("f" . tide-fix)
-         ("." . #'tide-jump-to-definition)
-         ("," . #'tide-jump-back)
-         ("/" . #'tide-jump-to-implementation))
+         ("C-c r" . tide-rename-symbol)
+         ("C-c f" . tide-fix)
+         ("C-c ." . #'tide-jump-to-definition)
+         ("C-c ," . #'tide-jump-back)
+         ("C-c /" . #'tide-jump-to-implementation))
   :config
-  (define-prefix-command 'tide-mode-map)
-  (define-key languages-map (kbd "t") 'tide-mode-map)
   (setq tide-format-options '(:indentSize 2 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
 
 (use-package prettier-js
