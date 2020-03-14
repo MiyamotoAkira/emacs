@@ -330,7 +330,7 @@
 (use-package slime-company
   :ensure t
   :config
-  (setq slime-company-major-modes (quote (lisp-mode slime-repl-mode scheme-mode))))
+  (setq slime-company-major-modes (quote (lisp-mode slime-repl-mode))))
 
 (use-package slime
   :defer t
@@ -343,7 +343,8 @@
 (use-package slime-company
   :ensure t
   :config
-  (setq slime-company-major-modes (quote (lisp-mode slime-repl-mode scheme-mode))))
+  (setq slime-company-major-modes (quote (lisp-mode slime-repl-mode))))
+
 
 ;; This one has to happen after all modes that use parens are loaded
 (use-package paredit
