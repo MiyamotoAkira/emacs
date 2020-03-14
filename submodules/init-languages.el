@@ -435,7 +435,6 @@
 (use-package omnisharp
   :defer t
   :ensure t
-  :defines languages-map
   :bind (
          ("C-c o s s" . omnisharp-start-omnisharp-server)
          :map omnisharp-mode-map

@@ -19,6 +19,8 @@
   :config
   (evil-leader/set-leader "<SPC>"))
 
+(defun nothing())
+
 (use-package evil
   :ensure t
   :hook
@@ -28,10 +30,11 @@
               ("g" . magit-status)
               ("m" . monky-status))
   :config
-  (define-prefix-command 'languages-map)
-  (evil-leader/set-key (kbd "l") 'languages-map)
   (define-prefix-command 'tools-map)
-  (evil-leader/set-key (kbd "t") 'tools-map))
+  (evil-leader/set-key (kbd "t") 'tools-map)
+  (define-key evil-normal-state-map (kbd "<down-mouse-1>") 'nothing)
+  (dolist (mouse '("<down-mouse-1>" "<mouse-1>"))
+    (global-unset-key (kbd mouse))))
 
 (use-package ag
   :ensure t
