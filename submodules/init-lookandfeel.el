@@ -14,7 +14,6 @@
 
 ;; line numbers
 (global-display-line-numbers-mode)
-(setq display-line-numbers-type 'relative)
 
 ;; Use tabs instead of spaces
 (setq-default indent-tabs-mode nil)

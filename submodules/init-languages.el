@@ -10,15 +10,15 @@
 (use-package yasnippet
   :diminish yas-minor-mode
   :ensure t
-  :defines tools-map
-  :bind (:map yas-minor-mode-map
-              ("n" . yas-new-snippet)
-              ("s" . yas-insert-snippet)
-              ("v" . yas-visit-snippet-file))
+  ;; :defines tools-map
+  ;; :bind (:map yas-minor-mode-map
+  ;;             ("n" . yas-new-snippet)
+  ;;             ("s" . yas-insert-snippet)
+  ;;             ("v" . yas-visit-snippet-file))
   :config
-  (evil-leader/set-key-for-mode 'emacs-lisp-mode "b" 'byte-compile-file)
-  (define-prefix-command 'yas-minor-mode-map)
-  (define-key tools-map (kbd "y") 'yas-minor-mode-map)
+  ;; (evil-leader/set-key-for-mode 'emacs-lisp-mode "b" 'byte-compile-file)
+  ;; (define-prefix-command 'yas-minor-mode-map)
+  ;; (define-key tools-map (kbd "y") 'yas-minor-mode-map)
   (yas-global-mode 1))
 
 (use-package yasnippet-snippets
@@ -26,10 +26,7 @@
 
 (use-package auto-yasnippet
   :diminish yas-minor-mode
-  :ensure t
-  :bind (:map yas-minor-mode-map
-              ("c" . aya-create)
-              ("e" . aya-expand)))
+  :ensure t)
 
 (use-package flycheck
   :ensure t

@@ -21,32 +21,14 @@
 
 (defun nothing())
 
-(use-package evil
-  :ensure t
-  :hook
-  ((prog-mode . evil-mode)
-   (prog-mode . evil-leader-mode))
-  :bind (:map tools-map
-              ("g" . magit-status)
-              ("m" . monky-status))
-  :config
-  (define-prefix-command 'tools-map)
-  (evil-leader/set-key (kbd "t") 'tools-map)
-  (define-key evil-normal-state-map (kbd "<down-mouse-1>") 'nothing)
-  (dolist (mouse '("<down-mouse-1>" "<mouse-1>"))
-    (global-unset-key (kbd mouse))))
 
 (use-package ag
   :ensure t
-  :bind (:map ag-map
-              ("a" . ag)
-              ("f" . ag-files)
-              ("d" . ag-dired)
-              ("r" . ag-regex)
-              ("p" . ag-project))
-  :init
-  (define-prefix-command 'ag-map)
-  (define-key tools-map (kbd "a") 'ag-map))
+  :bind (("C-c a a" . ag)
+         ("C-c a f" . ag-files)
+         ("C-c a d" . ag-dired)
+         ("C-c a r" . ag-regex)
+         ("C-c a p" . ag-project)))
 
 (use-package magit
   :ensure t)
