@@ -141,5 +141,23 @@
   :config
   (setq nov-text-width 80))
 
+(defun insert-line-below ()
+  "Insert an empty line below the current line."
+  (interactive)
+  (save-excursion
+    (end-of-line)
+    (open-line 1)))
+
+(defun insert-line-above ()
+  "Insert an empty line above the current line."
+  (interactive)
+  (save-excursion
+    (end-of-line 0)
+    (open-line 1)))
+
+(global-set-key (kbd "C-c M-o") 'insert-line-above)
+
+(global-set-key (kbd "C-c o") 'insert-line-below)
+
 (provide 'init-tools)
 ;;; init-tools.el ends here
