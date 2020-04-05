@@ -141,10 +141,11 @@ Setting up babel for running code  in org mode
   :config
   (setq nov-text-width 80))
 
-(defun insert-line-below ()
-  "Insert an empty line below the current line."
-  (interactive)
-  (if (equal current-prefix-arg '(4))
+(defun insert-line-below (universal)
+  "Insert an empty line below the current line.
+The behaviour change if you pass the default UNIVERSAL argument.  Without it, a new line below the current one will be created, but the point will not change its location.  With the default UNIVERSAL argument, the point will change to the beginning of the new line created."
+  (interactive "P")
+  (if (equal universal '(4))
       (progn
         (end-of-line)
         (open-line 1)
@@ -153,10 +154,11 @@ Setting up babel for running code  in org mode
       (end-of-line)
       (open-line 1))))
 
-(defun insert-line-above ()
-  "Insert an empty line above the current line."
-  (interactive)
-  (if (equal current-prefix-arg '(4))
+(defun insert-line-above (universal)
+  "Insert an empty line above the current line.
+The behaviour change if you pass the default UNIVERSAL argument.  Without it, a new line above the current one will be created, but the point will not change its location.  With the default UNIVERSAL argument, the point will change to the beginning of the new line created."
+  (interactive "P")
+  (if (equal universal '(4))
       (progn
         (end-of-line 0)
         (open-line 1)
