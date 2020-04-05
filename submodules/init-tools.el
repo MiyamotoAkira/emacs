@@ -1,9 +1,9 @@
-;;; package --- Summary
-;;;Additional tools for  Emacs
+                                        ; package --- Summary
+                                        ;Additional tools for  Emacs
 
-;;; Commentary:
+                                        ; Commentary:
 
-;;; Code:
+                                        ; Code:
 
 (use-package async
   :ensure t)
@@ -110,7 +110,7 @@
   :ensure t
   :defer t)
 
-;; Setting up babel for running code  in org mode
+Setting up babel for running code  in org mode
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
@@ -144,20 +144,30 @@
 (defun insert-line-below ()
   "Insert an empty line below the current line."
   (interactive)
-  (save-excursion
-    (end-of-line)
-    (open-line 1)))
+  (if (equal current-prefix-arg '(4))
+      (progn
+        (end-of-line)
+        (open-line 1)
+        (forward-line))
+    (save-excursion
+      (end-of-line)
+      (open-line 1))))
 
 (defun insert-line-above ()
   "Insert an empty line above the current line."
   (interactive)
-  (save-excursion
-    (end-of-line 0)
-    (open-line 1)))
+  (if (equal current-prefix-arg '(4))
+      (progn
+        (end-of-line 0)
+        (open-line 1)
+        (forward-line))
+    (save-excursion
+      (end-of-line 0)
+      (open-line 1))))
 
-(global-set-key (kbd "C-c M-o") 'insert-line-above)
+(global-set-key (kbd "C-c M-n") 'insert-line-above)
 
-(global-set-key (kbd "C-c o") 'insert-line-below)
+(global-set-key (kbd "C-c n") 'insert-line-below)
 
 (provide 'init-tools)
 ;;; init-tools.el ends here
