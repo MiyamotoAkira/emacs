@@ -1,9 +1,7 @@
-                                        ; package --- Summary
-                                        ;Additional tools for  Emacs
-
-                                        ; Commentary:
-
-                                        ; Code:
+;; package --- Summary
+;; Additional tools for  Emacs
+;;; Commentary:
+;;; Code:
 
 (use-package async
   :ensure t)
