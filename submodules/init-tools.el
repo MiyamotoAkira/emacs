@@ -11,16 +11,7 @@
 (use-package monky
   :ensure t)
 
-(defvar tools-map (make-sparse-keymap))
-(defvar languages-map (make-sparse-keymap))
-
-(use-package evil-leader
-  :ensure t
-  :config
-  (evil-leader/set-leader "<SPC>"))
-
 (defun nothing())
-
 
 (use-package ag
   :ensure t
