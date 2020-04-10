@@ -99,7 +99,7 @@
   :ensure t
   :defer t)
 
-Setting up babel for running code  in org mode
+;; Setting up babel for running code  in org mode
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
