@@ -85,7 +85,7 @@
 (use-package powerline
   :ensure t
   :config
-  (powerline-center-evil-theme))
+  (powerline-center-theme))
 
 (use-package flx
   :ensure t)
@@ -146,16 +146,15 @@
   :ensure t
   :bind (("C-x C-f" . 'counsel-find-file)
          ("M-y" . 'counsel-yank-pop)
-         :map counsel-mode-map
-         ("f" . 'counsel-describe-function)
-         ("v" . 'counsel-describe-variable)
-         ("l" . 'counsel-find-library)
-         ("i" . 'counsel-info-lookup-symbol)
-         ("u" . 'counsel-unicode-char)
-         ("j" .  'counsel-set-variable))
+         ;; :map counsel-mode-map
+         ;; ("f" . 'counsel-describe-function)
+         ;; ("v" . 'counsel-describe-variable)
+         ;; ("l" . 'counsel-find-library)
+         ;; ("i" . 'counsel-info-lookup-symbol)
+         ;; ("u" . 'counsel-unicode-char)
+         ;; ("j" .  'counsel-set-variable)
+         )
   :config
-  (define-prefix-command 'counsel-mode-map)
-  (define-key tools-map (kbd "c") 'counsel-mode-map)
   (setq counsel-find-file-ignore-regexp "(?:‘[#.])|(?:[#~]’)|(?:[~]’)"))
 
 (use-package swiper 
