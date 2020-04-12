@@ -156,7 +156,7 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
       (end-of-line 0)
       (open-line 1))))
 
-(global-set-key (kbd "C-c M-n") 'insert-line-above)
+(global-set-key (kbd "C-c C-n") 'insert-line-above)
 
 (global-set-key (kbd "C-c n") 'insert-line-below)
 
