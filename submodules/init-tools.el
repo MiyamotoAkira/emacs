@@ -20,7 +20,8 @@
          ("C-c a p" . ag-project)))
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :bind (("C-x g" . magit-status)))
 
 (use-package command-log-mode
   :ensure t
