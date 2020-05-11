@@ -3,7 +3,7 @@
 ;;; This is my configuration of Emacs.
 
 ;;; Code:
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (add-to-list 'load-path (expand-file-name "submodules" user-emacs-directory))
 
