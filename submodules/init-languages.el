@@ -28,10 +28,15 @@
   :diminish yas-minor-mode
   :ensure t)
 
+(use-package flycheck-pos-tip
+  :ensure t)
+
 (use-package flycheck
   :ensure t
+  :after (flycheck-pos-tip)
   :config
   (show-paren-mode 1)
+  (flycheck-pos-tip-mode)
   :hook
   ((after-init . global-flycheck-mode)))
 
@@ -58,6 +63,11 @@
   :bind (("C-S-i" . company-complete))
   :hook
   ((after-init . global-company-mode)))
+
+(use-package company-quickhelp
+  :ensure t
+  :config
+  (company-quickhelp-mode 1))
 
 (use-package buttercup
   :ensure t)
