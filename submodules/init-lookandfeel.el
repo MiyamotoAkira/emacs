@@ -33,6 +33,8 @@
 
 (toggle-frame-fullscreen)
 
+(winner-mode 1)
+
 (use-package solarized-theme
   :ensure t)
 
@@ -184,6 +186,8 @@
       (setq height (window-height window))
       (shrink-window (- height 10))
       (select-window current))))
+
+(fset 'yes-or-no-p 'y-or-n-p)
 
 (provide 'init-lookandfeel)
 ;;; init-lookandfeel.el ends here
