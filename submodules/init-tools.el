@@ -161,5 +161,31 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
 
 (global-set-key (kbd "C-c n") 'insert-line-below)
 
+(use-package pos-tip
+  :ensure t
+  :pin melpa)
+
+(use-package flyspell
+  :ensure t
+  :diminish flyspell-mode
+  :init
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+  (dolist (hook '(text-mode-hook org-mode-hook))
+    (add-hook hook (lambda () (flyspell-mode 1))))
+
+  (dolist (hook '(change-log-mode-hook log-edit-mode-hook org-agenda-mode-hook))
+    (add-hook hook (lambda () (flyspell-mode -1))))
+
+  :config
+  (setq ;;ispell-program-name "/usr/local/bin/aspell"
+        ispell-local-dictionary "en_GB"
+        ispell-dictionary "english" ; better for aspell
+        ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB")
+        ispell-list-command "--list"
+        ispell-local-dictionary-alist '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "['‘’]"
+                                         t ; Many other characters
+                                         ("-d" "en_GB") nil utf-8))))
+
 (provide 'init-tools)
 ;;; init-tools.el ends here
