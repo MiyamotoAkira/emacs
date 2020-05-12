@@ -35,6 +35,19 @@
   :config
   (projectile-mode +1))
 
+(use-package perspective
+  :ensure t
+  :bind (("C-x x x" . persp-switch-last)
+         ("C-x b" . persp-switch-to-buffer*)
+         ("C-x k" . persp-kill-buffer*))
+  :init (persp-mode +1)
+  :config
+  (setq persp-interactive-completion-function #'ivy-completing-read))
+
+(use-package persp-projectile
+  :ensure t
+  :bind ("C-x x P" . projectile-persp-switch-project))
+
 (use-package dired-sidebar
   :ensure t
   :commands (dired-sidebar-toggle-sidebar)
