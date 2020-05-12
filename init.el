@@ -48,12 +48,9 @@
 (require 'init-tools)
 (require 'init-lookandfeel)
 (require 'init-languages)
+(require 'init-org)
+(require 'init-eldoc)
 ;; (require 'init-helm)
-
-;; eldoc configuration
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 
 (put 'upcase-region 'disabled nil)
 
