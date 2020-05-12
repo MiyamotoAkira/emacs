@@ -132,36 +132,7 @@
 ;;   (setq smex-save-file (concat user-emacs-directory ".smex-items"))
 ;;   (smex-initialize))
 
-(use-package ivy
-  :ensure t
-  :bind (("M-x" . 'counsel-M-x)
-         ("C-x b" . 'ivy-switch-buffer)
-         ("C-c v" . 'ivy-push-view)
-         ("C-c V" .  'ivy-pop-view))
-  :config
-  (ivy-mode 1)
-  (setq ivy-re-builders-alist
-        '((read-file-name-internal . ivy--regex-fuzzy)
-          (t . ivy--regex-plus))))
 
-(use-package counsel
-  :ensure t
-  :bind (("C-x C-f" . 'counsel-find-file)
-         ("M-y" . 'counsel-yank-pop)
-         ;; :map counsel-mode-map
-         ;; ("f" . 'counsel-describe-function)
-         ;; ("v" . 'counsel-describe-variable)
-         ;; ("l" . 'counsel-find-library)
-         ;; ("i" . 'counsel-info-lookup-symbol)
-         ;; ("u" . 'counsel-unicode-char)
-         ;; ("j" .  'counsel-set-variable)
-         )
-  :config
-  (setq counsel-find-file-ignore-regexp "(?:‘[#.])|(?:[#~]’)|(?:[~]’)"))
-
-(use-package swiper 
-  :ensure t
-  :bind (("C-s" . 'swiper-isearch)))
 
 (use-package disable-mouse
   :ensure t

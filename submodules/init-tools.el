@@ -131,6 +131,38 @@
   :config
   (setq nov-text-width 80))
 
+(use-package ivy
+  :ensure t
+  :diminish ivy
+  :bind (("C-c v" . 'ivy-push-view)
+         ("C-c V" .  'ivy-pop-view))
+  :config
+  (ivy-mode 1)
+  (setq ivy-re-builders-alist
+        '((read-file-name-internal . ivy--regex-fuzzy)
+          (t . ivy--regex-plus))))
+
+(use-package counsel
+  :ensure t
+  :bind (("M-x" . 'counsel-M-x)
+         ("C-x C-f" . 'counsel-find-file)
+         ("M-y" . 'counsel-yank-pop)
+         ;; :map counsel-mode-map
+         ;; ("f" . 'counsel-describe-function)
+         ;; ("v" . 'counsel-describe-variable)
+         ;; ("l" . 'counsel-find-library)
+         ;; ("i" . 'counsel-info-lookup-symbol)
+         ;; ("u" . 'counsel-unicode-char)
+         ;; ("j" .  'counsel-set-variable)
+         )
+  :config
+  (setq counsel-find-file-ignore-regexp "(?:‘[#.])|(?:[#~]’)|(?:[~]’)"))
+
+(use-package swiper
+  :ensure t
+  :bind (("C-s" . 'swiper-isearch)
+         ("C-r" . 'swiper-backward)))
+
 (defun insert-line-below (universal)
   "Insert an empty line below the current line.
 The behaviour change if you pass the default UNIVERSAL argument.  Without it, a new line below the current one will be created, but the point will not change its location.  With the default UNIVERSAL argument, the point will change to the beginning of the new line created."
@@ -160,7 +192,6 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
 (global-set-key (kbd "C-c C-n") 'insert-line-above)
 
 (global-set-key (kbd "C-c n") 'insert-line-below)
-
 
 ;; We put all backup files on a single place
 (setq backup-directory-alist
