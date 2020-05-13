@@ -118,7 +118,7 @@
 (use-package swiper
   :ensure t
   :bind (("C-s" . 'swiper-isearch)
-         ("C-r" . 'swiper-backward)))
+         ("C-r" . 'swiper-isearch-backward)))
 
 (defun insert-line-below (universal)
   "Insert an empty line below the current line.
