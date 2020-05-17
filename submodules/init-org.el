@@ -11,6 +11,7 @@
   :defines org-mobile-directory
   :defines org-mobile-inbox-for-pull
   :config
+  (setq org-startup-truncated nil)
   (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
   (setq org-directory "~/org")
   (setq org-mobile-inbox-for-pull "~/org/flagged.org")
