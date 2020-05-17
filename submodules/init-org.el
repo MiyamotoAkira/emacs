@@ -46,6 +46,14 @@
   :ensure t
   :defer t)
 
+(use-package ob-rust
+  :ensure t
+  :defer t)
+
+(use-package ob-typescript
+  :ensure t
+  :defer t)
+
 ;; Setting up babel for running code  in org mode
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -54,7 +62,10 @@
    (clojure . t)
    (shell . t)
    (ruby . t)
-   (fsharp . t)))
+   (fsharp . t)
+   (js . t)
+   (typescript . t)
+   (rust . t)))
 
 (setq org-confirm-babel-evaluate nil
       org-src-fontify-natively t
