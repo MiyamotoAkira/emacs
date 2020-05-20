@@ -29,6 +29,8 @@ network-security.data
 # elpa packages
 /elpa/
 
+elpy/
+
 # reftex files
 *.rel
 
@@ -43,8 +45,21 @@ ac-comphist.dat
 ido.last*
 
 .smex-items
+smex-items
 
 url/
 
 #session files
 session*
+
+projectile-bookmarks.eld
+
+transient/
+
+fsautocomplete/
+
+FsAutoComplete
+
+nov-places
+.lsp-session-v1
+.dap-breakpoints
