@@ -33,7 +33,8 @@
   :diminish
   :bind-keymap (("C-c p" . projectile-command-map))
   :config
-  (projectile-mode +1))
+  (projectile-mode +1)
+  (setq projectile-completion-system 'ivy))
 
 (use-package perspective
   :ensure t
