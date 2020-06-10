@@ -34,7 +34,11 @@
   :bind-keymap (("C-c p" . projectile-command-map))
   :config
   (projectile-mode +1)
-  (setq projectile-completion-system 'ivy))
+  (setq projectile-completion-system 'ivy)
+  (setq projectile-project-search-path '("~/code/"
+                                         "~/code/codurance/"
+                                         "~/code/personal/"
+                                         "~/code/externals/")))
 
 (use-package perspective
   :ensure t
