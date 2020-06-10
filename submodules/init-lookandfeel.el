@@ -24,7 +24,7 @@
 ;; no bell
 (setq ring-bell-function 'ignore)
 
-(global-set-key (kbd "C-c C-;") 'comment-region)
+(global-set-key [remap comment-dwim] #'comment-line)
 
 ;; eliminate all visual elements external to emacs buffers.
 (tool-bar-mode -1)
