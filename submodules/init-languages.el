@@ -512,6 +512,20 @@
   :defer t
   :ensure t)
 
+(use-package php-mode
+  :defer t
+  :ensure t)
+
+(use-package company-php
+  :defer t
+  :ensure t
+  :config (push 'company-ac-php-backend company-backends))
+
+(use-package flymake-php
+  :defer t
+  :ensure t
+  :hook ((php-mode . flymake-php-load)))
+
 (provide 'init-languages)
 ;;; init-languages.el ends here
 
