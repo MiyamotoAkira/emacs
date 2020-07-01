@@ -92,27 +92,11 @@
 (use-package flx
   :ensure t)
 
-;; (use-package flx-ido
-;;   :ensure t)
-
-;; (use-package ido-vertical-mode
-;;   :ensure t
-;;   :config
-;;   (ido-vertical-mode 1)
-;;   (setq ido-vertical-define-keys 'C-n-and-C-p-only))
-
 (use-package which-key
   :ensure t
   :diminish
   :config
   (which-key-mode))
-
-;; (use-package ido-completing-read+
-;;   :ensure t
-;;   :config
-;;   (ido-mode t)
-;;   (ido-ubiquitous-mode 1)
-;;   (setq ido-auto-merge-work-directories-length -1))
 
 (use-package smooth-scrolling
   :ensure t
@@ -124,15 +108,6 @@
   :ensure t
   :config
   (dimmer-mode))
-
-;; (use-package smex
-;;   :ensure t
-;;   :bind (("M-x" . smex))
-;;   :config
-;;   (setq smex-save-file (concat user-emacs-directory ".smex-items"))
-;;   (smex-initialize))
-
-
 
 (use-package disable-mouse
   :ensure t
