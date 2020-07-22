@@ -496,7 +496,7 @@
          ("C-c ," . #'tide-jump-back)
          ("C-c /" . #'tide-jump-to-implementation))
   :config
-  (setq tide-format-options '(:indentSize 2 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
+  (setq tide-format-options '(:indentSize 4 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
 
 (use-package prettier-js
   :defer t
