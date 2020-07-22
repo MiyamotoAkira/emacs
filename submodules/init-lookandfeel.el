@@ -32,6 +32,7 @@
 (scroll-bar-mode -1)
 
 (toggle-frame-fullscreen)
+(add-to-list 'default-frame-alist '(fullscreen . fullscreen))
 
 (winner-mode 1)
 
