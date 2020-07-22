@@ -74,7 +74,7 @@
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2))
+  (setq web-mode-markup-indent-offset 4))
 
 (use-package web-mode
   :defer t
@@ -514,17 +514,38 @@
 
 (use-package php-mode
   :defer t
+  :ensure t
+  :hook ((php-mode . company-mode)))
+
+(use-package ac-php-core
+  :defer t
+  :ensure t)
+
+(use-package ac-php
+  :defer t
   :ensure t)
 
 (use-package company-php
   :defer t
   :ensure t
-  :config (push 'company-ac-php-backend company-backends))
+  :config
+  (push 'company-ac-php-backend company-backends)
+  (ac-php-core-eldoc-setup)
+  :bind (
+         :map php-mode-map
+         ("C-c ." . ac-php-find-symbol-at-point)
+         ("C-c ," . ac-php-location-stack-back)))
 
-(use-package flymake-php
+(use-package flycheck-psalm
   :defer t
   :ensure t
-  :hook ((php-mode . flymake-php-load)))
+  :config
+  (flycheck-mode t))
+
+(use-package php-refactor-mode
+  :defer t
+  :ensure t
+  :hook  (php-mode . php-refactor-mode))
 
 (provide 'init-languages)
 ;;; init-languages.el ends here
