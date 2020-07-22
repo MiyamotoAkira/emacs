@@ -33,7 +33,7 @@
 
 (use-package flycheck
   :ensure t
-  :after (flycheck-pos-tip)
+  :after (flycheck-pos-tip-mode)
   :config
   (show-paren-mode 1)
   (flycheck-pos-tip-mode)
