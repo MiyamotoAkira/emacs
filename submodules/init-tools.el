@@ -181,13 +181,17 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
 
   :config
   (setq ;;ispell-program-name "/usr/local/bin/aspell"
-        ispell-local-dictionary "en_GB"
-        ispell-dictionary "english" ; better for aspell
-        ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB")
-        ispell-list-command "--list"
-        ispell-local-dictionary-alist '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "['‘’]"
-                                         t ; Many other characters
-                                         ("-d" "en_GB") nil utf-8))))
+   ispell-local-dictionary "en_GB"
+   ispell-dictionary "english" ; better for aspell
+   ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB")
+   ispell-list-command "--list"
+   ispell-local-dictionary-alist '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "['‘’]"
+                                    t ; Many other characters
+                                    ("-d" "en_GB") nil utf-8))))
+
+(use-package column-enforce-mode
+  :ensure t
+  :defer t)
 
 (provide 'init-tools)
 ;;; init-tools.el ends here
