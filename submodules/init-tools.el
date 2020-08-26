@@ -17,7 +17,10 @@
          ("C-c a f" . ag-files)
          ("C-c a d" . ag-dired)
          ("C-c a r" . ag-regex)
-         ("C-c a p" . ag-project)))
+         ("C-c a p" . ag-project))
+  :config
+  (setq ag-reuse-buffers 't)
+  (setq ag-highlight-search 't))
 
 (use-package magit
   :ensure t
