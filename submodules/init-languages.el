@@ -481,6 +481,11 @@
   :defer t
   :ensure t)
 
+(use-package typescript-mode
+  :defer t
+  :ensure t
+  :mode ("\\.ts\\'" "\\.tsx\\'"))
+
 (use-package tide
   :defer t
   :ensure t
