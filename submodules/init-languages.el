@@ -69,6 +69,13 @@
   :config
   (company-quickhelp-mode 1))
 
+(use-package mmm-mode
+  :ensure t
+  :defer t
+  :config
+  (setq mmm-global-mode 'maybe)
+  (mmm-add-mode-ext-class 'html-mode "\\.php\\'" 'html-php))
+
 (use-package buttercup
   :ensure t)
 
@@ -82,6 +89,18 @@
   :mode ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'")
   :hook
   ((web-mode . my-web-mode-hook)))
+
+
+(use-package vue-mode
+  :defer t
+  :ensure t)
+
+(use-package eslintd-fix
+  :defer t
+  :ensure t
+  :hook
+  ((js-mode . eslintd-fix-mode)
+   (vue-mode . eslintd-fix-mode)))
 
 (use-package json-mode
   :ensure t
