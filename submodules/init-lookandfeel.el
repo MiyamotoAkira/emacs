@@ -5,7 +5,24 @@
 
 ;;; Code:
 ;; general modifications
-(set-face-attribute 'default nil :font "Fira Code-10")
+
+(defvar using-sharing-font nil)
+
+(defun set-standard-font ()
+  (set-face-attribute 'default nil :font "Fira Code-10"))
+
+(defun set-sharing-font ()
+  (set-face-attribute 'default nil :font "Fira Code-16"))
+
+(defun switch-font ()
+  "Switches the font between my normal one and the one used to share screen"
+  (interactive)
+  (if using-sharing-font
+      (set-standard-font)
+    (set-sharing-font))
+  (setq using-sharing-font (not using-sharing-font)))
+
+(set-standard-font)
 
 (setq default-tab-width 4)
 
