@@ -95,7 +95,7 @@
 
 (use-package ivy
   :ensure t
-  :diminish ivy
+  :diminish
   :bind (("C-c v" . 'ivy-push-view)
          ("C-c V" .  'ivy-pop-view))
   :config

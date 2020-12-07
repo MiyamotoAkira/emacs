@@ -205,6 +205,7 @@
    (racer-mode . company-mode)))
 
 (use-package markdown-mode
+  :diminish
   :defer t
   :ensure t
   :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'")
@@ -249,6 +250,7 @@
 (use-package clojure-mode
   :defer t
   :ensure t
+  :diminish
   :pin melpa-stable
   :hook
   ((clojure-mode . subword-mode)
@@ -281,6 +283,7 @@
 (use-package clj-refactor
   :defer t
   :ensure t
+  :diminish
   :pin melpa-stable
   :hook
   (clojure-mode . clj-clojure-setup))
