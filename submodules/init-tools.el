@@ -7,7 +7,8 @@
   :ensure t)
 
 (use-package monky
-  :ensure t)
+  :ensure t
+  :bind (("C-x C-g" . monky-status)))
 
 (defun nothing())
 
