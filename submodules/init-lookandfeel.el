@@ -32,6 +32,9 @@
 ;; line numbers
 (global-display-line-numbers-mode)
 
+(dolist (mode '(eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
 ;; Use tabs instead of spaces
 (setq-default indent-tabs-mode nil)
 
