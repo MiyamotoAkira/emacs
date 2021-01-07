@@ -125,6 +125,17 @@
   :bind (("C-s" . 'swiper-isearch)
          ("C-r" . 'swiper-isearch-backward)))
 
+(use-package helpful
+  :ensure t
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([rempa describe-key] . helpful-key))
+
 (defun insert-line-below (universal)
   "Insert an empty line below the current line.
 The behaviour change if you pass the default UNIVERSAL argument.  Without it, a new line below the current one will be created, but the point will not change its location.  With the default UNIVERSAL argument, the point will change to the beginning of the new line created."
