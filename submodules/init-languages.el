@@ -237,7 +237,6 @@
   (cljr-add-keybindings-with-prefix "C-c C-m"))
 
 (use-package cider
-  :defer t
   :ensure t
   :pin melpa-stable
   :hook
@@ -299,16 +298,22 @@
   :config
   (add-hook 'java-mode-hook 'java-imports-scan-file))
 
+(setq lsp-keymap-prefix "C-c l")
+
 (use-package lsp-mode
   :defer t
   :defines lsp-highlight-symbol-at-point
   :ensure t
+  :commands lsp
+  :hook ((csharp-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
   :init (setq lsp-eldoc-render-all nil
               lsp-highlight-symbol-at-point nil))
 
 (use-package lsp-ui
   :defer t
   :ensure t
+  :commands lsp-ui-mode
   :config
   (setq lsp-ui-sideline-update-mode 'point))
 
@@ -329,6 +334,9 @@
   (dap-mode t)
   (dap-ui-mode t))
 
+(use-package lsp-ivy
+  :commands lsp-ivy-workspace-symbol)
+
 ;; (use-package dap-java
 ;;   :after 'lsp-java)
 
@@ -343,7 +351,9 @@
 
 (use-package fsharp-mode
   :defer t
-  :ensure t)
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.fsproj\\'" . nxml-mode)))
 
 (use-package haskell-mode
   :defer t
