@@ -349,11 +349,15 @@
    (java-mode . (lambda () (lsp-ui-flycheck-enable t)))
    (java-mode . lsp-ui-mode)))
 
+(use-package eglot
+  :ensure t)
+
 (use-package fsharp-mode
   :defer t
   :ensure t
   :config
-  (add-to-list 'auto-mode-alist '("\\.fsproj\\'" . nxml-mode)))
+  (add-to-list 'auto-mode-alist '("\\.fsproj\\'" . nxml-mode))
+  (require 'eglot-fsharp))
 
 (use-package haskell-mode
   :defer t
