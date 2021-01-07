@@ -410,14 +410,7 @@
   :ensure t
   :diminish
   :hook
-  ((emacs-lisp-mode . rainbow-delimiters-mode)
-   (eval-expression-minibuffer-setup . rainbow-delimiters-mode)
-   (ielm-mode . rainbow-delimiters-mode)
-   (lisp-mode . rainbow-delimiters-mode)
-   (lisp-interaction-mode . rainbow-delimiters-mode)
-   (scheme-mode . rainbow-delimiters-mode)
-   (clojure-mode . rainbow-delimiters-mode)
-   (java-mode . rainbow-delimiters-mode)))
+  ((prog-mode . rainbow-delimiters-mode)))
 
 (use-package tex
   :defer t
