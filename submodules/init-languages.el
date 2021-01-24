@@ -106,20 +106,21 @@
   :ensure t
   :defer t)
 
-(use-package elpy
-  :ensure t
-  :defer t
-  :hook ((elpy-mode . flycheck-mode))
-  :bind (
-         :map elpy-mode-map
-         ("C-c ." . #'elpy-goto-definition)
-         ("C-c /" . #'elpy-goto-implementation))
-  :init
-  (advice-add 'python-mode :before 'elpy-enable))
+;; (use-package elpy
+;;   :ensure t
+;;   :defer t
+;;   :hook ((elpy-mode . flycheck-mode))
+;;   :bind (
+;;          :map elpy-mode-map
+;;          ("C-c ." . #'elpy-goto-definition)
+;;          ("C-c /" . #'elpy-goto-implementation))
+;;   :init
+;;   (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package blacken
   :ensure t
-  :defer t)
+  :defer t
+  :hook ((python-mode . blacken-mode)))
 
 (use-package pyvenv
   :ensure t
@@ -306,6 +307,8 @@
   :ensure t
   :commands lsp
   :hook ((csharp-mode . lsp)
+         (python-mode . lsp)
+         (java-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :init (setq lsp-eldoc-render-all nil
               lsp-highlight-symbol-at-point nil))
@@ -349,8 +352,17 @@
    (java-mode . (lambda () (lsp-ui-flycheck-enable t)))
    (java-mode . lsp-ui-mode)))
 
+(use-package lsp-jedi
+  :ensure t
+  :config
+  (with-eval-after-load "lsp-mode"
+    (add-to-list 'lsp-disabled-clients 'pyls)
+    (add-to-list 'lsp-enabled-clients 'jedi)))
+
 (use-package eglot
-  :ensure t)
+  :ensure t
+  :hook
+  ((fsharp-mode . eglot-ensure)))
 
 (use-package fsharp-mode
   :defer t
