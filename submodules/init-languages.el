@@ -320,14 +320,14 @@
   :config
   (setq lsp-ui-sideline-update-mode 'point))
 
-(use-package company-lsp
-  :after company
-  :ensure t
-  :hook
-  ((java-mode . (lambda () (push 'company-lsp company-backends))))
-  :config
-  (setq company-lsp-cache-candidates t)
-  (push 'company-lsp company-backend))
+;; (use-package company-lsp
+;;   :after company
+;;   :ensure t
+;;   :hook
+;;   ((java-mode . (lambda () (push 'company-lsp company-backends))))
+;;   :config
+;;   (setq company-lsp-cache-candidates t)
+;;   (push 'company-lsp company-backend))
 
 
 (use-package dap-mode
