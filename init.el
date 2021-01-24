@@ -41,8 +41,11 @@
 
 ;; This is to get the path variable read from
 ;; the shell environment.
-(if (eq system-type 'windows-nt)
-    (require 'init-windows)
+(if (memq window-system '(mac ns x))
+    (require 'init-nix)
+  (require 'init-windows))
+
+(when (daemonp)
   (require 'init-nix))
 
 (require 'init-tools)
