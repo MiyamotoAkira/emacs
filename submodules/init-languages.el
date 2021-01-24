@@ -182,6 +182,14 @@
   :defer t
   :ensure t)
 
+(use-package rustic
+  :defer t
+  :ensure t
+  :after rust-mode
+  :hook ((rustic-mode . (lambda ()
+                          (lsp-ui-doc-mode)
+                          (company-mode)))))
+
 (use-package cargo
   :defer t
   :ensure t
