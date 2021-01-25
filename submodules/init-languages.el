@@ -182,19 +182,24 @@
   :defer t
   :ensure t)
 
+;; (use-package cargo
+;;   :defer t
+;;   :ensure t
+;;   :hook
+;;   ((rust-mode . cargo-minor-mode)))
+
 (use-package rustic
   :defer t
   :ensure t
   :after rust-mode
   :hook ((rustic-mode . (lambda ()
                           (lsp-ui-doc-mode)
-                          (company-mode)))))
-
-(use-package cargo
-  :defer t
-  :ensure t
-  :hook
-  ((rust-mode . cargo-minor-mode)))
+                          (company-mode))))
+  :config
+  (add-to-list 'auto-mode-alist '("\\.rs\\'" . rustic-mode))
+  (custom-set-faces
+   '(rustic-compilation-column ((t (:inherit compilation-column-number))))
+   '(rustic-compilation-line ((t (:foreground "LimeGreen"))))))
 
 (use-package flycheck-rust
   :defer t
