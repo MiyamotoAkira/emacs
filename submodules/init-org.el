@@ -65,7 +65,8 @@
    (fsharp . t)
    (js . t)
    (typescript . t)
-   (rust . t)))
+   (rust . t)
+   (plantuml . t)))
 
 (setq org-confirm-babel-evaluate nil
       org-src-fontify-natively t

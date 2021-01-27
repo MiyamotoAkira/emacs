@@ -205,5 +205,14 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
   :ensure t
   :defer t)
 
+(use-package plantuml-mode
+  :defer t
+  :ensure t
+  :config
+  (setq plantuml-jar-path "~/bin/plantuml.jar")
+  (setq plantuml-default-exec-mode 'jar)
+  (add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
+  (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode)))
+
 (provide 'init-tools)
 ;;; init-tools.el ends here
