@@ -607,6 +607,10 @@
   :ensure t
   :hook  (php-mode . php-refactor-mode))
 
+(use-package glsl-mode
+  :defer t
+  :ensure t)
+
 (provide 'init-languages)
 ;;; init-languages.el ends here
 
