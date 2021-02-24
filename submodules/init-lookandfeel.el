@@ -138,7 +138,7 @@
 
 ;; Favour vertical split over horizontal split
 (setq split-height-threshold nil)
-(setq split-width-threshold 80)
+(setq split-width-threshold 120)
 
 (defun shell-horizontal ()
   "This function is to display the shell on a horizontal split, whcih is usually more adequate."
