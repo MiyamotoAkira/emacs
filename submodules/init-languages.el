@@ -189,7 +189,6 @@
 ;;   ((rust-mode . cargo-minor-mode)))
 
 (use-package rustic
-  :defer t
   :ensure t
   :after rust-mode
   :hook ((rustic-mode . (lambda ()
