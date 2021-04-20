@@ -14,13 +14,21 @@
 (defun set-sharing-font ()
   (set-face-attribute 'default nil :font "Fira Code-16"))
 
-(defun switch-font ()
+(defun set-size-font (size)
+  (set-face-attribute 'default nil :font (concat "Fira Code-" (number-to-string size))))
+
+(defun switch-font (universal)
   "Switches the font between my normal one and the one used to share screen"
-  (interactive)
-  (if using-sharing-font
-      (set-standard-font)
-    (set-sharing-font))
-  (setq using-sharing-font (not using-sharing-font)))
+  (interactive "P")
+  (if (equal universal nil)
+      (progn
+        (if using-sharing-font
+            (set-standard-font)
+          (set-sharing-font))
+        (setq using-sharing-font (not using-sharing-font)))
+    (progn
+      (set-size-font universal)
+      (setq using-sharing-font t))))
 
 (set-standard-font)
 
