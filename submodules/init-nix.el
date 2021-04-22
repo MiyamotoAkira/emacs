@@ -6,9 +6,6 @@
 ;;; It is the responsibility of the caller to assert that
 
 ;;; Code:
-
-(setenv "SHELL" "/bin/zsh")
-
 (use-package exec-path-from-shell
   :ensure t
   :config

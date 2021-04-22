@@ -41,6 +41,9 @@
 
 ;; This is to get the path variable read from
 ;; the shell environment.
+(if (memq window-system '(mac ns))
+    (setenv "SHELL" "/bin/zsh"))
+
 (if (memq window-system '(mac ns x))
     (require 'init-nix)
   (require 'init-windows))
