@@ -226,6 +226,11 @@
   (custom-set-variables
    '(markdown-command "/usr/bin/pandoc")))
 
+(use-package adoc-mode
+  :diminish t
+  :defer t
+  :ensure t)
+
 (use-package elixir-mode
   :defer t
   :ensure t
