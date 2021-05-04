@@ -322,13 +322,14 @@
   :defer t
   :defines lsp-highlight-symbol-at-point
   :ensure t
-  :commands lsp
+  :commands (lsp lsp-deferred)
   :hook ((csharp-mode . lsp)
          (python-mode . lsp)
          (java-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :init (setq lsp-eldoc-render-all nil
-              lsp-highlight-symbol-at-point nil))
+              lsp-highlight-symbol-at-point nil
+              lsp-keymap-prefix "C-c l"))
 
 (use-package lsp-ui
   :defer t
