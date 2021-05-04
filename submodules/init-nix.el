@@ -18,7 +18,8 @@
                                          "PROJECT_HOME"
                                          "ANDROID_HOME"
                                          "JAVA_HOME"
-                                         "SDKMAN_DIR"))
+                                         "SDKMAN_DIR"
+                                         "GOPATH"))
   (exec-path-from-shell-initialize))
 
 (provide 'init-nix)
