@@ -254,6 +254,9 @@
   (yas-minor-mode 1)
   (cljr-add-keybindings-with-prefix "C-c C-m"))
 
+(use-package flycheck-clj-kondo
+  :ensure t)
+
 (use-package cider
   :ensure t
   :pin melpa-stable
@@ -269,6 +272,8 @@
   :ensure t
   :diminish
   :pin melpa-stable
+  :config
+  (require 'flycheck-clj-kondo)
   :hook
   ((clojure-mode . subword-mode)
    (clojure-mode . aggressive-indent-mode)
