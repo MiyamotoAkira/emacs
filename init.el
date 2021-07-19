@@ -58,6 +58,9 @@
 (require 'init-eldoc)
 ;; (require 'init-helm)
 
+(add-to-list 'load-path "~/code/personal/structurizr-mode")
+(require 'structurizr-mode)
+
 (put 'upcase-region 'disabled nil)
 
 ;;; init.el ends here
