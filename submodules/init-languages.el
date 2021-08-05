@@ -468,7 +468,11 @@
   :config
   (latex-preview-pane-enable))
 
-(use-package geiser
+(use-package geiser-mit
+  :defer t
+  :ensure t)
+
+(use-package geiser-chez
   :defer t
   :ensure t)
 
