@@ -146,8 +146,8 @@
 (use-package terraform-mode
   :defer t
   :ensure t
-  :config
-  (terraform-format-on-save-mode t))
+  :hook
+  ((terraform-mode . terraform-format-on-save-mode)))
 
 (use-package company-terraform
   :ensure t
