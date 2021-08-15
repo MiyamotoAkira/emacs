@@ -105,10 +105,10 @@
 
 (global-prettify-symbols-mode 1)
 
-(use-package powerline
+(use-package spaceline
   :ensure t
   :config
-  (powerline-center-theme))
+  (spaceline-emacs-theme))
 
 (use-package flx
   :ensure t)
