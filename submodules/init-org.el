@@ -72,5 +72,16 @@
       org-src-fontify-natively t
       org-src-tab-acts-natively t)
 
+(use-package org-ref
+  :ensure t
+  :defer t)
+
+(use-package org-roam
+  :ensure t
+  :defer t
+  :config
+  (setq org-roam-directory (file-truename "~/Sync/slip-box"))
+  (org-roam-db-autosync-mode))
+
 (provide 'init-org)
 ;;; init-org.el ends here
