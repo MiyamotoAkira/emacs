@@ -81,14 +81,18 @@
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 4))
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-code-indent-offset 2))
 
 (use-package web-mode
   :defer t
   :ensure t
-  :mode ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'")
+  :mode ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.tsx\\'" "\\.jsx\\'")
   :hook
-  ((web-mode . my-web-mode-hook)))
+  ((web-mode . my-web-mode-hook)
+   (web-mode . (lambda ()
+                 (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                   (setup-tide-mode))))))
 
 
 (use-package vue-mode
@@ -553,14 +557,25 @@
 (use-package typescript-mode
   :defer t
   :ensure t
-  :mode ("\\.ts\\'" "\\.tsx\\'"))
+  :mode ("\\.ts\\'"))
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
 
 (use-package tide
   :defer t
   :ensure t
   :after (typescript-mode company flycheck)
-  :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)
+  :hook ((typescript-mode . setup-tide-mode)
          (typescript-mode . (lambda ()
                               (setq typescript-indent-level 2))))
   :bind (
@@ -571,7 +586,7 @@
          ("C-c ," . #'tide-jump-back)
          ("C-c /" . #'tide-jump-to-implementation))
   :config
-  (setq tide-format-options '(:indentSize 4 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
+  (setq tide-format-options '(:indentSize 2 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
 
 (use-package prettier-js
   :defer t
