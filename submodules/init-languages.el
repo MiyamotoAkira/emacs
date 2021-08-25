@@ -37,6 +37,10 @@
   :config
   (show-paren-mode 1)
   (flycheck-pos-tip-mode)
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint)))
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
   :hook
   ((after-init . global-flycheck-mode)))
 
@@ -592,7 +596,8 @@
   :defer t
   :ensure t
   :diminish
-  :hook ((typescript-mode . prettier-js-mode)))
+  :hook ((typescript-mode . prettier-js-mode)
+         (web-mode . prettier-js-mode)))
 
 (use-package tuareg
   :defer t
