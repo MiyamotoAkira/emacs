@@ -79,10 +79,41 @@
 (use-package org-roam
   :ensure t
   :defer t
-  :config
-  (setq org-roam-directory (file-truename "~/Sync/slip-box"))
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory (file-truename "~/Sync/slip-box"))
+  (org-roam-dailies-directory "journal/")
+  (org-roam-complete-everywhere t)
   (org-roam-db-autosync-mode)
-  (setq org-roam-v2-ack t))
+  (org-roam-capture-templates
+   '(("d" "default" plain "%?"
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                         "#+title: ${title}\n#+date: %\n")
+      :unnarrowed t)
+     ("b" "book notes" plain-TeX-mode
+      "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Idea\n\nPage Reference\n%?"
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                         "#+title: ${title}\n#+date: %\n#+filetags: LiteraryNote\n")
+      :unnarrowed t)))
+  (org-roam-dailies-capture-template
+   '(("d" "default" plain "* %<%H:%M>: %?"
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                         "#+title: ${title}\n#+date: %\n")
+      :unnarrowed t)))
+  :bind (("C-c z l" . org-roam-buffer-toggle)
+         ("C-c z f" . org-roam-node-find)
+         ("C-c z i" . org-roam-node-insert)
+         :map org-mode-map
+         ("C-M-i" . completion-at-point)
+         :map org-roam-dailies-map
+         ("Y" . org-roam-dailies-capture-yesterday)
+         ("T" . org-roam-dailies-capture-tomorrow))
+  :bind-keymap
+  ("C-c z d" . org-roam-dailies-map)
+  :config
+  (require 'org-roam-dailies)
+  (org-roam-setup))
 
 (provide 'init-org)
 ;;; init-org.el ends here
