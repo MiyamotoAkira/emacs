@@ -81,7 +81,8 @@
   :defer t
   :config
   (setq org-roam-directory (file-truename "~/Sync/slip-box"))
-  (org-roam-db-autosync-mode))
+  (org-roam-db-autosync-mode)
+  (setq org-roam-v2-ack t))
 
 (provide 'init-org)
 ;;; init-org.el ends here
