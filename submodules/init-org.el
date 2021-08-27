@@ -100,6 +100,10 @@
    '(("d" "default" plain "* %<%H:%M>: %?"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}\n#+date: %\n")
+      :unnarrowed t)
+     ("m" "meeting" plain "* %<%H:%M>:\n\nReason: %^{Reason}\n\nParticipants: %^{Participants}\n\nDecisions: %?\n\nImprovements:"
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                         "#+title: ${title}\n#+date: %\n")
       :unnarrowed t)))
   :bind (("C-c z l" . org-roam-buffer-toggle)
          ("C-c z f" . org-roam-node-find)
