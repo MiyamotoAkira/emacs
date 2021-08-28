@@ -96,7 +96,7 @@
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}\n#+date: %\n#+filetags: LiteraryNote\n")
       :unnarrowed t)))
-  (org-roam-dailies-capture-template
+  (org-roam-dailies-capture-templates
    '(("d" "default" plain "* %<%H:%M>: %?"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}\n#+date: %\n")
