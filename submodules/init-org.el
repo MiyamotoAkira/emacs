@@ -91,7 +91,7 @@
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}\n#+date: %\n")
       :unnarrowed t)
-     ("b" "book notes" plain-TeX-mode
+     ("l" "literary notes" plain-TeX-mode
       "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Idea\n\nPage Reference\n%?"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}\n#+date: %\n#+filetags: LiteraryNote\n")
