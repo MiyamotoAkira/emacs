@@ -91,24 +91,26 @@
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}\n#+date: %\n")
       :unnarrowed t)
-     ("l" "literary notes" plain-TeX-mode
+     ("l" "literary notes" plain
       "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Idea: %?"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}\n#+date: %\n#+filetags: LiteraryNote\n")
       :unnarrowed t)))
   (org-roam-dailies-capture-templates
-   '(("d" "default" plain "* %<%H:%M>: %?"
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                         "#+title: ${title}\n#+date: %\n")
+   '(("d" "default" plain
+      "* %<%H:%M>\n%?"
+      :if-new (file+head "%<%Y-%m-%d>.org"
+                         "#+title: %<%Y-%m-%d\n")
       :unnarrowed t)
-     ("m" "meeting" plain "* %<%H:%M>:\n\nReason: %^{Reason}\n\nParticipants: %^{Participants}\n\nDecisions: %?\n\nImprovements:"
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                         "#+title: ${title}\n#+date: %\n")
+     ("m" "meeting" plain
+      "* %<%H:%M>\n\nReason: %^{Reason}\n\nParticipants: %^{Participants}\n\nDecisions: %?\n\nImprovements:"
+      :if-new (file+head "%<%Y-%m-%d>.org"
+                         "#+title: %<%Y-%m-%d>\n#+filetags: Meeting\n")
       :unnarrowed t)
-     ("l" "literary entry" plain-TeX-mode
-      "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\nPage Reference:%^{Page Reference}\n\n%?"
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                         "#+title: ${title}\n#+date: %\n#+filetags: LiteraryNote\n")
+     ("l" "literary entry" plain
+      "* %<%H:%M>\n\nAuthor: %^{Author}\nTitle: %^{Title}\nYear: %^{Year}\n\nPage Reference:%^{Page Reference}\n\n%?"
+      :if-new (file+head "%<%Y-%m-%d>.org"
+                         "#+title: %<%Y-%m-%d>\n#+filetags: LiteraryEntry \n")
       :unnarrowed t)))
   :bind (("C-c z l" . org-roam-buffer-toggle)
          ("C-c z f" . org-roam-node-find)
