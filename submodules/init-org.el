@@ -98,19 +98,19 @@
       :unnarrowed t)))
   (org-roam-dailies-capture-templates
    '(("d" "default" plain
-      "* %<%H:%M>\n  %?\n"
+      "* %<%H:%M>\n  %?\n\n"
       :if-new (file+head "%<%Y-%m-%d>.org"
-                         "#+title: %<%Y-%m-%d\n")
+                         "#+title: %<%Y-%m-%d\n\n")
       :unnarrowed t)
      ("m" "meeting" plain
-      "* %<%H:%M>\n  Reason: %^{Reason}\n  Participants: %^{Participants}\n  Decisions: %?\n  Improvements:\n"
+      "* %<%H:%M>\n  Reason: %^{Reason}\n  Participants: %^{Participants}\n  Decisions: %?\n  Improvements:\n\n"
       :if-new (file+head "%<%Y-%m-%d>.org"
-                         "#+title: %<%Y-%m-%d>\n#+filetags: Meeting\n")
+                         "#+title: %<%Y-%m-%d>\n\n")
       :unnarrowed t)
      ("l" "literary entry" plain
-      "* %<%H:%M>\n  Author: %^{Author}\n  Title: %^{Title}\n  Year: %^{Year}\n  Page Reference:%^{Page Reference}\n\n  %?\n"
+      "* %<%H:%M>\n  Author: %^{Author}\n  Title: %^{Title}\n  Year: %^{Year}\n  Page Reference:%^{Page Reference}\n\n  %?\n\n"
       :if-new (file+head "%<%Y-%m-%d>.org"
-                         "#+title: %<%Y-%m-%d>\n#+filetags: LiteraryEntry \n")
+                         "#+title: %<%Y-%m-%d>\n\n")
       :unnarrowed t)))
   :bind (("C-c z l" . org-roam-buffer-toggle)
          ("C-c z f" . org-roam-node-find)
