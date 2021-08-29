@@ -98,17 +98,17 @@
       :unnarrowed t)))
   (org-roam-dailies-capture-templates
    '(("d" "default" plain
-      "* %<%H:%M>\n%?"
+      "* %<%H:%M>\n%?\n"
       :if-new (file+head "%<%Y-%m-%d>.org"
                          "#+title: %<%Y-%m-%d\n")
       :unnarrowed t)
      ("m" "meeting" plain
-      "* %<%H:%M>\n\nReason: %^{Reason}\n\nParticipants: %^{Participants}\n\nDecisions: %?\n\nImprovements:"
+      "* %<%H:%M>\n\nReason: %^{Reason}\n\nParticipants: %^{Participants}\n\nDecisions: %?\n\nImprovements:\n"
       :if-new (file+head "%<%Y-%m-%d>.org"
                          "#+title: %<%Y-%m-%d>\n#+filetags: Meeting\n")
       :unnarrowed t)
      ("l" "literary entry" plain
-      "* %<%H:%M>\n\nAuthor: %^{Author}\nTitle: %^{Title}\nYear: %^{Year}\n\nPage Reference:%^{Page Reference}\n\n%?"
+      "* %<%H:%M>\n\nAuthor: %^{Author}\nTitle: %^{Title}\nYear: %^{Year}\n\nPage Reference:%^{Page Reference}\n\n%?\n"
       :if-new (file+head "%<%Y-%m-%d>.org"
                          "#+title: %<%Y-%m-%d>\n#+filetags: LiteraryEntry \n")
       :unnarrowed t)))
