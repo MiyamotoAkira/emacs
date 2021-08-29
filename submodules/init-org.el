@@ -92,7 +92,7 @@
                          "#+title: ${title}\n#+date: %\n")
       :unnarrowed t)
      ("l" "literary notes" plain-TeX-mode
-      "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Idea\n\nPage Reference\n%?"
+      "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Idea: %?"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}\n#+date: %\n#+filetags: LiteraryNote\n")
       :unnarrowed t)))
@@ -104,6 +104,11 @@
      ("m" "meeting" plain "* %<%H:%M>:\n\nReason: %^{Reason}\n\nParticipants: %^{Participants}\n\nDecisions: %?\n\nImprovements:"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}\n#+date: %\n")
+      :unnarrowed t)
+     ("l" "literary entry" plain-TeX-mode
+      "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\nPage Reference:%^{Page Reference}\n\n%?"
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                         "#+title: ${title}\n#+date: %\n#+filetags: LiteraryNote\n")
       :unnarrowed t)))
   :bind (("C-c z l" . org-roam-buffer-toggle)
          ("C-c z f" . org-roam-node-find)
