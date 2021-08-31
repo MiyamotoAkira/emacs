@@ -100,7 +100,7 @@
    '(("d" "default" plain
       "\n* %<%H:%M>\n  %?\n"
       :if-new (file+head "%<%Y-%m-%d>.org"
-                         "#+title: %<%Y-%m-%d\n\n")
+                         "#+title: %<%Y-%m-%d>\n\n")
       :unnarrowed t)
      ("m" "meeting" plain
       "\n* %<%H:%M>\n  Reason: %^{Reason}\n  Participants: %^{Participants}\n  Decisions: %?\n  Improvements:\n"
