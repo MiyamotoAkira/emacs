@@ -89,12 +89,12 @@
   (org-roam-capture-templates
    '(("d" "default" plain "%?"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                         "#+title: ${title}\n#+date: %\n")
+                         "#+title: ${title}\n#+date: %<%Y-%m-%d>\n")
       :unnarrowed t)
      ("l" "literary notes" plain
       "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Idea: %?"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                         "#+title: ${title}\n#+date: %\n#+filetags: LiteraryNote\n")
+                         "#+title: ${title}\n#+date: %<%Y-%m-%d>\n#+filetags: LiteraryNote\n")
       :unnarrowed t)))
   (org-roam-dailies-capture-templates
    '(("d" "default" plain
@@ -116,7 +116,9 @@
          ("C-c z f" . org-roam-node-find)
          ("C-c z i" . org-roam-node-insert)
          :map org-mode-map
-         ("C-M-i" . completion-at-point)
+         (("C-M-i" . completion-at-point)
+          ("C-c z t" . org-roam-tag-add)
+          ("C-c z a" . org-roam-alias-add))
          :map org-roam-dailies-map
          ("Y" . org-roam-dailies-capture-yesterday)
          ("T" . org-roam-dailies-capture-tomorrow))
