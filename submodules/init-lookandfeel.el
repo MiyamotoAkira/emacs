@@ -114,7 +114,7 @@
   :ensure t)
 
 (use-package which-key
-  :ensure t
+  :defer nil
   :diminish
   :config
   (which-key-mode))

@@ -44,39 +44,33 @@
   :hook
   ((after-init . global-flycheck-mode)))
 
-(use-package tagedit
-  :ensure t)
+(use-package tagedit)
 
 (use-package editorconfig
   :diminish
-  :ensure t
   :config
   (editorconfig-mode 1))
 
-(use-package highlight-indentation
-  :ensure t)
+(use-package highlight-indentation)
 
 (use-package aggressive-indent
-  :ensure t
   :hook
   ((emacs-lisp-mode . aggressive-indent-mode)))
 
 (use-package company
-  :ensure t
   :diminish
   :bind (("C-S-i" . company-complete))
   :hook
   ((after-init . global-company-mode)))
 
 (use-package company-quickhelp
-  :ensure t
+  :after company
   :config
   (company-quickhelp-mode 1))
 
 (use-package mmm-mode
   :ensure t
-  :defer t
-  :config
+  :defer t  :config
   (setq mmm-global-mode 'maybe)
   (mmm-add-mode-ext-class 'html-mode "\\.php\\'" 'html-php))
 

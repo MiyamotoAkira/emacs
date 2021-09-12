@@ -1,19 +1,24 @@
 ;; package --- Summary
 ;; Additional tools for  Emacs
-;;; Commentary:
+;;; Commentary: Nearly everything over here has to load. There is no autoload system
 ;;; Code:
 
-(use-package async
-  :ensure t)
+(use-package async)
+
+;; Automatically save the last place we were on files when closing buffers
+(use-package saveplace
+  :defer nil
+  :config
+  (save-place-mode))
 
 (use-package monky
-  :ensure t
+  :defer 2
   :bind (("C-x C-g" . monky-status)))
 
 (defun nothing())
 
 (use-package ag
-  :ensure t
+  :defer 2
   :bind (("C-c a a" . ag)
          ("C-c a f" . ag-files)
          ("C-c a d" . ag-dired)
@@ -24,16 +29,16 @@
   (setq ag-highlight-search 't))
 
 (use-package magit
-  :ensure t
+  :defer 2
   :bind (("C-x g" . magit-status)))
 
 (use-package command-log-mode
-  :ensure t
+  :defer 2
   :custom
   (command-log-mode-key-binding-open-log "C-c C-o"))
 
 (use-package projectile
-  :ensure t
+  :defer 2
   :diminish
   :bind-keymap (("C-c p" . projectile-command-map))
   :config
@@ -45,7 +50,7 @@
                                          "~/code/externals/")))
 
 (use-package perspective
-  :ensure t
+  :defer 2
   :bind (("C-x x x" . persp-switch-last)
          ("C-x b" . persp-switch-to-buffer*)
          ("C-x k" . persp-kill-buffer*))
@@ -54,48 +59,44 @@
   (setq persp-interactive-completion-function #'ivy-completing-read))
 
 (use-package persp-projectile
-  :ensure t
+  :after (projectile perspective)
   :bind ("C-x x P" . projectile-persp-switch-project))
 
 (use-package dired-sidebar
-  :ensure t
+  :defer 2
   :commands (dired-sidebar-toggle-sidebar)
   :bind (([f8] . dired-sidebar-toggle-sidebar)))
 
 (use-package ace-window
-  :ensure t
+  :defer 2
   :bind (("M-o" . ace-window)))
 
 (use-package all-the-icons
-  :ensure t)
+  :defer 2)
 
 (use-package all-the-icons-dired
-  :ensure t
+  :after (dired-sidebar all-the-icons)
   :config
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
 (use-package shut-up
-  :ensure t)
+  :defer 2)
 
 (use-package undo-tree
-  :ensure t
-  :defer t)
+  :defer 2)
 
 (use-package goto-chg
-  :ensure t
-  :defer t)
+  :defer 2)
 
 (use-package multiple-cursors
-  :ensure t)
+  :defer 2)
 
 (use-package nov
-  :ensure t
   :mode ("\\.epub\\'" . nov-mode)
   :config
   (setq nov-text-width 80))
 
 (use-package ivy
-  :ensure t
   :diminish
   :bind (("C-c v" . 'ivy-push-view)
          ("C-c V" .  'ivy-pop-view))
@@ -106,7 +107,6 @@
           (t . ivy--regex-plus))))
 
 (use-package counsel
-  :ensure t
   :bind (("M-x" . 'counsel-M-x)
          ("C-x C-f" . 'counsel-find-file)
          ("M-y" . 'counsel-yank-pop)
@@ -122,12 +122,10 @@
   (setq counsel-find-file-ignore-regexp "(?:‘[#.])|(?:[#~]’)|(?:[~]’)"))
 
 (use-package swiper
-  :ensure t
   :bind (("C-s" . 'swiper-isearch)
          ("C-r" . 'swiper-isearch-backward)))
 
 (use-package helpful
-  :ensure t
   :custom
   (counsel-describe-function-function #'helpful-callable)
   (counsel-describe-variable-function #'helpful-variable)
@@ -176,11 +174,9 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
 (setq vc-make-backup-files t)
 
 (use-package pos-tip
-  :ensure t
   :pin melpa)
 
 (use-package flyspell
-  :ensure t
   :diminish flyspell-mode
   :init
   (add-hook 'prog-mode-hook 'flyspell-prog-mode)
@@ -202,17 +198,31 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
                                     ("-d" "en_GB") nil utf-8))))
 
 (use-package column-enforce-mode
-  :ensure t
-  :defer t)
+  :defer 2)
+
+(add-to-list 'load-path "~/code/personal/structurizr-mode")
+(require 'structurizr-mode)
 
 (use-package plantuml-mode
-  :defer t
-  :ensure t
   :config
   (setq plantuml-jar-path "~/bin/plantuml.jar")
   (setq plantuml-default-exec-mode 'jar)
   (add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode)))
+
+;; Line by line, instead of half-screen at a time.
+(use-package smooth-scrolling
+  :defer 2
+  :config
+  (smooth-scrolling-mode 1))
+
+;; Package management visual improvements
+(use-package paradox
+  :defer nil
+  :custom
+  (paradox-github-token t)
+  :config
+  (paradox-enable))
 
 (provide 'init-tools)
 ;;; init-tools.el ends here

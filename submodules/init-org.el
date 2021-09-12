@@ -4,26 +4,21 @@
 ;;; Code:
 
 (use-package org
-  :defer t
-  :ensure t
-  :bind (("C-c m p" . org-mobile-push)
-         ("C-c m f" . org-mobile-pull))
-  :defines org-mobile-directory
-  :defines org-mobile-inbox-for-pull
+  :defer 2
   :config
   (setq org-startup-truncated nil)
-  (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-  (setq org-directory "~/org")
-  (setq org-mobile-inbox-for-pull "~/org/flagged.org")
-  (setq org-agenda-files '("~/org/agendas/")))
+  (setq org-directory "~/Sync/org")
+  (setq org-agenda-files '("~/Sync/org/agendas/"))
+  ;; (org-startup-indented t)
+  ;; (org-special-ctrl-a/e t)
+  ;; (org-special-ctrl-k t)
+  )
 
 (use-package org-plus-contrib
-  :defer t
-  :ensure t)
+  :after org)
 
 (use-package org-present
-  :defer t
-  :ensure t
+  :after org
   :config
   (add-hook 'org-present-mode-hook
             (lambda ()
@@ -39,20 +34,16 @@
               (global-hl-line-mode 1))))
 
 (use-package ob-elixir
-  :ensure t
-  :defer t)
+  :after org)
 
 (use-package ob-fsharp
-  :ensure t
-  :defer t)
+  :after org)
 
 (use-package ob-rust
-  :ensure t
-  :defer t)
+  :after org)
 
 (use-package ob-typescript
-  :ensure t
-  :defer t)
+  :after org)
 
 ;; Setting up babel for running code  in org mode
 (org-babel-do-load-languages
@@ -73,12 +64,10 @@
       org-src-tab-acts-natively t)
 
 (use-package org-ref
-  :ensure t
-  :defer t)
+  :after org)
 
 (use-package org-roam
-  :ensure t
-  :defer t
+  :after org
   :init
   (setq org-roam-v2-ack t)
   :custom
