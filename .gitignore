@@ -63,3 +63,7 @@ FsAutoComplete
 nov-places
 .lsp-session-v1
 .dap-breakpoints
+
+quelpa/
+
+org-roam.db
