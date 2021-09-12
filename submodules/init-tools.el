@@ -38,7 +38,7 @@
   (command-log-mode-key-binding-open-log "C-c C-o"))
 
 (use-package projectile
-  :defer 2
+  :defer 1
   :diminish
   :bind-keymap (("C-c p" . projectile-command-map))
   :config
@@ -50,7 +50,7 @@
                                          "~/code/externals/")))
 
 (use-package perspective
-  :defer 2
+  :defer 1
   :bind (("C-x x x" . persp-switch-last)
          ("C-x b" . persp-switch-to-buffer*)
          ("C-x k" . persp-kill-buffer*))
