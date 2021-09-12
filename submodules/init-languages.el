@@ -31,6 +31,12 @@
 (use-package flycheck-pos-tip
   :ensure t)
 
+(use-package eldoc
+  :diminish
+  :hook
+  (prog-mode . turn-on-eldoc-mode)
+  (cider-repl-mode . turn-on-eldoc-mode))
+
 (use-package flycheck
   :ensure t
   :after (flycheck-pos-tip-mode)
@@ -51,7 +57,8 @@
   :config
   (editorconfig-mode 1))
 
-(use-package highlight-indentation)
+(use-package highlight-indentation
+  :defer nil)
 
 (use-package aggressive-indent
   :hook
