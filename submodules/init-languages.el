@@ -9,7 +9,6 @@
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :ensure t
   ;; :defines tools-map
   ;; :bind (:map yas-minor-mode-map
   ;;             ("n" . yas-new-snippet)
@@ -21,15 +20,12 @@
   ;; (define-key tools-map (kbd "y") 'yas-minor-mode-map)
   (yas-global-mode 1))
 
-(use-package yasnippet-snippets
-  :ensure t)
+(use-package yasnippet-snippets)
 
 (use-package auto-yasnippet
-  :diminish yas-minor-mode
-  :ensure t)
+  :diminish yas-minor-mode)
 
-(use-package flycheck-pos-tip
-  :ensure t)
+(use-package flycheck-pos-tip)
 
 (use-package eldoc
   :diminish
@@ -38,7 +34,6 @@
   (cider-repl-mode . turn-on-eldoc-mode))
 
 (use-package flycheck
-  :ensure t
   :after (flycheck-pos-tip-mode)
   :config
   (show-paren-mode 1)
@@ -60,6 +55,11 @@
 (use-package highlight-indentation
   :defer nil)
 
+;; (use-package highlight-sexp
+;;   :quelpa (abc-mode :fetcher github :repo "daimrod/highlight-sexp")
+;;   :hook
+;;   ((clojure-mode lisp-mode emacs-lisp-mode) . highlight-sexp-mode))
+
 (use-package aggressive-indent
   :hook
   ((emacs-lisp-mode . aggressive-indent-mode)))
@@ -76,13 +76,11 @@
   (company-quickhelp-mode 1))
 
 (use-package mmm-mode
-  :ensure t
-  :defer t  :config
+  :config
   (setq mmm-global-mode 'maybe)
   (mmm-add-mode-ext-class 'html-mode "\\.php\\'" 'html-php))
 
-(use-package buttercup
-  :ensure t)
+(use-package buttercup)
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
@@ -90,8 +88,6 @@
   (setq web-mode-code-indent-offset 2))
 
 (use-package web-mode
-  :defer t
-  :ensure t
   :mode ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.tsx\\'" "\\.jsx\\'")
   :hook
   ((web-mode . my-web-mode-hook)
@@ -100,20 +96,14 @@
                    (setup-tide-mode))))))
 
 
-(use-package vue-mode
-  :defer t
-  :ensure t)
+(use-package vue-mode)
 
 (use-package eslintd-fix
-  :defer t
-  :ensure t
   :hook
   ((js-mode . eslintd-fix-mode)
    (vue-mode . eslintd-fix-mode)))
 
-(use-package json-mode
-  :ensure t
-  :defer t)
+(use-package json-mode)
 
 ;; (use-package elpy
 ;;   :ensure t
@@ -132,64 +122,40 @@
   :hook ((python-mode . blacken-mode)))
 
 (use-package pyvenv
-  :ensure t
-  :defer t)
+  :quelpa (:fetcher github :repo "aiguofer/pyenv.el"))
 
 (use-package dockerfile-mode
-  :defer t
-  :ensure t
   :mode "\\.Dockerfile\\'")
 
-(use-package gradle-mode
-  :defer t
-  :ensure t)
+(use-package gradle-mode)
 
-(use-package yaml-mode
-  :defer t
-  :ensure t)
+(use-package yaml-mode)
 
-(use-package puppet-mode
-  :defer t
-  :ensure t)
+(use-package puppet-mode)
 
 (use-package terraform-mode
-  :defer t
-  :ensure t
   :hook
   ((terraform-mode . terraform-format-on-save-mode)))
 
 (use-package company-terraform
-  :ensure t
   :config
   (company-terraform-init))
 
-(use-package scala-mode
-  :defer t
-  :ensure t)
+(use-package scala-mode)
 
 (use-package robe
-  :defer t
-  :ensure t
   :hook
   ((ruby-mode . robe-mode))
   :config
   (push 'company-robe company-backend))
 
-(use-package lfe-mode
-  :defer t
-  :ensure t)
+(use-package lfe-mode)
 
-(use-package erlang
-  :defer t
-  :ensure t)
+(use-package erlang)
 
-(use-package elm-mode
-  :defer t
-  :ensure t)
+(use-package elm-mode)
 
-(use-package rust-mode
-  :defer t
-  :ensure t)
+(use-package rust-mode)
 
 ;; (use-package cargo
 ;;   :defer t
@@ -198,7 +164,6 @@
 ;;   ((rust-mode . cargo-minor-mode)))
 
 (use-package rustic
-  :ensure t
   :after rust-mode
   :hook ((rustic-mode . (lambda ()
                           (lsp-ui-doc-mode)
@@ -210,14 +175,10 @@
    '(rustic-compilation-line ((t (:foreground "LimeGreen"))))))
 
 (use-package flycheck-rust
-  :defer t
-  :ensure t
   :hook
   ((flycheck-mode . flycheck-rust-setup)))
 
 (use-package racer
-  :defer t
-  :ensure t
   :config
   (setq racer-cmd "~/.cargo/bin/racer")
   (setq racer-rust-src-path "~/code/externals/rust/src")
@@ -228,21 +189,15 @@
 
 (use-package markdown-mode
   :diminish
-  :defer t
-  :ensure t
   :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'")
   :config
   (custom-set-variables
    '(markdown-command "/usr/bin/pandoc")))
 
 (use-package adoc-mode
-  :diminish t
-  :defer t
-  :ensure t)
+  :diminish)
 
 (use-package elixir-mode
-  :defer t
-  :ensure t
   :hook
   ((elixir-mode-hook . my-pretty-lambda-elixir)
    (elixir-mode-hook . (lambda ()
@@ -250,8 +205,6 @@
                          (setq indent-tabs-mode nil)))))
 
 (use-package alchemist
-  :defer t
-  :ensure t
   :init
   (add-hook 'alchemist-mode-hook 'company-mode)
   :hook
@@ -263,11 +216,9 @@
   (yas-minor-mode 1)
   (cljr-add-keybindings-with-prefix "C-c C-m"))
 
-(use-package flycheck-clj-kondo
-  :ensure t)
+(use-package flycheck-clj-kondo)
 
 (use-package cider
-  :ensure t
   :pin melpa-stable
   :hook
   ((cider-repl-mode . paredit-mode)
@@ -277,8 +228,6 @@
    (cider-repl-mode . company-mode)))
 
 (use-package clojure-mode
-  :defer t
-  :ensure t
   :diminish
   :pin melpa-stable
   :config
@@ -312,30 +261,22 @@
 ;;   :ensure t)
 
 (use-package clj-refactor
-  :defer t
-  :ensure t
   :diminish
   :pin melpa-stable
   :hook
   (clojure-mode . clj-clojure-setup))
 
 (use-package clojure-mode-extra-font-locking
-  :defer t
-  :ensure t
   :pin melpa-stable)
 
 (use-package java-imports
-  :ensure t
-  :defer t
   :config
   (add-hook 'java-mode-hook 'java-imports-scan-file))
 
 (setq lsp-keymap-prefix "C-c l")
 
 (use-package lsp-mode
-  :defer t
   :defines lsp-highlight-symbol-at-point
-  :ensure t
   :commands (lsp lsp-deferred)
   :hook ((csharp-mode . lsp)
          (python-mode . lsp)
@@ -346,8 +287,6 @@
               lsp-keymap-prefix "C-c l"))
 
 (use-package lsp-ui
-  :defer t
-  :ensure t
   :commands lsp-ui-mode
   :config
   (setq lsp-ui-sideline-update-mode 'point))
@@ -363,7 +302,6 @@
 
 
 (use-package dap-mode
-  :ensure t
   :after lsp-mode
   :config
   (dap-mode t)
@@ -376,7 +314,6 @@
 ;;   :after 'lsp-java)
 
 (use-package lsp-java
-  :ensure t
   :hook
   ((java-mode . lsp-java-enable)
    (java-mode . flycheck-mode)
@@ -385,7 +322,6 @@
    (java-mode . lsp-ui-mode)))
 
 (use-package lsp-jedi
-  :ensure t
   ;; :config
   ;; (with-eval-after-load "lsp-mode"
   ;;   (add-to-list 'lsp-disabled-clients 'pyls)
@@ -393,51 +329,39 @@
   )
 
 (use-package eglot
-  :ensure t
   :hook
   ((fsharp-mode . eglot-ensure)))
 
 (use-package fsharp-mode
-  :defer t
-  :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.fsproj\\'" . nxml-mode))
   (require 'eglot-fsharp))
 
 (use-package haskell-mode
-  :defer t
-  :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
   :hook
   ((haskell-mode . haskell-indentation-mode)))
 
-(use-package groovy-mode
-  :defer t
-  :ensure t)
+(use-package groovy-mode)
 
 (use-package slime-company
-  :ensure t
   :config
   (setq slime-company-major-modes (quote (lisp-mode slime-repl-mode))))
 
 (use-package slime
-  :defer t
-  :ensure t
   :config
   (setq inferior-lisp-program "/usr/bin/sbcl")
   (setq slime-contribs '(slime-fancy))
   (slime-setup '(slime-fancy slime-company)))
 
 (use-package slime-company
-  :ensure t
   :config
   (setq slime-company-major-modes (quote (lisp-mode slime-repl-mode))))
 
 
 ;; This one has to happen after all modes that use parens are loaded
 (use-package paredit
-  :ensure t
   :diminish
   :init
   (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -452,13 +376,11 @@
    (lfe-mode . enable-paredit-mode)))
 
 (use-package rainbow-delimiters
-  :ensure t
   :diminish
   :hook
   ((prog-mode . rainbow-delimiters-mode)))
 
 (use-package tex
-  :defer t
   :ensure auctex
   :config
   (setq TeX-auto-save t)
@@ -467,60 +389,38 @@
   ((latex-mode . turn-on-reftex)
    (LaTeX-mode . turn-on-reftex)))
 
-(use-package company-auctex
-  :defer t
-  :ensure t)
+(use-package company-auctex)
 
 (use-package latex-preview-pane
-  :ensure t
-  :defer t
   :config
   (latex-preview-pane-enable))
 
-(use-package geiser-mit
-  :defer t
-  :ensure t)
+(use-package geiser-mit)
 
-(use-package geiser-chez
-  :defer t
-  :ensure t)
+(use-package geiser-chez)
 
-(use-package lua-mode
-  :defer t
-  :ensure t)
+(use-package lua-mode)
 
-(use-package company-lua
-  :defer t
-  :ensure t)
+(use-package company-)
 
-(use-package luarocks
-  :defer t
-  :ensure t)
+(use-package luarocks)
 
 (use-package purescript-mode
-  :defer t
-  :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.purs\\'" . purescript-mode))
   :hook
   ((purescript-mode . turn-on-purescript-indentation)))
 
 (use-package psc-ide
-  :defer t
-  :ensure t
   :hook
   (purescript-mode . (lambda ()
                        (psc-ide-mode)
                        (company-mode)
                        (flycheck-mode))))
 
-(use-package csharp-mode
-  :defer t
-  :ensure t)
+(use-package csharp-mode)
 
 (use-package omnisharp
-  :defer t
-  :ensure t
   :bind (
          ("C-c o s s" . omnisharp-start-omnisharp-server)
          :map omnisharp-mode-map
@@ -547,21 +447,13 @@
   :hook
   ((csharp-mode . omnisharp-mode)))
 
-(use-package powershell
-  :defer t
-  :ensure t)
+(use-package powershell)
 
-(use-package kotlin-mode
-  :defer t
-  :ensure t)
+(use-package kotlin-mode)
 
-(use-package graphviz-dot-mode
-  :defer t
-  :ensure t)
+(use-package graphviz-dot-mode)
 
 (use-package typescript-mode
-  :defer t
-  :ensure t
   :mode ("\\.ts\\'"))
 
 (defun setup-tide-mode ()
@@ -577,8 +469,6 @@
   (company-mode +1))
 
 (use-package tide
-  :defer t
-  :ensure t
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . setup-tide-mode)
          (typescript-mode . (lambda ()
@@ -594,38 +484,24 @@
   (setq tide-format-options '(:indentSize 2 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
 
 (use-package prettier-js
-  :defer t
-  :ensure t
   :diminish
   :hook ((typescript-mode . prettier-js-mode)
          (web-mode . prettier-js-mode)))
 
-(use-package tuareg
-  :defer t
-  :ensure t)
+(use-package tuareg)
 
 (use-package go-mode
-  :defer t
-  :ensure t
   :hook
   ((go-mode . lsp-deferred)))
 
 (use-package php-mode
-  :defer t
-  :ensure t
   :hook ((php-mode . company-mode)))
 
-(use-package ac-php-core
-  :defer t
-  :ensure t)
+(use-package ac-php-core)
 
-(use-package ac-php
-  :defer t
-  :ensure t)
+(use-package ac-php)
 
 (use-package company-php
-  :defer t
-  :ensure t
   :config
   (push 'company-ac-php-backend company-backends)
   (ac-php-core-eldoc-setup)
@@ -635,19 +511,13 @@
          ("C-c ," . ac-php-location-stack-back)))
 
 (use-package flycheck-psalm
-  :defer t
-  :ensure t
   :config
   (flycheck-mode t))
 
 (use-package php-refactor-mode
-  :defer t
-  :ensure t
   :hook  (php-mode . php-refactor-mode))
 
-(use-package glsl-mode
-  :defer t
-  :ensure t)
+(use-package glsl-mode)
 
 (provide 'init-languages)
 ;;; init-languages.el ends here
