@@ -7,7 +7,7 @@
 
 ;;; Code:
 (use-package exec-path-from-shell
-  :ensure t
+  :defer nil
   :config
   (setq exec-path-from-shell-variables '("PATH"
                                          "ZSH"
