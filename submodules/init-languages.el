@@ -117,8 +117,6 @@
 ;;   (advice-add 'python-mode :before 'elpy-enable))
 
 (use-package blacken
-  :ensure t
-  :defer t
   :hook ((python-mode . blacken-mode)))
 
 (use-package pyvenv
