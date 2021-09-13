@@ -399,7 +399,7 @@
 
 (use-package lua-mode)
 
-(use-package company-)
+(use-package company-lua)
 
 (use-package luarocks)
 
