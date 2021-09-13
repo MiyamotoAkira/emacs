@@ -65,13 +65,13 @@
   ((emacs-lisp-mode . aggressive-indent-mode)))
 
 (use-package company
+  :defer nil
   :diminish
   :bind (("C-S-i" . company-complete))
   :hook
   ((after-init . global-company-mode)))
 
 (use-package company-quickhelp
-  :after company
   :config
   (company-quickhelp-mode 1))
 
