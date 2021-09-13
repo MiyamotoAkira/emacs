@@ -64,6 +64,8 @@
 ;; Installing quelpa so I can download packages from git
 (use-package quelpa
   :defer nil
+  :init
+  (setq quelpa-update-melpa-p nil)
   :config
   (quelpa
    '(quelpa-use-package
