@@ -224,5 +224,9 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
   :config
   (paradox-enable))
 
+(use-package esup
+  ;; To use MELPA Stable use ":pin melpa-stable",
+  :pin melpa)
+
 (provide 'init-tools)
 ;;; init-tools.el ends here
