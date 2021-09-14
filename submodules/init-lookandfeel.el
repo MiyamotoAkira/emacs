@@ -106,7 +106,7 @@
 (global-prettify-symbols-mode 1)
 
 (use-package spaceline
-  :ensure t
+  :defer 1
   :config
   (spaceline-emacs-theme))
 
