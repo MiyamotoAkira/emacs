@@ -57,7 +57,7 @@
 (winner-mode 1)
 
 (use-package solarized-theme
-  :ensure t)
+  :defer nil)
 
 (load-theme 'solarized-dark t)
 
@@ -82,7 +82,7 @@
 (delete-selection-mode 1)
 
 (use-package diminish
-  :ensure t)
+  :defer nil)
 
 ;; let's pretify those lambdas
 (defun my-pretty-lambda (lambda-string)
@@ -111,7 +111,7 @@
   (spaceline-emacs-theme))
 
 (use-package flx
-  :ensure t)
+  :defer 2)
 
 (use-package which-key
   :defer nil
@@ -120,18 +120,18 @@
   (which-key-mode))
 
 (use-package smooth-scrolling
-  :ensure t
+  :defer 2
   :config
   (smooth-scrolling-mode 1)
   (setq smooth-scroll-margin 5))
 
 (use-package dimmer
-  :ensure t
+  :defer 2
   :config
   (dimmer-mode))
 
 (use-package disable-mouse
-  :ensure t
+  :defer 2
   :diminish disable-mouse-global-mode
   :config
   (global-disable-mouse-mode))
