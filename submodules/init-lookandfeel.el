@@ -32,6 +32,9 @@
 ;; line numbers
 (global-display-line-numbers-mode)
 
+;; by default highlight the matching paren
+(show-paren-mode)
+
 (dolist (mode '(eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
