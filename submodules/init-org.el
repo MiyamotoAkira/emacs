@@ -104,10 +104,12 @@
   :bind (("C-c z l" . org-roam-buffer-toggle)
          ("C-c z f" . org-roam-node-find)
          ("C-c z i" . org-roam-node-insert)
+         ("C-c z r" . org-roam-node-random)
          :map org-mode-map
          (("C-M-i" . completion-at-point)
           ("C-c z t" . org-roam-tag-add)
-          ("C-c z a" . org-roam-alias-add))
+          ("C-c z a" . org-roam-alias-add)
+          ("C-c z I" . org-roam-node-insert-immediate))
          :map org-roam-dailies-map
          ("Y" . org-roam-dailies-capture-yesterday)
          ("T" . org-roam-dailies-capture-tomorrow))
@@ -116,6 +118,14 @@
   :config
   (require 'org-roam-dailies)
   (org-roam-setup))
+
+;; Immediate creation of a node without jumping to it
+(defun org-roam-node-insert-immediate (arg &rest args)
+  (interactive "P")
+  (let ((args (cons arg args))
+        (org-roam-capture-templates (list (append (car org-roam-capture-templates)
+                                                  '(:immediate-finish t)))))
+    (apply #'org-roam-node-insert args)))
 
 (provide 'init-org)
 ;;; init-org.el ends here
