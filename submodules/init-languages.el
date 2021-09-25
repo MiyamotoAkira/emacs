@@ -119,8 +119,8 @@
 (use-package blacken
   :hook ((python-mode . blacken-mode)))
 
-(use-package pyvenv
-  :quelpa (:fetcher github :repo "aiguofer/pyenv.el"))
+(use-package pyenv
+  :quelpa (pyenv :fetcher github :repo "aiguofer/pyenv.el"))
 
 (use-package dockerfile-mode
   :mode "\\.Dockerfile\\'")
