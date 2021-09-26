@@ -319,13 +319,6 @@
    (java-mode . (lambda () (lsp-ui-flycheck-enable t)))
    (java-mode . lsp-ui-mode)))
 
-(use-package lsp-jedi
-  ;; :config
-  ;; (with-eval-after-load "lsp-mode"
-  ;;   (add-to-list 'lsp-disabled-clients 'pyls)
-  ;;   (add-to-list 'lsp-enabled-clients 'jedi))
-  )
-
 (use-package eglot
   :hook
   ((fsharp-mode . eglot-ensure)))
