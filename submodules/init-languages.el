@@ -84,8 +84,8 @@
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-code-indent-offset 2))
+  (setq web-mode-markup-indent-offset 4)
+  (setq web-mode-code-indent-offset 4))
 
 (use-package web-mode
   :mode ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.tsx\\'" "\\.jsx\\'")
@@ -463,7 +463,7 @@
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . setup-tide-mode)
          (typescript-mode . (lambda ()
-                              (setq typescript-indent-level 2))))
+                              (setq typescript-indent-level 4))))
   :bind (
          :map tide-mode-map
          ("C-c r" . tide-rename-symbol)
@@ -472,7 +472,7 @@
          ("C-c ," . #'tide-jump-back)
          ("C-c /" . #'tide-jump-to-implementation))
   :config
-  (setq tide-format-options '(:indentSize 2 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
+  (setq tide-format-options '(:indentSize 4 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
 
 (use-package prettier-js
   :diminish
