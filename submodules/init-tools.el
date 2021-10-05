@@ -168,8 +168,10 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
 ;; We put all backup files on a single place
 (setq backup-directory-alist
       `(("." . ,(expand-file-name "backups" user-emacs-directory))))
+
 ;; Make sure that tramp uses it as well
 (setq tramp-backup-directory-alist backup-directory-alist)
+
 ;; And even if the files are in version control
 (setq vc-make-backup-files t)
 
