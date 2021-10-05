@@ -208,11 +208,6 @@
   :hook
   ((elixir-mode . alchemist-mode)))
 
-(defun clj-clojure-setup ()
-  "Functionality to be added for Clojure."
-  (clj-refactor-mode 1)
-  (yas-minor-mode 1)
-  (cljr-add-keybindings-with-prefix "C-c C-m"))
 
 (use-package flycheck-clj-kondo)
 
@@ -258,6 +253,12 @@
 ;; (use-package clojure-jump-to-file
 ;;   :defer t
 ;;   :ensure t)
+
+(defun clj-clojure-setup ()
+  "Functionality to be added for Clojure."
+  (clj-refactor-mode 1)
+  (yas-minor-mode 1)
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
 
 (use-package clj-refactor
   :diminish
