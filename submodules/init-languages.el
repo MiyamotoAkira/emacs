@@ -245,7 +245,8 @@
                      (define-clojure-indent (facts 1))))
    (clojure-mode . cider-mode)
    (clojure-mode . my-pretty-lambda-clojure)
-   (clojure-mode . column-enforce-mode)))
+   (clojure-mode . column-enforce-mode)
+   (clojure-mode . flycheck-mode)))
 
 ;; (use-package midje-mode
 ;;   :defer t
