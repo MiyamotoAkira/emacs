@@ -5,6 +5,17 @@
 
 (use-package async)
 
+(setq no-littering-etc-directory
+      (expand-file-name "config/" user-emacs-directory))
+(setq no-littering-var-directory
+      (expand-file-name "data/" user-emacs-directory))
+
+(use-package no-littering
+  :defer nil
+  :config
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+
 ;; Automatically save the last place we were on files when closing buffers
 (use-package saveplace
   :defer nil
