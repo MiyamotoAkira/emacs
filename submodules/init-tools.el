@@ -23,13 +23,11 @@
   (save-place-mode))
 
 (use-package monky
-  :defer 2
   :bind (("C-x C-g" . monky-status)))
 
 (defun nothing())
 
 (use-package ag
-  :defer 2
   :bind (("C-c a a" . ag)
          ("C-c a f" . ag-files)
          ("C-c a d" . ag-dired)
@@ -40,16 +38,13 @@
   (setq ag-highlight-search 't))
 
 (use-package magit
-  :defer 2
   :bind (("C-x g" . magit-status)))
 
 (use-package command-log-mode
-  :defer 2
   :custom
   (command-log-mode-key-binding-open-log "C-c C-o"))
 
 (use-package projectile
-  :defer 1
   :diminish
   :bind-keymap (("C-c p" . projectile-command-map))
   :config
@@ -61,7 +56,6 @@
                                          "~/code/externals/")))
 
 (use-package perspective
-  :defer 1
   :bind (("C-x x x" . persp-switch-last)
          ("C-x b" . persp-switch-to-buffer*)
          ("C-x k" . persp-kill-buffer*))
@@ -70,16 +64,13 @@
   (setq persp-interactive-completion-function #'ivy-completing-read))
 
 (use-package persp-projectile
-  :after (projectile perspective)
   :bind ("C-x x P" . projectile-persp-switch-project))
 
 (use-package dired-sidebar
-  :defer 2
   :commands (dired-sidebar-toggle-sidebar)
   :bind (([f8] . dired-sidebar-toggle-sidebar)))
 
 (use-package ace-window
-  :defer 2
   :bind (("M-o" . ace-window)))
 
 (use-package all-the-icons
