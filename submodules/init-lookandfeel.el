@@ -122,6 +122,7 @@
   :config
   (which-key-mode))
 
+;; Line by line, instead of half-screen at a time.
 (use-package smooth-scrolling
   :defer 2
   :config
