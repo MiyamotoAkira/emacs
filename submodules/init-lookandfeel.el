@@ -109,7 +109,7 @@
 (global-prettify-symbols-mode 1)
 
 (use-package spaceline
-  :defer 1
+  :defer nil
   :config
   (spaceline-emacs-theme))
 
