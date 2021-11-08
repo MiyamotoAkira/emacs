@@ -347,9 +347,11 @@
 
 (use-package slime
   :config
-  (setq inferior-lisp-program "/usr/bin/sbcl")
+  (setq inferior-lisp-program "/usr/local/bin/sbcl")
   (setq slime-contribs '(slime-fancy))
-  (slime-setup '(slime-fancy slime-company)))
+  (slime-setup '(slime-fancy slime-company))
+  (setq slime-lisp-implementations
+        '((sbcl ("/usr/local/bin/sbcl") :coding-system utf-8-unix))))
 
 (use-package slime-company
   :config
