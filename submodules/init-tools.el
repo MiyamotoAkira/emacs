@@ -214,12 +214,6 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
   (add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode)))
 
-;; Line by line, instead of half-screen at a time.
-(use-package smooth-scrolling
-  :defer 2
-  :config
-  (smooth-scrolling-mode 1))
-
 ;; Package management visual improvements
 (use-package paradox
   :defer nil
