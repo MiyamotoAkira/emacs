@@ -119,6 +119,9 @@
 (use-package blacken
   :hook ((python-mode . blacken-mode)))
 
+(use-package company-jedi
+  :hook ((python.mode . (lambda () (add-to-list 'company-backends 'company-jedi)))))
+
 (use-package pyenv
   :quelpa (pyenv :fetcher github :repo "aiguofer/pyenv.el"))
 
