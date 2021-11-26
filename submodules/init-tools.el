@@ -127,6 +127,8 @@
   :bind (("C-s" . 'swiper-isearch)
          ("C-r" . 'swiper-isearch-backward)))
 
+(use-package all-the-icons-ivy
+  :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup))
 (use-package helpful
   :custom
   (counsel-describe-function-function #'helpful-callable)
