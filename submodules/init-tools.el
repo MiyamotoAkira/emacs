@@ -228,5 +228,13 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
   ;; To use MELPA Stable use ":pin melpa-stable",
   :pin melpa)
 
+(use-package elfeed
+  :commands elfeed
+  :bind (("C-x w" . elfeed))
+  :config
+  (setq elfeed-db-directory "~/Sync/elfeed/db"
+        elfeed-enclosure-default-dir "~/Sync/elfeed/enclosures/")
+  (make-directory elfeed-db-directory t))
+
 (provide 'init-tools)
 ;;; init-tools.el ends here
