@@ -7,8 +7,8 @@
   :defer 2
   :config
   (setq org-startup-truncated nil)
-  (setq org-directory "~/Sync/org")
-  (setq org-agenda-files '("~/Sync/org/agendas/"))
+  (setq org-directory "~/org")
+  (setq org-agenda-files '("~/org/agendas/"))
   ;; (org-startup-indented t)
   ;; (org-special-ctrl-a/e t)
   ;; (org-special-ctrl-k t)
@@ -71,7 +71,7 @@
   :init
   (setq org-roam-v2-ack t)
   :custom
-  (org-roam-directory (file-truename "~/Sync/slip-box"))
+  (org-roam-directory (file-truename "~/org/slip-box"))
   (org-roam-dailies-directory "journal/")
   (org-roam-complete-everywhere t)
   (org-roam-db-autosync-mode)
