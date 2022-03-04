@@ -236,5 +236,8 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
         elfeed-enclosure-default-dir "~/Sync/elfeed/enclosures/")
   (make-directory elfeed-db-directory t))
 
+(use-package vterm
+  :ensure t)
+
 (provide 'init-tools)
 ;;; init-tools.el ends here
