@@ -340,6 +340,8 @@
   :hook
   ((fsharp-mode . eglot-ensure)))
 
+(use-package eglot-fsharp)
+
 (use-package fsharp-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.fsproj\\'" . nxml-mode))
