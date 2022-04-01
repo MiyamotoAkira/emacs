@@ -23,7 +23,7 @@
   (save-place-mode))
 
 (use-package monky
-  :bind (("C-x C-g" . monky-status)))
+  :bind (("C-x M-g" . monky-status)))
 
 (defun nothing())
 
