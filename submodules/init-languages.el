@@ -223,7 +223,11 @@
    (cider-mode . paredit-mode)
    (cider-mode . eldoc-mode)
    (cider-mode . company-mode)
-   (cider-repl-mode . company-mode)))
+   (cider-repl-mode . company-mode))
+  :config
+  (setq lsp-enable-completion-at-point nil)
+  (setq lsp-enable-completion nil)
+  (setq lsp-enable-indentation nil))
 
 (use-package clojure-mode
   :diminish
@@ -269,7 +273,9 @@
   :diminish
   :pin melpa-stable
   :hook
-  (clojure-mode . clj-clojure-setup))
+  (clojure-mode . clj-clojure-setup)
+  :init
+  (setq cljr-add-ns-to-blank-clj-files nil))
 
 (use-package clojure-mode-extra-font-locking
   :pin melpa-stable)
@@ -296,15 +302,23 @@
   :hook ((csharp-mode . lsp)
          (python-mode . lsp)
          (java-mode . lsp)
+         (clojure-mode . lsp)
+         (clojurescript-mode . lsp)
+         (clojurec-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :init (setq lsp-eldoc-render-all nil
               lsp-highlight-symbol-at-point nil
-              lsp-keymap-prefix "C-c l"))
+              lsp-keymap-prefix "C-c l"
+              lsp-lens-enable t
+              lsp-signature-auto-activate nil))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
   :config
   (setq lsp-ui-sideline-update-mode 'point))
+
+(use-package lsp-treemacs
+  :commands lsp-treemacs-errors-list)
 
 ;; (use-package company-lsp
 ;;   :after company
