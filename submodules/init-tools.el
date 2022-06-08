@@ -56,15 +56,17 @@
                                          "~/code/externals/")))
 
 (use-package perspective
-  :bind (("C-x x x" . persp-switch-last)
+  :bind (("C-c M-p x" . persp-switch-last)
          ("C-x b" . persp-switch-to-buffer*)
          ("C-x k" . persp-kill-buffer*))
-  :init (persp-mode +1)
+  :init (persp-mode)
   :config
-  (setq persp-interactive-completion-function #'ivy-completing-read))
+  (setq persp-interactive-completion-function #'ivy-completing-read)
+  :custom
+  (persp-mode-prefix-key (kbd "C-c M-p")))
 
 (use-package persp-projectile
-  :bind ("C-x x P" . projectile-persp-switch-project))
+  :bind ("C-c M-p P" . projectile-persp-switch-project))
 
 (use-package dired-sidebar
   :commands (dired-sidebar-toggle-sidebar)

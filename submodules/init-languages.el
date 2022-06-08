@@ -224,7 +224,9 @@
    (cider-mode . eldoc-mode)
    (cider-mode . company-mode)
    (cider-repl-mode . company-mode))
+  :bind (("C-c M-a" . cider-insert-last-sexp-in-repl))
   :config
+  (unbind-key "C-c M-p" cider-mode-map)
   (setq lsp-enable-completion-at-point nil)
   (setq lsp-enable-completion nil)
   (setq lsp-enable-indentation nil))
