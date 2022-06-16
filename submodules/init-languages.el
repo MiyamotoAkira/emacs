@@ -179,15 +179,6 @@
   :hook
   ((flycheck-mode . flycheck-rust-setup)))
 
-(use-package racer
-  :config
-  (setq racer-cmd "~/.cargo/bin/racer")
-  (setq racer-rust-src-path "~/code/externals/rust/src")
-  :hook
-  ((rust-mode . racer-mode)
-   (racer-mode . eldoc-mode)
-   (racer-mode . company-mode)))
-
 (use-package ron-mode)
 
 (use-package markdown-mode
