@@ -508,6 +508,16 @@
 
 (use-package tuareg)
 
+(use-package merlin
+  :hook ((tuareg-mode . merlin-mode)
+         (caml-mode . merlin-mode))
+  :config
+  (setq merlin-command 'opam))
+
+(use-package merlin-company)
+
+(use-package merlin-eldoc)
+
 (use-package go-mode
   :hook
   ((go-mode . lsp-deferred)))
