@@ -289,6 +289,10 @@
 
 (setq lsp-keymap-prefix "C-c l")
 
+(use-package mermaid-mode
+  :config
+  (setq mermaid-mmdc-location "/home/akira/node_modules/.bin/mmdc"))
+
 (use-package lsp-mode
   :defines lsp-highlight-symbol-at-point
   :commands (lsp lsp-deferred)
