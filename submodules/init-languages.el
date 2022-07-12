@@ -290,6 +290,7 @@
 (setq lsp-keymap-prefix "C-c l")
 
 (use-package mermaid-mode
+  :mode ("\\.mmd\\'")
   :config
   (setq mermaid-mmdc-location "/home/akira/node_modules/.bin/mmdc"))
 
