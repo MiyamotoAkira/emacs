@@ -543,29 +543,6 @@
   :hook
   ((go-mode . lsp-deferred)))
 
-(use-package php-mode
-  :hook ((php-mode . company-mode)))
-
-(use-package ac-php-core)
-
-(use-package ac-php)
-
-(use-package company-php
-  :config
-  (push 'company-ac-php-backend company-backends)
-  (ac-php-core-eldoc-setup)
-  :bind (
-         :map php-mode-map
-         ("C-c ." . ac-php-find-symbol-at-point)
-         ("C-c ," . ac-php-location-stack-back)))
-
-(use-package flycheck-psalm
-  :config
-  (flycheck-mode t))
-
-(use-package php-refactor-mode
-  :hook  (php-mode . php-refactor-mode))
-
 (use-package glsl-mode)
 
 (provide 'init-languages)
