@@ -14,8 +14,8 @@
   ;; (org-special-ctrl-k t)
   )
 
-(use-package org-plus-contrib
-  :after org)
+;; (use-package org-plus-contrib
+;;   :after org)
 
 (use-package org-present
   :after org
