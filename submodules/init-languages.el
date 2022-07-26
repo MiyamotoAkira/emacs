@@ -67,7 +67,15 @@
 (use-package company
   :defer nil
   :diminish
-  :bind (("C-S-i" . company-complete))
+  :bind (("C-S-i" . company-complete)
+         ;; :map company-mode-map
+	 ;; ("<tab>". tab-indent-or-complete)
+	 ;; ("TAB". tab-indent-or-complete)
+         :map company-active-map
+         ("C-n". company-select-next)
+	 ("C-p". company-select-previous)
+	 ("M-<". company-select-first)
+	 ("M->". company-select-last))
   :hook
   ((after-init . global-company-mode)))
 
@@ -310,12 +318,18 @@
               lsp-highlight-symbol-at-point nil
               lsp-keymap-prefix "C-c l"
               lsp-lens-enable t
-              lsp-signature-auto-activate nil))
+              lsp-signature-auto-activate nil)
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
   :config
-  (setq lsp-ui-sideline-update-mode 'point))
+  (setq lsp-ui-sideline-update-mode 'point)
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil))
 
 (use-package lsp-treemacs
   :commands lsp-treemacs-errors-list)
