@@ -178,6 +178,7 @@
                           (lsp-ui-doc-mode)
                           (company-mode))))
   :config
+  (setq rustic-format-on-save t)
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rustic-mode))
   (custom-set-faces
    '(rustic-compilation-column ((t (:inherit compilation-column-number))))
