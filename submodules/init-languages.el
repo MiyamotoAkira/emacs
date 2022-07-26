@@ -291,6 +291,8 @@
 
 (use-package mermaid-mode
   :mode ("\\.mmd\\'")
+  ;; Uncomment when testing improvements
+  ;; :load-path "/home/akira/code/external/mermaid-mode"
   :config
   (setq mermaid-mmdc-location "/home/akira/node_modules/.bin/mmdc"))
 
