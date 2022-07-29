@@ -460,33 +460,6 @@
 
 (use-package csharp-mode)
 
-(use-package omnisharp
-  :bind (
-         ("C-c o s s" . omnisharp-start-omnisharp-server)
-         :map omnisharp-mode-map
-         ("C-c o s p" . omnisharp-stop-server)
-         ("C-C o a" . omnisharp-auto-complete)
-         ("C-C o c r" . recompile)
-         ("C-C o i t" . omnisharp-current-type-information)
-         ("C-C o i d" . omnisharp-current-type-documentation)
-         ("C-C o i s" . omnisharp-show-overloads-at-point)
-         ("C-C o g d" . omnisharp-go-to-definition)
-         ("C-C o g w" . omnisharp-go-to-definition-other-window)
-         ("C-C o g u" . omnisharp-find-usages)
-         ("C-C o g i" . omnisharp-find-implementations)
-         ("C-C o g s" . omnisharp-navigate-to-solution-member)
-         ("C-C o g m" . omnisharp-navigate-to-current-file-member)
-         ("C-C o g f" . omnisharp-navigate-to-solution-file-then-file-member)
-         ("C-C o k d" . omnisharp-code-format-entire-file)
-         ("C-C o r r" . omnisharp-rename)
-         ("C-C o r f" . omnisharp-fix-usings)
-         ("C-C o r c" . omnisharp-fix-code-issue-at-point)
-         ("C-C o r a" . omnisharp-run-code-action-refactoring))
-  :config
-  (push 'company-omnisharp company-backends)
-  :hook
-  ((csharp-mode . omnisharp-mode)))
-
 (use-package powershell)
 
 (use-package kotlin-mode)
