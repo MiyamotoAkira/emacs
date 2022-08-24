@@ -9,6 +9,7 @@
   (setq org-startup-truncated nil)
   (setq org-directory "~/org")
   (setq org-agenda-files '("~/org/agendas/"))
+  (require 'ox-md nil t)
   ;; (org-startup-indented t)
   ;; (org-special-ctrl-a/e t)
   ;; (org-special-ctrl-k t)
