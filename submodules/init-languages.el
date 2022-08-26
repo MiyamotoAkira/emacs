@@ -509,6 +509,8 @@
   :config
   (setq merlin-command 'opam))
 
+(use-package dune)
+
 (use-package merlin-company)
 
 (use-package merlin-eldoc)
