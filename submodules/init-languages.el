@@ -308,7 +308,7 @@
 (use-package lsp-mode
   :defines lsp-highlight-symbol-at-point
   :commands (lsp lsp-deferred)
-  :hook (;; (csharp-mode . lsp)
+  :hook ((csharp-mode . lsp)
          (python-mode . lsp)
          (java-mode . lsp)
          (clojure-mode . lsp)
