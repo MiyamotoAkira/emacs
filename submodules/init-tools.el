@@ -241,5 +241,11 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
 (use-package vterm
   :ensure t)
 
+(use-package pomm
+  :commands (pomm pomm-third-time)
+  :custom
+  (alert-default-style 'libnotify)
+  (pomm-audio-enabled t))
+
 (provide 'init-tools)
 ;;; init-tools.el ends here
