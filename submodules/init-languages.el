@@ -314,6 +314,7 @@
          (clojure-mode . lsp)
          (clojurescript-mode . lsp)
          (clojurec-mode . lsp)
+         (kotlin-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :init (setq lsp-eldoc-render-all nil
               lsp-highlight-symbol-at-point nil
