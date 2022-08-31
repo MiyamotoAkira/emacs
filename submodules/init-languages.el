@@ -321,7 +321,8 @@
               lsp-lens-enable t
               lsp-signature-auto-activate nil)
   :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (add-to-list 'lsp-disabled-clients 'omnisharp))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
