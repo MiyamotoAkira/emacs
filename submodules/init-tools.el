@@ -239,7 +239,8 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
   (make-directory elfeed-db-directory t))
 
 (use-package vterm
-  :ensure t)
+  :ensure t
+  :bind (("C-q" . vterm-send-next-key)))
 
 (use-package pomm
   :commands (pomm pomm-third-time)
