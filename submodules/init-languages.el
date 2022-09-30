@@ -462,6 +462,12 @@
 
 (use-package csharp-mode)
 
+(add-to-list 'load-path "~/code/externals/csproj-mode")
+(use-package csproj-mode)
+
+(use-package dotnet
+  :hook ((csharp-mode . dotnet-mode)))
+
 (use-package powershell)
 
 (use-package kotlin-mode)
