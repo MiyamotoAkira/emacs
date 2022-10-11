@@ -219,12 +219,12 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode)))
 
 ;; Package management visual improvements
-(use-package paradox
-  :defer nil
-  :custom
-  (paradox-github-token t)
-  :config
-  (paradox-enable))
+;; (use-package paradox
+;;   :defer nil
+;;   :custom
+;;   (paradox-github-token t)
+;;   :config
+;;   (paradox-enable))
 
 (use-package esup
   ;; To use MELPA Stable use ":pin melpa-stable",
