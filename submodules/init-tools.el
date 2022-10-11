@@ -72,6 +72,11 @@
   :commands (dired-sidebar-toggle-sidebar)
   :bind (([f8] . dired-sidebar-toggle-sidebar)))
 
+(add-hook 'mhtml-mode-hook (lambda ()
+                             (define-key html-mode-map (kbd "M-o") nil)
+                             (define-key html-mode-map (kbd "C-c C-p") 'facemenu-keymap)
+                             (define-key html-mode-map (kbd "M-o") 'ace-window)))
+
 (use-package ace-window
   :bind (("M-o" . ace-window)))
 
