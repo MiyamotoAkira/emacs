@@ -529,6 +529,28 @@
 
 (use-package glsl-mode)
 
+(use-package scala-mode
+  :interpreter
+  ("scala" . scala-mode))
+
+(use-package lsp-metals
+  :ensure t
+  :custom
+  ;; Metals claims to support range formatting by default but it supports range
+  ;; formatting of multiline strings only. You might want to disable it so that
+  ;; emacs can use indentation provided by scala-mode.
+  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
+  :hook (scala-mode . lsp))
+
+(use-package sbt-mode
+  :commands sbt-start sbt-command
+  :config
+  ;; WORKAROUND: allows using SPACE when in the minibuffer
+  (substitute-key-definition
+   'minibuffer-complete-word
+   'self-insert-command
+   minibuffer-local-completion-map))
+
 (provide 'init-languages)
 ;;; init-languages.el ends here
 
