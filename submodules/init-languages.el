@@ -150,8 +150,6 @@
   :config
   (company-terraform-init))
 
-(use-package scala-mode)
-
 (use-package robe
   :hook
   ((ruby-mode . robe-mode))
@@ -315,6 +313,7 @@
          (clojurescript-mode . lsp)
          (clojurec-mode . lsp)
          (kotlin-mode . lsp)
+         (scala-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :init (setq lsp-eldoc-render-all nil
               lsp-highlight-symbol-at-point nil
@@ -549,8 +548,7 @@
   ;; Metals claims to support range formatting by default but it supports range
   ;; formatting of multiline strings only. You might want to disable it so that
   ;; emacs can use indentation provided by scala-mode.
-  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
-  :hook (scala-mode . lsp))
+  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off")))
 
 (use-package sbt-mode
   :commands sbt-start sbt-command
