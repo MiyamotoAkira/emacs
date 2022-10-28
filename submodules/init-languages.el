@@ -136,8 +136,7 @@
 (use-package dockerfile-mode
   :mode "\\.Dockerfile\\'")
 
-(use-package gradle-mode
-  :mode ("\\.kt\\'" "\\.java\\'"))
+(use-package gradle-mode)
 
 (use-package yaml-mode)
 
@@ -320,6 +319,7 @@
   :init (setq lsp-eldoc-render-all nil
               lsp-highlight-symbol-at-point nil
               lsp-keymap-prefix "C-c l"
+
               lsp-lens-enable t
               lsp-signature-auto-activate nil)
   :config
@@ -330,6 +330,12 @@
   :commands lsp-ui-mode
   :config
   (setq lsp-ui-sideline-update-mode 'point)
+  :bind (:map lsp-ui-mode-map
+              ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+              ([remap xref-find-references] . lsp-ui-peek-find-references))
+  :init (setq lsp-ui-doc-delay 0.5
+              lsp-ui-doc-position 'bottom
+	      lsp-ui-doc-max-width 100)
   :custom
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
@@ -350,6 +356,8 @@
 
 (use-package dap-mode
   :after lsp-mode
+  :bind (:map lsp-mode-map
+              ("<f5>" . dap-debug))
   :config
   (dap-mode t)
   (dap-ui-mode t))
@@ -357,8 +365,6 @@
 (use-package lsp-ivy
   :commands lsp-ivy-workspace-symbol)
 
-;; (use-package dap-java
-;;   :after 'lsp-java)
 
 (use-package lsp-java
   :hook
@@ -366,7 +372,10 @@
    (java-mode . flycheck-mode)
    (java-mode . company-mode)
    (java-mode . (lambda () (lsp-ui-flycheck-enable t)))
-   (java-mode . lsp-ui-mode)))
+   (java-mode . lsp-ui-mode))
+
+  :config
+  (require 'dap-java))
 
 ;; (use-package eglot
 ;;   :hook
