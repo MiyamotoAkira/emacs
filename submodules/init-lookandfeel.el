@@ -160,5 +160,25 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(use-package page-break-lines
+  :defer nil)
+
+(use-package dashboard
+  :ensure t
+  :defer nil
+  :hook
+  ((dashboard-mode . page-break-lines-mode))
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-banner-logo-title "May the Force be with you")
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-center-content t)
+  (setq dashboard-projects-backend 'projectile)
+  (setq dashboard-items '((recents . 5)
+                          (bookmarks . 5)
+                          (projects . 5)
+                          (agenda . 5))))
+
 (provide 'init-lookandfeel)
 ;;; init-lookandfeel.el ends here
+
