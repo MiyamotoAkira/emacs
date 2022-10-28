@@ -136,7 +136,8 @@
 (use-package dockerfile-mode
   :mode "\\.Dockerfile\\'")
 
-(use-package gradle-mode)
+(use-package gradle-mode
+  :mode ("\\.kt\\'" "\\.java\\'"))
 
 (use-package yaml-mode)
 
