@@ -132,8 +132,10 @@
 (use-package company-jedi
   :hook ((python.mode . (lambda () (add-to-list 'company-backends 'company-jedi)))))
 
-(use-package pyenv
-  :quelpa (pyenv :fetcher github :repo "aiguofer/pyenv.el"))
+;; (use-package pyenv
+;;   :quelpa (pyenv :fetcher github :repo "aiguofer/pyenv.el"))
+
+(use-package pyvenv)
 
 (use-package dockerfile-mode
   :mode "\\.Dockerfile\\'")
@@ -340,6 +342,7 @@
   :custom
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
+  (lsp-ui-sideline-enable nil)
   (lsp-ui-doc-enable nil))
 
 (use-package lsp-treemacs
