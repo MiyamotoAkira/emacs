@@ -52,8 +52,10 @@
   :config
   (editorconfig-mode 1))
 
-(use-package highlight-indentation
-  :defer nil)
+;; (use-package highlight-indentation
+;;   :defer nil
+;;   :hook
+;;   ((prog-mode . highlight-indentation-mode)))
 
 ;; (use-package highlight-sexp
 ;;   :quelpa (abc-mode :fetcher github :repo "daimrod/highlight-sexp")
@@ -542,13 +544,12 @@
   :interpreter
   ("scala" . scala-mode))
 
-(use-package lsp-metals
-  :ensure t
-  :custom
-  ;; Metals claims to support range formatting by default but it supports range
-  ;; formatting of multiline strings only. You might want to disable it so that
-  ;; emacs can use indentation provided by scala-mode.
-  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off")))
+;; (use-package lsp-metals
+;;   :ensure tddd
+;;   ;; Metals claims to support range formatting by default but it supports range
+;;   ;; formatting of multiline strings only. You might want to disable it so that
+;;   ;; emacs can use indentation provided by scala-mode.
+;;   (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off")))
 
 (use-package sbt-mode
   :commands sbt-start sbt-command
