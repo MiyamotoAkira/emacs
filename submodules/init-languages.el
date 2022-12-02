@@ -127,21 +127,6 @@
 ;;   :init
 ;;   (advice-add 'python-mode :before 'elpy-enable))
 
-(use-package python-mode)
-
-(use-package blacken
-  :hook ((python-mode . blacken-mode)))
-
-(use-package company-jedi
-  :hook ((python.mode . (lambda () (add-to-list 'company-backends 'company-jedi)))))
-
-;; (use-package pyenv
-;;   :quelpa (pyenv :fetcher github :repo "aiguofer/pyenv.el"))
-
-(use-package pyvenv
-  :init
-  (setenv "WORKON_HOME" "~/.pyenv/versions"))
-
 ;; Copied from https://ddavis.io/posts/emacs-python-lsp/
 (defun dd/py-workon-project-venv ()
   "Call pyenv-workon with the current projectile project name.
@@ -168,6 +153,30 @@ interactive `pyvenv-workon' function before `lsp'"
       (progn
         (call-interactively #'pyvenv-workon)
         (lsp)))))
+
+(use-package python-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+  (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+  :bind (:map python-mode-map
+              ("C-C C-a" . #'dd/py-auto-lsp)))
+
+(autoload 'python-mode "python-mode")
+
+(use-package blacken
+  :hook ((python-mode . blacken-mode)))
+
+(use-package company-jedi
+  :hook ((python.mode . (lambda () (add-to-list 'company-backends 'company-jedi)))))
+
+;; (use-package pyenv
+;;   :quelpa (pyenv :fetcher github :repo "aiguofer/pyenv.el"))
+
+(use-package pyvenv
+  :init
+  (setenv "WORKON_HOME" "~/.pyenv/versions"))
+
+
 
 (bind-key (kbd "C-c C-a") #'dd/py-auto-lsp python-mode-map)
 
