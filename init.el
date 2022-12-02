@@ -27,7 +27,7 @@
   ;; we want custom setup on a separate file. This is set because all the variables
   ;; that appear there are set on the different .el setup files I have
   (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
+  
   ;; We are organizing files in a sub-directory
   (add-to-list 'load-path (expand-file-name "submodules" user-emacs-directory))
 
@@ -64,7 +64,7 @@
   (put 'upcase-region 'disabled nil)
 
   ;; Back to standard gc threshold
-  (setq gc-cons-threshold (* 100 1000 1000))
+  (setq gc-cons-threshold (* 50 1000 1000))
 
-  (setq read-process-output-max (* 1024 1024)))
+  (setq read-process-output-max (* 512 1024)))
 ;;; init.el ends here
