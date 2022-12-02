@@ -88,7 +88,8 @@
 (use-package mmm-mode
   :config
   (setq mmm-global-mode 'maybe)
-  (mmm-add-mode-ext-class 'html-mode "\\.php\\'" 'html-php))
+  ;; (mmm-add-mode-ext-class 'html-mode "\\.php\\'" 'html-php)
+  )
 
 (use-package buttercup)
 
@@ -106,12 +107,12 @@
                    (setup-tide-mode))))))
 
 
-(use-package vue-mode)
+;; (use-package vue-mode)
 
-(use-package eslintd-fix
-  :hook
-  ((js-mode . eslintd-fix-mode)
-   (vue-mode . eslintd-fix-mode)))
+;; (use-package eslintd-fix
+;;   :hook
+;;   ((js-mode . eslintd-fix-mode)
+;;    (vue-mode . eslintd-fix-mode)))
 
 (use-package json-mode)
 
@@ -140,11 +141,11 @@
 (use-package dockerfile-mode
   :mode "\\.Dockerfile\\'")
 
-(use-package gradle-mode)
+;; (use-package gradle-mode)
 
 (use-package yaml-mode)
 
-(use-package puppet-mode)
+;; (use-package puppet-mode)
 
 (use-package terraform-mode
   :hook
@@ -164,7 +165,7 @@
 
 (use-package erlang)
 
-(use-package elm-mode)
+;; (use-package elm-mode)
 
 (use-package rust-mode)
 
@@ -294,9 +295,9 @@
              ("w" . kaocha-runner-show-warnings)
              ("h" . kaocha-runner-hide-windows)))
 
-(use-package java-imports
-  :config
-  (add-hook 'java-mode-hook 'java-imports-scan-file))
+;; (use-package java-imports
+;;   :config
+;;   (add-hook 'java-mode-hook 'java-imports-scan-file))
 
 (setq lsp-keymap-prefix "C-c l")
 
@@ -310,14 +311,14 @@
 (use-package lsp-mode
   :defines lsp-highlight-symbol-at-point
   :commands (lsp lsp-deferred)
-  :hook ((csharp-mode . lsp)
-         (python-mode . lsp)
-         (java-mode . lsp)
+  :hook (;; (csharp-mode . lsp)
+         ;; (python-mode . lsp)
+         ;; (java-mode . lsp)
          (clojure-mode . lsp)
          (clojurescript-mode . lsp)
          (clojurec-mode . lsp)
-         (kotlin-mode . lsp)
-         (scala-mode . lsp)
+         ;; (kotlin-mode . lsp)
+         ;; (scala-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :init (setq lsp-eldoc-render-all nil
               lsp-highlight-symbol-at-point nil
@@ -370,16 +371,16 @@
   :commands lsp-ivy-workspace-symbol)
 
 
-(use-package lsp-java
-  :hook
-  ((java-mode . lsp-java-enable)
-   (java-mode . flycheck-mode)
-   (java-mode . company-mode)
-   (java-mode . (lambda () (lsp-ui-flycheck-enable t)))
-   (java-mode . lsp-ui-mode))
+;; (use-package lsp-java
+;;   :hook
+;;   ((java-mode . lsp-java-enable)
+;;    (java-mode . flycheck-mode)
+;;    (java-mode . company-mode)
+;;    (java-mode . (lambda () (lsp-ui-flycheck-enable t)))
+;;    (java-mode . lsp-ui-mode))
 
-  :config
-  (require 'dap-java))
+;;   :config
+;;   (require 'dap-java))
 
 ;; (use-package eglot
 ;;   :hook
@@ -387,17 +388,17 @@
 
 ;; (use-package eglot-fsharp)
 
-(use-package fsharp-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.fsproj\\'" . nxml-mode)))
+;; (use-package fsharp-mode
+;;   :config
+;;   (add-to-list 'auto-mode-alist '("\\.fsproj\\'" . nxml-mode)))
 
-(use-package haskell-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
-  :hook
-  ((haskell-mode . haskell-indentation-mode)))
+;; (use-package haskell-mode
+;;   :config
+;;   (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
+;;   :hook
+;;   ((haskell-mode . haskell-indentation-mode)))
 
-(use-package groovy-mode)
+;; (use-package groovy-mode)
 
 (use-package slime-company
   :config
@@ -461,67 +462,67 @@
 
 (use-package luarocks)
 
-(use-package purescript-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.purs\\'" . purescript-mode))
-  :hook
-  ((purescript-mode . turn-on-purescript-indentation)))
+;; (use-package purescript-mode
+;;   :config
+;;   (add-to-list 'auto-mode-alist '("\\.purs\\'" . purescript-mode))
+;;   :hook
+;;   ((purescript-mode . turn-on-purescript-indentation)))
 
-(use-package psc-ide
-  :hook
-  (purescript-mode . (lambda ()
-                       (psc-ide-mode)
-                       (company-mode)
-                       (flycheck-mode))))
+;; (use-package psc-ide
+;;   :hook
+;;   (purescript-mode . (lambda ()
+;;                        (psc-ide-mode)
+;;                        (company-mode)
+;;                        (flycheck-mode))))
 
-(use-package csharp-mode)
+;; (use-package csharp-mode)
 
-(add-to-list 'load-path "~/code/externals/csproj-mode")
-(use-package csproj-mode)
+;; (add-to-list 'load-path "~/code/externals/csproj-mode")
+;; (use-package csproj-mode)
 
-(use-package dotnet
-  :hook ((csharp-mode . dotnet-mode)))
+;; (use-package dotnet
+;;   :hook ((csharp-mode . dotnet-mode)))
 
 (use-package powershell)
 
-(use-package kotlin-mode)
+;; (use-package kotlin-mode)
 
 (use-package graphviz-dot-mode)
 
-(use-package typescript-mode
-  :mode ("\\.ts\\'"))
+;; (use-package typescript-mode
+;;   :mode ("\\.ts\\'"))
 
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1))
+;; (defun setup-tide-mode ()
+;;   (interactive)
+;;   (tide-setup)
+;;   (flycheck-mode +1)
+;;   (setq flycheck-check-syntax-automatically '(save mode-enabled))
+;;   (eldoc-mode +1)
+;;   (tide-hl-identifier-mode +1)
+;;   ;; company is an optional dependency. You have to
+;;   ;; install it separately via package-install
+;;   ;; `M-x package-install [ret] company`
+;;   (company-mode +1))
 
-(use-package tide
-  :after (typescript-mode company flycheck)
-  :hook ((typescript-mode . setup-tide-mode)
-         (typescript-mode . (lambda ()
-                              (setq typescript-indent-level 4))))
-  :bind (
-         :map tide-mode-map
-         ("C-c r" . tide-rename-symbol)
-         ("C-c f" . tide-fix)
-         ("C-c ." . #'tide-jump-to-definition)
-         ("C-c ," . #'tide-jump-back)
-         ("C-c /" . #'tide-jump-to-implementation))
-  :config
-  (setq tide-format-options '(:indentSize 4 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
+;; (use-package tide
+;;   :after (typescript-mode company flycheck)
+;;   :hook ((typescript-mode . setup-tide-mode)
+;;          (typescript-mode . (lambda ()
+;;                               (setq typescript-indent-level 4))))
+;;   :bind (
+;;          :map tide-mode-map
+;;          ("C-c r" . tide-rename-symbol)
+;;          ("C-c f" . tide-fix)
+;;          ("C-c ." . #'tide-jump-to-definition)
+;;          ("C-c ," . #'tide-jump-back)
+;;          ("C-c /" . #'tide-jump-to-implementation))
+;;   :config
+;;   (setq tide-format-options '(:indentSize 4 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
 
-(use-package prettier-js
-  :diminish
-  :hook ((typescript-mode . prettier-js-mode)
-         (web-mode . prettier-js-mode)))
+;; (use-package prettier-js
+;;   :diminish
+;;   :hook ((typescript-mode . prettier-js-mode)
+;;          (web-mode . prettier-js-mode)))
 
 (use-package tuareg)
 
@@ -537,31 +538,31 @@
 
 (use-package merlin-eldoc)
 
-(use-package go-mode
-  :hook
-  ((go-mode . lsp-deferred)))
+;; (use-package go-mode
+;;   :hook
+;;   ((go-mode . lsp-deferred)))
 
 (use-package glsl-mode)
 
-(use-package scala-mode
-  :interpreter
-  ("scala" . scala-mode))
+;; (use-package scala-mode
+;;   :interpreter
+;;   ("scala" . scala-mode))
 
-;; (use-package lsp-metals
-;;   :ensure tddd
-;;   ;; Metals claims to support range formatting by default but it supports range
-;;   ;; formatting of multiline strings only. You might want to disable it so that
-;;   ;; emacs can use indentation provided by scala-mode.
-;;   (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off")))
+;; ;; (use-package lsp-metals
+;; ;;   :ensure tddd
+;; ;;   ;; Metals claims to support range formatting by default but it supports range
+;; ;;   ;; formatting of multiline strings only. You might want to disable it so that
+;; ;;   ;; emacs can use indentation provided by scala-mode.
+;; ;;   (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off")))
 
-(use-package sbt-mode
-  :commands sbt-start sbt-command
-  :config
-  ;; WORKAROUND: allows using SPACE when in the minibuffer
-  (substitute-key-definition
-   'minibuffer-complete-word
-   'self-insert-command
-   minibuffer-local-completion-map))
+;; (use-package sbt-mode
+;;   :commands sbt-start sbt-command
+;;   :config
+;;   ;; WORKAROUND: allows using SPACE when in the minibuffer
+;;   (substitute-key-definition
+;;    'minibuffer-complete-word
+;;    'self-insert-command
+;;    minibuffer-local-completion-map))
 
 (provide 'init-languages)
 ;;; init-languages.el ends here
