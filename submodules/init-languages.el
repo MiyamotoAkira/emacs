@@ -127,6 +127,8 @@
 ;;   :init
 ;;   (advice-add 'python-mode :before 'elpy-enable))
 
+(use-package python-mode)
+
 (use-package blacken
   :hook ((python-mode . blacken-mode)))
 
