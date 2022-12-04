@@ -176,11 +176,6 @@ interactive `pyvenv-workon' function before `lsp'"
   :init
   (setenv "WORKON_HOME" "~/.pyenv/versions"))
 
-
-
-(bind-key (kbd "C-c C-a") #'dd/py-auto-lsp python-mode-map)
-
-
 (use-package dockerfile-mode
   :mode "\\.Dockerfile\\'")
 
