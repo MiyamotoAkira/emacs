@@ -58,6 +58,7 @@
 
 (use-package org-present
   :after org
+  :bind (("C-c o" . org-present))
   :config
   (add-hook 'org-present-mode-hook
             'jgg/org-present-start)
