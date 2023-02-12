@@ -18,21 +18,56 @@
 ;; (use-package org-plus-contrib
 ;;   :after org)
 
+(use-package visual-fill-column
+  :config
+  (setq visual-fill-column-width 110
+        visual-fill-column-center-text t))
+
+(defun jgg/org-present-start ()
+  (org-present-big)
+  (org-display-inline-images)
+  ;(global-linum-mode -1)
+  (global-hl-line-mode -1)
+  (org-present-read-only)
+  ;; we center the document with this two
+  (visual-fill-column-mode 1)
+  ;; just in case, wrap
+  (visual-line-mode 1)
+  ;; extra line at the top
+  (setq header-line-format " "))
+
+(defun jgg/org-present-end ()
+  (org-present-small)
+  (org-remove-inline-images)
+  ;(global-linum-mode)
+  (global-hl-line-mode 1)
+  (org-present-read-write)
+  ;; we stop centering the document
+  (visual-fill-column-mode 0)
+  (visual-line-mode 0)
+  (setq header-line-format nil))
+
+(defun jgg/org-present-slide (buffer-name heading)
+  ;; Show only top-level headlines
+  (org-overview)
+  ;; Unfold the current entry
+  (org-show-entry)
+  ;; Show only direct subheadings of the slide but don't expand them
+  (org-show-children))
+
+
 (use-package org-present
   :after org
   :config
   (add-hook 'org-present-mode-hook
-            (lambda ()
-              (org-present-big)
-              (org-display-inline-images)
-              (global-linum-mode -1)
-              (global-hl-line-mode -1)))
+            'jgg/org-present-start)
+  
   (add-hook 'org-present-mode-quit-hook
-            (lambda ()
-              (org-present-small)
-              (org-remove-inline-images)
-              (global-linum-mode)
-              (global-hl-line-mode 1))))
+            'jgg/org-present-end)
+  
+  (add-hook 'org-after-navigate-function
+            'jgg/org-present-slide))
+
 
 (use-package ob-elixir
   :after org)
