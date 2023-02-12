@@ -26,7 +26,7 @@
 (defun jgg/org-present-start ()
   (org-present-big)
   (org-display-inline-images)
-  ;(global-linum-mode -1)
+  (display-line-numbers-mode -1)
   (global-hl-line-mode -1)
   (org-present-read-only)
   ;; we center the document with this two
@@ -39,7 +39,7 @@
 (defun jgg/org-present-end ()
   (org-present-small)
   (org-remove-inline-images)
-  ;(global-linum-mode)
+  (display-line-numbers-mode 1)
   (global-hl-line-mode 1)
   (org-present-read-write)
   ;; we stop centering the document
