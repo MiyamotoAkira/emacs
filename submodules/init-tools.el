@@ -213,8 +213,10 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
 (use-package column-enforce-mode
   :defer 2)
 
-(add-to-list 'load-path "~/code/personal/structurizr-mode")
-(require 'structurizr-mode)
+(if (file-directory-p "~/code/personal/structurizr-mode")
+    (progrn
+     (add-to-list 'load-path "~/code/personal/structurizr-mode")
+     (require 'structurizr-mode)))
 
 (use-package plantuml-mode
   :config
