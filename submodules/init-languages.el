@@ -438,10 +438,6 @@ interactive `pyvenv-workon' function before `lsp'"
 
 ;; (use-package groovy-mode)
 
-(use-package slime-company
-  :config
-  (setq slime-company-major-modes (quote (lisp-mode slime-repl-mode))))
-
 (use-package slime
   :config
   (setq inferior-lisp-program "/usr/local/bin/sbcl")
