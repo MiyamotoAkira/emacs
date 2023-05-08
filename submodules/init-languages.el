@@ -440,11 +440,11 @@ interactive `pyvenv-workon' function before `lsp'"
 
 (use-package slime
   :config
-  (setq inferior-lisp-program "/usr/local/bin/sbcl")
+  (setq inferior-lisp-program "/usr/bin/sbcl")
   (setq slime-contribs '(slime-fancy))
   (slime-setup '(slime-fancy slime-company))
   (setq slime-lisp-implementations
-        '((sbcl ("/usr/local/bin/sbcl") :coding-system utf-8-unix))))
+        '((sbcl ("/usr/bin/sbcl") :coding-system utf-8-unix)))
   :config
   (unbind-key "C-c M-p" slime-mode-indirect-map)
   :bind (:map slime-mode-indirect-map
