@@ -161,6 +161,8 @@ interactive `pyvenv-workon' function before `lsp'"
   :bind (:map python-mode-map
               ("C-C C-a" . #'dd/py-auto-lsp)))
 
+(use-package poetry)
+
 (autoload 'python-mode "python-mode")
 
 (use-package blacken
@@ -294,6 +296,8 @@ interactive `pyvenv-workon' function before `lsp'"
    (clojure-mode . my-pretty-lambda-clojure)
    (clojure-mode . column-enforce-mode)
    (clojure-mode . flycheck-mode)))
+
+(use-package clojure-ts-mode)
 
 ;; (use-package midje-mode
 ;;   :defer t
