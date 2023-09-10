@@ -187,7 +187,8 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
 (setq vc-make-backup-files t)
 
 (use-package pos-tip
-  :pin melpa)
+  ;; :pin melpa
+  )
 
 (use-package flyspell
   :diminish flyspell-mode
@@ -235,7 +236,8 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
 
 (use-package esup
   ;; To use MELPA Stable use ":pin melpa-stable",
-  :pin melpa)
+  ;; :pin melpa
+  )
 
 (use-package elfeed
   :commands elfeed
