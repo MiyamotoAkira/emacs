@@ -1,0 +1,16 @@
+;; Less garbage collection to speed up the thing
+(setq gc-cons-threshold (* 100 1000 1000))
+
+;; reduce warnings when you start
+(setq byte-compile-warnings '(not obsolete))
+(setq warning-suppress-log-types '((comp) (bytecomp)))
+(setq native-comp-async-report-warnings-errors 'silent)
+
+
+;; eliminate all visual elements external to emacs buffers.
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+
+(toggle-frame-fullscreen)
+(add-to-list 'default-frame-alist '(fullscreen . fullscreen))

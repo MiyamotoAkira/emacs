@@ -49,13 +49,8 @@
 
 (global-set-key [remap comment-dwim] #'comment-line)
 
-;; eliminate all visual elements external to emacs buffers.
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
 
-(toggle-frame-fullscreen)
-(add-to-list 'default-frame-alist '(fullscreen . fullscreen))
+
 
 (winner-mode 1)
 
