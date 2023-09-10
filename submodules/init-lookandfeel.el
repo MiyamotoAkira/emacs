@@ -6,6 +6,7 @@
 ;;; Code:
 ;; general modifications
 
+;; font size utilities to handle different screens and dpi
 (defun set-size-font (size)
   (set-face-attribute 'default nil :font (concat "Fira Code-" (number-to-string size))))
 
@@ -24,36 +25,7 @@
 
 (set-standard-font)
 
-(setq default-tab-width 4)
-
-;; highlight current line
-(global-hl-line-mode 1)
-
-;; line numbers
-(global-display-line-numbers-mode)
-
-;; by default highlight the matching paren
-(show-paren-mode)
-
-(dolist (mode '(eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
-;; Use tabs instead of spaces
-(setq-default indent-tabs-mode nil)
-
-;; full path in title bar
-(setq-default frame-title-format "%b (%f)")
-
-;; no bell
-(setq ring-bell-function 'ignore)
-
-(global-set-key [remap comment-dwim] #'comment-line)
-
-
-
-
-(winner-mode 1)
-
+;; This is the theme we are using
 (use-package solarized-theme
   :defer nil)
 
@@ -71,6 +43,33 @@
 
 ;; Doesn't work under Cider. Need to investigate.
 (global-set-key (kbd "C-c C-.") 'toggle-theme)
+
+;; highlight current line
+(global-hl-line-mode 1)
+
+;; line numbers
+(global-display-line-numbers-mode)
+
+;; by default highlight the matching paren
+(show-paren-mode)
+
+;; We avoid displaying numbers on eshell
+(dolist (mode '(eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;; Use tabs instead of spaces
+(setq-default indent-tabs-mode nil)
+(setq default-tab-width 4)
+
+;; full path in title bar
+(setq-default frame-title-format "%b (%f)")
+
+;; no bell
+(setq ring-bell-function 'ignore)
+
+(global-set-key [remap comment-dwim] #'comment-line)
+
+(winner-mode 1)
 
 (setq ansi-color-faces-vector
       [default default default italic underline success warning error])
@@ -103,6 +102,12 @@
 
 (global-prettify-symbols-mode 1)
 
+
+;; The end of a sentence is a single space.
+;; The double space is an old convention
+(setq sentence-end-double-space nil)
+
+;; This is the info line at the bottom of a buffer
 (use-package spaceline
   :defer nil
   :config
@@ -129,6 +134,7 @@
   :config
   (dimmer-mode))
 
+;; Maybe one day we change this, but don't use the mouse
 (use-package disable-mouse
   :defer 2
   :diminish disable-mouse-global-mode
@@ -153,6 +159,7 @@
       (shrink-window (- height 10))
       (select-window current))))
 
+;; All questions are y or n, for consistency
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (use-package page-break-lines
