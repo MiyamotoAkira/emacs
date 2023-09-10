@@ -19,15 +19,6 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-
-;; (unless (package-installed-p 'diminish)
-;;   (package-install 'diminish))
-
-(eval-when-compile
-  (require 'use-package))
-
 ;; By default we ensure everything
 (custom-set-variables '(use-package-always-ensure t))
 
