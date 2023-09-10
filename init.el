@@ -62,8 +62,9 @@
 (when (daemonp)
   (require 'init-nix))
 
-(require 'init-tools)
 (require 'init-lookandfeel)
+
+(require 'init-tools)
 (require 'init-languages)
 (require 'init-org)
 (require 'init-eldoc)
