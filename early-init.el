@@ -12,5 +12,4 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
-(toggle-frame-fullscreen)
-(add-to-list 'default-frame-alist '(fullscreen . fullscreen))
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
