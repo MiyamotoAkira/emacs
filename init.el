@@ -71,11 +71,6 @@
 
 (put 'upcase-region 'disabled nil)
 
-  ;; Back to standard gc threshold
-
-
-(setq gc-cons-threshold (* 50 1000 1000))
-
 (setq read-process-output-max (* 512 1024))
 ;;; init.el ends here
 

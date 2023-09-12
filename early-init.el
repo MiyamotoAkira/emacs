@@ -1,5 +1,5 @@
 ;; Less garbage collection to speed up the thing
-(setq gc-cons-threshold (* 100 1000 1000))
+(setq gc-cons-threshold 10000000)
 
 ;; reduce warnings when you start
 (setq byte-compile-warnings '(not obsolete))
