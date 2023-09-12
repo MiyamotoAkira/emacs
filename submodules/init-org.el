@@ -15,7 +15,7 @@
   ;; (org-special-ctrl-k t)
   )
 
-;; (use-package org-plus-contrib
+;; (use-package org-contrib
 ;;   :after org)
 
 (use-package visual-fill-column
@@ -79,8 +79,6 @@
 (use-package ob-rust
   :after org)
 
-(use-package ob-typescript
-  :after org)
 
 ;; Setting up babel for running code  in org mode
 (org-babel-do-load-languages
@@ -92,7 +90,6 @@
    (ruby . t)
    (fsharp . t)
    (js . t)
-   (typescript . t)
    (rust . t)
    (plantuml . t)))
 
