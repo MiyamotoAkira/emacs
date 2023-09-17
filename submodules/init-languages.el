@@ -424,16 +424,6 @@ interactive `pyvenv-workon' function before `lsp'"
 ;;   :config
 ;;   (require 'dap-java))
 
-;; (use-package eglot
-;;   :hook
-;;   ((fsharp-mode . eglot-ensure)))
-
-;; (use-package eglot-fsharp)
-
-;; (use-package fsharp-mode
-;;   :config
-;;   (add-to-list 'auto-mode-alist '("\\.fsproj\\'" . nxml-mode)))
-
 ;; (use-package haskell-mode
 ;;   :config
 ;;   (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
