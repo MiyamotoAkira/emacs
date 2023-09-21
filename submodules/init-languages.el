@@ -556,19 +556,31 @@ interactive `pyvenv-workon' function before `lsp'"
 ;;   :hook ((typescript-mode . prettier-js-mode)
 ;;          (web-mode . prettier-js-mode)))
 
-(use-package tuareg)
+(use-package tuareg
+  :mode (("\\.ocamlinit\\'" . tuareg-mode)))
 
 (use-package merlin
   :hook ((tuareg-mode . merlin-mode)
          (caml-mode . merlin-mode))
   :config
-  (setq merlin-command 'opam))
+  (setq merlin-command 'opam)
+  (setq merlin-error-after-save nil))
+
+(use-package flycheck-ocaml
+  :ensure t
+  :config
+  (flycheck-ocaml-setup))
 
 (use-package dune)
 
 (use-package merlin-company)
 
-(use-package merlin-eldoc)
+(use-package merlin-eldoc
+  :hook ((tuareg-mode) . merlin-eldoc-setup))
+
+(use-package ocp-indent
+  :hook ((tuareg-mode . (lambda () (setq 'ocp-setup-indent t)))
+         (caml-mode . (lambda () (setq 'ocp-indent-caml-mode-setup t)))))
 
 ;; (use-package go-mode
 ;;   :hook
