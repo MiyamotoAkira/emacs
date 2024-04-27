@@ -195,44 +195,6 @@ interactive `pyvenv-workon' function before `lsp'"
   :config
   (company-terraform-init))
 
-(use-package robe
-  :hook
-  ((ruby-mode . robe-mode))
-  :config
-  (push 'company-robe company-backend))
-
-(use-package lfe-mode)
-
-(use-package erlang)
-
-;; (use-package elm-mode)
-
-(use-package rust-mode)
-
-;; (use-package cargo
-;;   :defer t
-;;   :ensure t
-;;   :hook
-;;   ((rust-mode . cargo-minor-mode)))
-
-(use-package rustic
-  :after rust-mode
-  :hook ((rustic-mode . (lambda ()
-                          (lsp-ui-doc-mode)
-                          (company-mode))))
-  :config
-  (setq rustic-format-on-save t)
-  (add-to-list 'auto-mode-alist '("\\.rs\\'" . rustic-mode))
-  (custom-set-faces
-   '(rustic-compilation-column ((t (:inherit compilation-column-number))))
-   '(rustic-compilation-line ((t (:foreground "LimeGreen"))))))
-
-(use-package flycheck-rust
-  :hook
-  ((flycheck-mode . flycheck-rust-setup)))
-
-(use-package ron-mode)
-
 (use-package markdown-mode
   :diminish
   :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'")
@@ -242,20 +204,6 @@ interactive `pyvenv-workon' function before `lsp'"
 
 (use-package adoc-mode
   :diminish)
-
-(use-package elixir-mode
-  :hook
-  ((elixir-mode-hook . my-pretty-lambda-elixir)
-   (elixir-mode-hook . (lambda ()
-                         (setq tab-width 2)
-                         (setq indent-tabs-mode nil)))))
-
-(use-package alchemist
-  :init
-  (add-hook 'alchemist-mode-hook 'company-mode)
-  :hook
-  ((elixir-mode . alchemist-mode)))
-
 
 (use-package flycheck-clj-kondo)
 
@@ -355,12 +303,9 @@ interactive `pyvenv-workon' function before `lsp'"
   :commands (lsp lsp-deferred)
   :hook (;; (csharp-mode . lsp)
          ;; (python-mode . lsp)
-         ;; (java-mode . lsp)
          (clojure-mode . lsp)
          (clojurescript-mode . lsp)
          (clojurec-mode . lsp)
-         ;; (kotlin-mode . lsp)
-         ;; (scala-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :init (setq lsp-eldoc-render-all nil
               lsp-highlight-symbol-at-point nil
@@ -411,26 +356,6 @@ interactive `pyvenv-workon' function before `lsp'"
 
 (use-package lsp-ivy
   :commands lsp-ivy-workspace-symbol)
-
-
-;; (use-package lsp-java
-;;   :hook
-;;   ((java-mode . lsp-java-enable)
-;;    (java-mode . flycheck-mode)
-;;    (java-mode . company-mode)
-;;    (java-mode . (lambda () (lsp-ui-flycheck-enable t)))
-;;    (java-mode . lsp-ui-mode))
-
-;;   :config
-;;   (require 'dap-java))
-
-;; (use-package haskell-mode
-;;   :config
-;;   (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
-;;   :hook
-;;   ((haskell-mode . haskell-indentation-mode)))
-
-;; (use-package groovy-mode)
 
 (use-package slime
   :config
@@ -494,67 +419,10 @@ interactive `pyvenv-workon' function before `lsp'"
 
 (use-package luarocks)
 
-;; (use-package purescript-mode
-;;   :config
-;;   (add-to-list 'auto-mode-alist '("\\.purs\\'" . purescript-mode))
-;;   :hook
-;;   ((purescript-mode . turn-on-purescript-indentation)))
-
-;; (use-package psc-ide
-;;   :hook
-;;   (purescript-mode . (lambda ()
-;;                        (psc-ide-mode)
-;;                        (company-mode)
-;;                        (flycheck-mode))))
-
-;; (use-package csharp-mode)
-
-;; (add-to-list 'load-path "~/code/externals/csproj-mode")
-;; (use-package csproj-mode)
-
-;; (use-package dotnet
-;;   :hook ((csharp-mode . dotnet-mode)))
-
 (use-package powershell)
-
-;; (use-package kotlin-mode)
 
 (use-package graphviz-dot-mode)
 
-;; (use-package typescript-mode
-;;   :mode ("\\.ts\\'"))
-
-;; (defun setup-tide-mode ()
-;;   (interactive)
-;;   (tide-setup)
-;;   (flycheck-mode +1)
-;;   (setq flycheck-check-syntax-automatically '(save mode-enabled))
-;;   (eldoc-mode +1)
-;;   (tide-hl-identifier-mode +1)
-;;   ;; company is an optional dependency. You have to
-;;   ;; install it separately via package-install
-;;   ;; `M-x package-install [ret] company`
-;;   (company-mode +1))
-
-;; (use-package tide
-;;   :after (typescript-mode company flycheck)
-;;   :hook ((typescript-mode . setup-tide-mode)
-;;          (typescript-mode . (lambda ()
-;;                               (setq typescript-indent-level 4))))
-;;   :bind (
-;;          :map tide-mode-map
-;;          ("C-c r" . tide-rename-symbol)
-;;          ("C-c f" . tide-fix)
-;;          ("C-c ." . #'tide-jump-to-definition)
-;;          ("C-c ," . #'tide-jump-back)
-;;          ("C-c /" . #'tide-jump-to-implementation))
-;;   :config
-;;   (setq tide-format-options '(:indentSize 4 :insertSpaceBeforeFunctionParenthesis t :insertSpaceAfterFunctionKeywordForAnonymousFunctions t :insertSpaceAfterConstructor t)))
-
-;; (use-package prettier-js
-;;   :diminish
-;;   :hook ((typescript-mode . prettier-js-mode)
-;;          (web-mode . prettier-js-mode)))
 
 (use-package tuareg
   :mode (("\\.ocamlinit\\'" . tuareg-mode)))
@@ -582,31 +450,8 @@ interactive `pyvenv-workon' function before `lsp'"
   :hook ((tuareg-mode . (lambda () (setq 'ocp-setup-indent t)))
          (caml-mode . (lambda () (setq 'ocp-indent-caml-mode-setup t)))))
 
-;; (use-package go-mode
-;;   :hook
-;;   ((go-mode . lsp-deferred)))
 
 (use-package glsl-mode)
-
-;; (use-package scala-mode
-;;   :interpreter
-;;   ("scala" . scala-mode))
-
-;; ;; (use-package lsp-metals
-;; ;;   :ensure tddd
-;; ;;   ;; Metals claims to support range formatting by default but it supports range
-;; ;;   ;; formatting of multiline strings only. You might want to disable it so that
-;; ;;   ;; emacs can use indentation provided by scala-mode.
-;; ;;   (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off")))
-
-;; (use-package sbt-mode
-;;   :commands sbt-start sbt-command
-;;   :config
-;;   ;; WORKAROUND: allows using SPACE when in the minibuffer
-;;   (substitute-key-definition
-;;    'minibuffer-complete-word
-;;    'self-insert-command
-;;    minibuffer-local-completion-map))
 
 (provide 'init-languages)
 ;;; init-languages.el ends here
