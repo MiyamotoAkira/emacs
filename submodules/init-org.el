@@ -70,27 +70,14 @@
             'jgg/org-present-slide))
 
 
-(use-package ob-elixir
-  :after org)
-
-(use-package ob-fsharp
-  :after org)
-
-(use-package ob-rust
-  :after org)
 
 
 ;; Setting up babel for running code  in org mode
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
-   (elixir . t)
    (clojure . t)
    (shell . t)
-   (ruby . t)
-   (fsharp . t)
-   (js . t)
-   (rust . t)
    (plantuml . t)))
 
 (setq org-confirm-babel-evaluate nil
