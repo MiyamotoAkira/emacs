@@ -107,25 +107,7 @@
                    (setup-tide-mode))))))
 
 
-;; (use-package vue-mode)
-
-;; (use-package eslintd-fix
-;;   :hook
-;;   ((js-mode . eslintd-fix-mode)
-;;    (vue-mode . eslintd-fix-mode)))
-
 (use-package json-mode)
-
-;; (use-package elpy
-;;   :ensure t
-;;   :defer t
-;;   :hook ((elpy-mode . flycheck-mode))
-;;   :bind (
-;;          :map elpy-mode-map
-;;          ("C-c ." . #'elpy-goto-definition)
-;;          ("C-c /" . #'elpy-goto-implementation))
-;;   :init
-;;   (advice-add 'python-mode :before 'elpy-enable))
 
 ;; Copied from https://ddavis.io/posts/emacs-python-lsp/
 (defun dd/py-workon-project-venv ()
@@ -181,11 +163,7 @@ interactive `pyvenv-workon' function before `lsp'"
 (use-package dockerfile-mode
   :mode "\\.Dockerfile\\'")
 
-;; (use-package gradle-mode)
-
 (use-package yaml-mode)
-
-;; (use-package puppet-mode)
 
 (use-package terraform-mode
   :hook
@@ -285,10 +263,6 @@ interactive `pyvenv-workon' function before `lsp'"
              ("w" . kaocha-runner-show-warnings)
              ("h" . kaocha-runner-hide-windows)))
 
-;; (use-package java-imports
-;;   :config
-;;   (add-hook 'java-mode-hook 'java-imports-scan-file))
-
 (setq lsp-keymap-prefix "C-c l")
 
 (use-package mermaid-mode
@@ -335,15 +309,6 @@ interactive `pyvenv-workon' function before `lsp'"
 
 (use-package lsp-treemacs
   :commands lsp-treemacs-errors-list)
-
-;; (use-package company-lsp
-;;   :after company
-;;   :ensure t
-;;   :hook
-;;   ((java-mode . (lambda () (push 'company-lsp company-backends))))
-;;   :config
-;;   (setq company-lsp-cache-candidates t)
-;;   (push 'company-lsp company-backend))
 
 
 (use-package dap-mode
