@@ -147,6 +147,12 @@ interactive `pyvenv-workon' function before `lsp'"
 
 (autoload 'python-mode "python-mode")
 
+(use-package python-docstring)
+
+(use-package apheleia
+  :diminish
+  :init (apheleia-global-mode +1))
+
 (use-package blacken
   :hook ((python-mode . blacken-mode)))
 
