@@ -426,11 +426,15 @@ interactive `pyvenv-workon' function before `lsp'"
 (use-package merlin-company)
 
 (use-package merlin-eldoc
-  :hook ((tuareg-mode) . merlin-eldoc-setup))
+  :hook ((tuareg-mode caml-mode) . merlin-eldoc-setup))
 
 (use-package ocp-indent
-  :hook ((tuareg-mode . (lambda () (setq 'ocp-setup-indent t)))
-         (caml-mode . (lambda () (setq 'ocp-indent-caml-mode-setup t)))))
+  :hook ((tuareg-mode . (lambda () (setq ocp-setup-indent t)))
+         (caml-mode . (lambda () (setq ocp-indent-caml-mode-setup t)))))
+
+(use-package opam-switch-mode
+  :hook
+  ((tuareg.mode . opam-switch-mode)))
 
 
 (use-package glsl-mode)
