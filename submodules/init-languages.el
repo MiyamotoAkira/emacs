@@ -13,6 +13,11 @@
   :config
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
+
+(use-package pet
+  :config
+  (add-hook 'python-base-mode-hook 'pet-mode -10))
+
 (use-package yasnippet
   :diminish yas-minor-mode
   ;; :defines tools-map
