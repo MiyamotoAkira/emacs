@@ -190,6 +190,8 @@ interactive `pyvenv-workon' function before `lsp'"
   :config
   (company-terraform-init))
 
+(use-package go-mode)
+
 (use-package markdown-mode
   :diminish
   :mode ("\\.text\\'" "\\.markdown\\'" "\\.md\\'")
