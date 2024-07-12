@@ -27,6 +27,26 @@
 
   (global-treesit-auto-mode))
 
+;; Configuration of Go
+
+(use-package go-mode)
+
+(dolist (mapping '((go-mode . go-ts-mode)))
+  (add-to-list 'major-mode-remap-alist mapping))
+
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
+(add-to-list 'auto-mode-alist '("/go\\.mod\\'" . go-mod-ts-mode))
+
+(add-hook 'go-mode-hook (lambda ()
+                          (setq tab-width 4)
+                          (setq indent-tabs-mode 1)))
+
+(add-hook 'go-ts-mode-hook (lambda ()
+                             (setq tab-width 4)
+                             (setq indent-tabs-mode 1)))
+
+;; end of Configuration of Go
+
 (use-package pet
   :config
   (add-hook 'python-base-mode-hook 'pet-mode -10))
@@ -202,8 +222,6 @@ interactive `pyvenv-workon' function before `lsp'"
 (use-package company-terraform
   :config
   (company-terraform-init))
-
-(use-package go-mode)
 
 (use-package markdown-mode
   :diminish
