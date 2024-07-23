@@ -70,7 +70,7 @@
 ;; Automatically reread from disk if the underlying file changes
 (setq auto-revert-interval 1)
 (setq auto-revert-check-vc-info t)
-(global-auto-revert-mode)
+(global-auto-revert-mode t)
 
 (global-set-key [remap comment-dwim] #'comment-line)
 
