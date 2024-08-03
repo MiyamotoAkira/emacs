@@ -43,7 +43,8 @@
 
 (add-hook 'go-ts-mode-hook (lambda ()
                              (setq tab-width 4)
-                             (setq indent-tabs-mode 1)))
+                             (setq indent-tabs-mode 1)
+                             (setq go-ts-mode-indent-offset 4)))
 
 ;; end of Configuration of Go
 
