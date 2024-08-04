@@ -46,6 +46,15 @@
                              (setq indent-tabs-mode 1)
                              (setq go-ts-mode-indent-offset 4)))
 
+(use-package gotest
+  :diminish
+  :bind (:map go-ts-mode-map
+              ("C-c t f" . go-test-current-file)
+	      ("C-c t t" . go-test-current-test)
+	      ("C-c t p" . go-test-current-project)
+	      ("C-c t b" . go-test-current-benchmark)
+              ("C-c t c" . go-test-current-coverage)
+              ("C-c x" . go-run)))
 ;; end of Configuration of Go
 
 (use-package pet
