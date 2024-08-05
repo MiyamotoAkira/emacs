@@ -48,6 +48,7 @@
 
 (use-package gotest
   :diminish
+  :after go-ts-mode
   :bind (:map go-ts-mode-map
               ("C-c t f" . go-test-current-file)
 	      ("C-c t t" . go-test-current-test)
