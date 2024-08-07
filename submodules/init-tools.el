@@ -257,5 +257,11 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
   (alert-default-style 'libnotify)
   (pomm-audio-enabled t))
 
+(add-hook 'eglot-managed-mode-hook
+          (lambda ()
+            (bind-keys :map eglot-mode-map
+                       ("C-c e a" . eglot-code-actions)
+                       ("C-c e r" . eglot-rename))))
+
 (provide 'init-tools)
 ;;; init-tools.el ends here
