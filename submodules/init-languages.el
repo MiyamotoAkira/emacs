@@ -58,10 +58,6 @@
               ("C-c x" . go-run)))
 ;; end of Configuration of Go
 
-(use-package pet
-  :config
-  (add-hook 'python-base-mode-hook 'pet-mode -10))
-
 (use-package yasnippet
   :diminish yas-minor-mode
   ;; :defines tools-map
@@ -164,6 +160,12 @@
 
 (use-package json-mode)
 
+;; Python setup
+
+(use-package pet
+  :config
+  (add-hook 'python-base-mode-hook 'pet-mode -10))
+
 ;; Copied from https://ddavis.io/posts/emacs-python-lsp/
 (defun dd/py-workon-project-venv ()
   "Call pyenv-workon with the current projectile project name.
@@ -221,6 +223,8 @@ interactive `pyvenv-workon' function before `lsp'"
   :init
   (setenv "WORKON_HOME" "~/.pyenv/versions"))
 
+;; end of Python setup
+
 (use-package dockerfile-mode
   :mode "\\.Dockerfile\\'")
 
@@ -244,6 +248,7 @@ interactive `pyvenv-workon' function before `lsp'"
 (use-package adoc-mode
   :diminish)
 
+;; Clojure setup
 (use-package flycheck-clj-kondo)
 
 (use-package cider
@@ -324,7 +329,7 @@ interactive `pyvenv-workon' function before `lsp'"
              ("w" . kaocha-runner-show-warnings)
              ("h" . kaocha-runner-hide-windows)))
 
-(setq lsp-keymap-prefix "C-c l")
+;; end of clojure setup
 
 (use-package mermaid-mode
   :mode ("\\.mmd\\'")
@@ -333,11 +338,13 @@ interactive `pyvenv-workon' function before `lsp'"
   :config
   (setq mermaid-mmdc-location "/home/akira/node_modules/.bin/mmdc"))
 
+;; LSP setup
+(setq lsp-keymap-prefix "C-c l")
+
 (use-package lsp-mode
   :defines lsp-highlight-symbol-at-point
   :commands (lsp lsp-deferred)
   :hook (;; (csharp-mode . lsp)
-         ;; (python-mode . lsp)
          (clojure-mode . lsp)
          (clojurescript-mode . lsp)
          (clojurec-mode . lsp)
@@ -382,6 +389,8 @@ interactive `pyvenv-workon' function before `lsp'"
 
 (use-package lsp-ivy
   :commands lsp-ivy-workspace-symbol)
+
+;; End of LSP setup
 
 (use-package slime
   :config
@@ -449,6 +458,7 @@ interactive `pyvenv-workon' function before `lsp'"
 
 (use-package graphviz-dot-mode)
 
+;; OCAML setup
 
 (use-package tuareg
   :mode (("\\.ocamlinit\\'" . tuareg-mode)))
@@ -480,6 +490,7 @@ interactive `pyvenv-workon' function before `lsp'"
   :hook
   ((tuareg.mode . opam-switch-mode)))
 
+;; End of OCAML setup
 
 (use-package glsl-mode)
 
