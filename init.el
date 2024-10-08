@@ -36,11 +36,12 @@
 
 (require 'init-packaging)
 
+(require 'bind-key)
+
 ;; This is to move setup into an org file
 (require 'org)
 (org-babel-load-file (expand-file-name "org-configuration.org" user-emacs-directory))
-
-(require 'bind-key)
+(org-babel-load-file (expand-file-name "lookandfeel.org" user-emacs-directory))
 
 
 ;; ;; macos special path info (shell and non-shell apps get different paths)
@@ -65,7 +66,6 @@
 (when (daemonp)
   (require 'init-nix))
 
-(require 'init-lookandfeel)
 
 (require 'init-tools)
 (require 'init-languages)

@@ -1,11 +1,3 @@
-;;; package --- Summary
-;;;Look and feel of Emacs
-
-;;; Commentary:
-
-;;; Code:
-;; general modifications
-
 ;; font size utilities to handle different screens and dpi
 (defun set-size-font (size)
   (set-face-attribute 'default nil :font (concat "Fira Code-" (number-to-string size))))
@@ -27,35 +19,36 @@
 
 ;; This is the theme we are using
 (use-package solarized-theme
-  :defer nil)
+      :defer nil)
 
 (load-theme 'solarized-dark t)
 
 (defvar current-dark t)
 
 (defun toggle-theme ()
-  "Change the theme used on Emacs between a dark and a light themes."
-  (interactive)
-  (if current-dark
-      (load-theme 'solarized-light t)
-    (load-theme 'solarized-dark t))
-  (setq current-dark (not current-dark)))
+      "Change the theme used on Emacs between a dark and a light themes."
+      (interactive)
+      (if current-dark
+          (load-theme 'solarized-light t)
+        (load-theme 'solarized-dark t))
+      (setq current-dark (not current-dark)))
 
 ;; Doesn't work under Cider. Need to investigate.
 (global-set-key (kbd "C-c C-.") 'toggle-theme)
 
-;; highlight current line
 (global-hl-line-mode 1)
+
+(use-package beacon)
 
 ;; line numbers
 (global-display-line-numbers-mode)
 
-;; by default highlight the matching paren
-(show-paren-mode)
-
 ;; We avoid displaying numbers on eshell
 (dolist (mode '(eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;; by default highlight the matching paren
+(show-paren-mode)
 
 ;; Use tabs instead of spaces
 (setq-default indent-tabs-mode nil)
@@ -106,7 +99,6 @@
         '(("fn" . 955))))
 
 (global-prettify-symbols-mode 1)
-
 
 ;; The end of a sentence is a single space.
 ;; The double space is an old convention
@@ -185,7 +177,3 @@
                           (bookmarks . 5)
                           (projects . 5)
                           (agenda . 5))))
-
-(provide 'init-lookandfeel)
-;;; init-lookandfeel.el ends here
-
