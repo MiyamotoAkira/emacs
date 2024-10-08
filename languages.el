@@ -1,12 +1,3 @@
-;;; package --- Summary
-;;;Languages setup
-
-;;; Commentary:
-;;; Here we are setting up all the neccessary elements for
-;;; the support of several languages.
-
-;;; Code:
-
 (setq treesit-language-source-alist
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
         (css "https://github.com/tree-sitter/tree-sitter-css")
@@ -78,23 +69,23 @@
 
 (use-package flycheck-pos-tip)
 
+(use-package flycheck
+:after (flycheck-pos-tip-mode)
+:config
+(show-paren-mode 1)
+(flycheck-pos-tip-mode)
+(setq-default flycheck-disabled-checkers
+              (append flycheck-disabled-checkers
+                      '(javascript-jshint)))
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+:hook
+((after-init . global-flycheck-mode)))
+
 (use-package eldoc
   :diminish
   :hook
   (prog-mode . turn-on-eldoc-mode)
   (cider-repl-mode . turn-on-eldoc-mode))
-
-(use-package flycheck
-  :after (flycheck-pos-tip-mode)
-  :config
-  (show-paren-mode 1)
-  (flycheck-pos-tip-mode)
-  (setq-default flycheck-disabled-checkers
-                (append flycheck-disabled-checkers
-                        '(javascript-jshint)))
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  :hook
-  ((after-init . global-flycheck-mode)))
 
 (use-package tagedit)
 
@@ -102,16 +93,6 @@
   :diminish
   :config
   (editorconfig-mode 1))
-
-;; (use-package highlight-indentation
-;;   :defer nil
-;;   :hook
-;;   ((prog-mode . highlight-indentation-mode)))
-
-;; (use-package highlight-sexp
-;;   :quelpa (abc-mode :fetcher github :repo "daimrod/highlight-sexp")
-;;   :hook
-;;   ((clojure-mode lisp-mode emacs-lisp-mode) . highlight-sexp-mode))
 
 (use-package aggressive-indent
   :hook
@@ -157,10 +138,7 @@
                  (when (string-equal "tsx" (file-name-extension buffer-file-name))
                    (setup-tide-mode))))))
 
-
 (use-package json-mode)
-
-;; Python setup
 
 (use-package pet
   :config
@@ -223,8 +201,6 @@ interactive `pyvenv-workon' function before `lsp'"
   :init
   (setenv "WORKON_HOME" "~/.pyenv/versions"))
 
-;; end of Python setup
-
 (use-package dockerfile-mode
   :mode "\\.Dockerfile\\'")
 
@@ -248,7 +224,6 @@ interactive `pyvenv-workon' function before `lsp'"
 (use-package adoc-mode
   :diminish)
 
-;; Clojure setup
 (use-package flycheck-clj-kondo)
 
 (use-package cider
@@ -329,8 +304,6 @@ interactive `pyvenv-workon' function before `lsp'"
              ("w" . kaocha-runner-show-warnings)
              ("h" . kaocha-runner-hide-windows)))
 
-;; end of clojure setup
-
 (use-package mermaid-mode
   :mode ("\\.mmd\\'")
   ;; Uncomment when testing improvements
@@ -390,8 +363,6 @@ interactive `pyvenv-workon' function before `lsp'"
 (use-package lsp-ivy
   :commands lsp-ivy-workspace-symbol)
 
-;; End of LSP setup
-
 (use-package slime
   :config
   (setq inferior-lisp-program "/usr/bin/sbcl")
@@ -408,8 +379,6 @@ interactive `pyvenv-workon' function before `lsp'"
   :config
   (setq slime-company-major-modes (quote (lisp-mode slime-repl-mode))))
 
-
-;; This one has to happen after all modes that use parens are loaded
 (use-package paredit
   :diminish
   :init
@@ -458,8 +427,6 @@ interactive `pyvenv-workon' function before `lsp'"
 
 (use-package graphviz-dot-mode)
 
-;; OCAML setup
-
 (use-package tuareg
   :mode (("\\.ocamlinit\\'" . tuareg-mode)))
 
@@ -490,10 +457,4 @@ interactive `pyvenv-workon' function before `lsp'"
   :hook
   ((tuareg.mode . opam-switch-mode)))
 
-;; End of OCAML setup
-
 (use-package glsl-mode)
-
-(provide 'init-languages)
-;;; init-languages.el ends here
-
