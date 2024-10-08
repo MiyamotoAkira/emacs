@@ -1,0 +1,9 @@
+#+LANGUAGE: en
+
+
+** Org Roam section
+*** org-roam-ui
+This allows you to see a graph on the browser of the org roam nodes
+#+BEGIN_SRC emacs-lisp
+  (use-package org-roam-ui)
+#+END_SRC
