@@ -42,7 +42,6 @@
 
 (require 'bind-key)
 
-(setq org-roam-v2-ack t)
 
 ;; ;; macos special path info (shell and non-shell apps get different paths)
 ;; ;; not sure if needed due to the below
@@ -70,7 +69,6 @@
 
 (require 'init-tools)
 (require 'init-languages)
-(require 'init-org)
 (require 'init-eldoc)
 
 (put 'upcase-region 'disabled nil)
