@@ -237,10 +237,10 @@ This allows you to see a graph on the browser of the org roam nodes
 #+BEGIN_SRC emacs-lisp
 ;; font size utilities to handle different screens and dpi
 (defun set-size-font (size)
-  (set-face-attribute 'default nil :font (concat "Fira Code-" (number-to-string size))))
+  (set-face-attribute 'default nil :font (concat "Iosevka Curly Extended-" (number-to-string size))))
 
 (defun set-standard-font ()
-  (set-size-font 10))
+  (set-size-font 12))
 
 (defun set-sharing-font ()
   (set-size-font 16))
