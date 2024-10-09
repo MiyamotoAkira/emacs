@@ -1,4 +1,5 @@
 #+LANGUAGE: en
+#+auto_tangle: t
 
 * Org Configuration
 This file configures the org mode and associated package
@@ -20,6 +21,15 @@ This file configures the org mode and associated package
 
 
 ** Org Utilities
+*** auto tangle
+This allows for a file that we want to tangle (convert into code), to have it done on save. It does require to add
+the `#+auto_tangle: t` at the top of the org file
+#+BEGIN_SRC emacs-lisp
+(use-package org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode))
+#+END_SRC
+
 *** org-modern
 This package improves the look of org-mode on Emacs. Be aware that some fonts don't have all the necessary glyphs
 #+BEGIN_SRC emacs-lisp

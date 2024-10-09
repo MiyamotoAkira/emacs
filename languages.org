@@ -1,3 +1,4 @@
+#+auto_tangle: t
 
 #+BEGIN_SRC emacs-lisp
 (setq treesit-language-source-alist

@@ -10,6 +10,10 @@
   ;; (org-special-ctrl-k t)
   )
 
+(use-package org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode))
+
 (use-package org-modern)
 (with-eval-after-load 'org (global-org-modern-mode))
 

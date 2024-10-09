@@ -1,4 +1,5 @@
 #+LANGUAGE: en
+#+auto_tangle: t
 
 * Look and Feel
 
