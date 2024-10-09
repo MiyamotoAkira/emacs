@@ -264,7 +264,7 @@ highlight current line
 (use-package beacon)
 #+END_SRC
 
-
+*** Line numbers
  #+BEGIN_SRC emacs-lisp
   ;; line numbers
   (global-display-line-numbers-mode)
@@ -274,12 +274,13 @@ highlight current line
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+END_SRC
 
+*** Parens
 #+BEGIN_SRC emacs-lisp
 ;; by default highlight the matching paren
 (show-paren-mode)
 #+END_SRC
 
-
+*** Tabs
 #+BEGIN_SRC emacs-lisp
 ;; Use tabs instead of spaces
 (setq-default indent-tabs-mode nil)
@@ -296,8 +297,9 @@ highlight current line
 (setq ring-bell-function 'ignore)
 #+END_SRC
 
+*** Auto revert
+Automatically reread from disk if the underlying file changes
 #+BEGIN_SRC emacs-lisp
-;; Automatically reread from disk if the underlying file changes
 (setq auto-revert-interval 1)
 (setq auto-revert-check-vc-info t)
 (global-auto-revert-mode t)
@@ -307,6 +309,8 @@ highlight current line
 (global-set-key [remap comment-dwim] #'comment-line)
 #+END_SRC
 
+*** winner mode
+We activate winner mode
 #+BEGIN_SRC emacs-lisp
 (winner-mode 1)
 #+END_SRC
