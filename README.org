@@ -249,6 +249,13 @@ This allows you to see a graph on the browser of the org roam nodes
 
 #+END_SRC
 
+Solaire makes clear which buffers are not related to a file
+#+BEGIN_SRC emacs-lisp
+(use-package solaire-mode
+  :ensure t
+  :hook (after-init . solaire-global-mode))
+#+END_SRC
+
 *** Highlight Lines
 highlight current line
 #+BEGIN_SRC emacs-lisp
