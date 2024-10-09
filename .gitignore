@@ -71,3 +71,6 @@ org-roam.db
 data/
 
 eln-cache/
+
+# No need to have the tangled readme file in git
+README.el

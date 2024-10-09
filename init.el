@@ -40,12 +40,7 @@
 
 ;; This is to move setup into an org file
 (require 'org)
-(org-babel-load-file (expand-file-name "org-configuration.org" user-emacs-directory))
-(org-babel-load-file (expand-file-name "lookandfeel.org" user-emacs-directory))
-(org-babel-load-file (expand-file-name "languages.org" user-emacs-directory))
-(org-babel-load-file (expand-file-name "tools.org" user-emacs-directory))
-(org-babel-load-file (expand-file-name "eldoc.org" user-emacs-directory))
-
+(org-babel-load-file (expand-file-name "README.org" user-emacs-directory))
 ;; ;; macos special path info (shell and non-shell apps get different paths)
 ;; ;; not sure if needed due to the below
 ;; ;;(if (eq system-type 'darwin)
