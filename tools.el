@@ -11,7 +11,6 @@
   (setq auto-save-file-name-transforms
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
-;; Automatically save the last place we were on files when closing buffers
 (use-package saveplace
   :defer nil
   :config
@@ -257,3 +256,6 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
             (bind-keys :map eglot-mode-map
                        ("C-c e a" . eglot-code-actions)
                        ("C-c e r" . eglot-rename))))
+
+(global-set-key (kbd "C-c M-r s") 'replace-string)
+(global-set-key (kbd "C-c M-r r") 'replace-regexp)

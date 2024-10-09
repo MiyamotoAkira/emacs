@@ -332,3 +332,11 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
                        ("C-c e a" . eglot-code-actions)
                        ("C-c e r" . eglot-rename))))
 #+END_SRC
+
+*** Replace
+Keybindings for this set of often used calls.
+Remember that projectile has "C-c p r" for replace in the project
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c M-r s") 'replace-string)
+(global-set-key (kbd "C-c M-r r") 'replace-regexp)
+#+END_SRC
