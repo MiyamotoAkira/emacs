@@ -200,8 +200,6 @@ This allows you to see a graph on the browser of the org roam nodes
 
 * Look and Feel
 
-* Look and Feel
-
 *** Font size modifications
 
 #+BEGIN_SRC emacs-lisp
