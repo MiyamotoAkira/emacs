@@ -69,8 +69,6 @@
   (require 'init-nix))
 
 
-(require 'init-eldoc)
-
 (put 'upcase-region 'disabled nil)
 
 (setq read-process-output-max (* 512 1024))
