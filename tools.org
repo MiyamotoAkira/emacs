@@ -4,7 +4,8 @@
 (use-package async)
 #+END_SRC
 
-
+*** Trash files
+We want to limit the amount and location of files created by emacs.
 #+BEGIN_SRC emacs-lisp
 (setq no-littering-etc-directory
       (expand-file-name "config/" user-emacs-directory))
@@ -18,13 +19,17 @@
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 #+END_SRC
 
+*** saveplace
+Automatically save the last place we were on files when closing 
 #+BEGIN_SRC emacs-lisp
-;; Automatically save the last place we were on files when closing buffers
 (use-package saveplace
   :defer nil
   :config
   (save-place-mode))
 #+END_SRC
+
+*** monky
+Like magit but for Mercurial
 
 #+BEGIN_SRC emacs-lisp
 (use-package monky
@@ -33,6 +38,8 @@
 (defun nothing())
 #+END_SRC
 
+*** ag
+Using ag, the silver searcher, from inside emacs
 #+BEGIN_SRC emacs-lisp
 (use-package ag
   :bind (("C-c a a" . ag)
@@ -45,17 +52,24 @@
   (setq ag-highlight-search 't))
 #+END_SRC
 
+*** magit
+Porcelain for git
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :bind (("C-x g" . magit-status)))
 #+END_SRC
 
+*** command-log-mode
+This will show on a tab on the side the keybindings used
 #+BEGIN_SRC emacs-lisp
 (use-package command-log-mode
   :custom
   (command-log-mode-key-binding-open-log "C-c C-o"))
 #+END_SRC
 
+*** Project handling
+Projectile handles project, perspective handles set of buffers. Together make it so you
+can have separate set of buffers for each project. And each project can work independently of each other
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
   :diminish
