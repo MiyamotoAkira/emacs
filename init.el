@@ -41,28 +41,6 @@
 ;; This is to move setup into an org file
 (require 'org)
 (org-babel-load-file (expand-file-name "README.org" user-emacs-directory))
-;; ;; macos special path info (shell and non-shell apps get different paths)
-;; ;; not sure if needed due to the below
-;; ;;(if (eq system-type 'darwin)
-;; ;;	(add-to-list 'my-packages 'exec-path-from-shell))
-
-;; This is to get the path variable read from
-;; the shell environment.
-
-
-(if (memq window-system '(mac ns))
-    (setenv "SHELL" "/bin/zsh"))
-
-(if (memq window-system '(mac ns x))
-    (require 'init-nix)
-  (require 'init-windows))
-
-;; If we start the daemon we are on a nix system
-
-
-(when (daemonp)
-  (require 'init-nix))
-
 
 (put 'upcase-region 'disabled nil)
 
