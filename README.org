@@ -1,8 +1,84 @@
 #+LANGUAGE: en
 #+auto_tangle: t
 
-* Emacs
+#+BEGIN_QUOTE
+* Table of Contents                                                     :TOC_3:
+- [[#emacs][Emacs]]
+- [[#os][OS]]
+- [[#org-configuration][Org Configuration]]
+  - [[#main-org-section][Main Org Section]]
+  - [[#org-utilities][Org Utilities]]
+    - [[#auto-tangle][auto tangle]]
+    - [[#org-modern][org-modern]]
+    - [[#visual-fill-column][visual-fill-column]]
+    - [[#org-babel][org babel]]
+    - [[#toc-org][toc-org]]
+    - [[#org-download][org-download]]
+    - [[#org-ref][org-ref]]
+    - [[#org-present][org-present]]
+  - [[#org-roam-section][Org Roam section]]
+    - [[#org-roam][org-roam]]
+    - [[#org-roam-ui][org-roam-ui]]
+- [[#look-and-feel][Look and Feel]]
+    - [[#font-size-modifications][Font size modifications]]
+    - [[#themes][Themes]]
+    - [[#highlight-lines][Highlight Lines]]
+    - [[#line-numbers][Line numbers]]
+    - [[#parens][Parens]]
+    - [[#tabs][Tabs]]
+    - [[#title-bar][Title bar]]
+    - [[#bell][Bell]]
+    - [[#auto-revert][Auto revert]]
+    - [[#winner-mode][winner mode]]
+    - [[#selection-behaviour][Selection behaviour]]
+    - [[#diminish][diminish]]
+    - [[#prettify-symbols][Prettify symbols]]
+    - [[#end-of-line-spaces][End of line spaces]]
+    - [[#spaceline][spaceline]]
+    - [[#which-key][which-key]]
+    - [[#smooth-scrolling][smooth-scrolling]]
+    - [[#disable-mouse][disable-mouse]]
+    - [[#splitting-of-buffers][Splitting of buffers]]
+    - [[#yes-or-no][Yes or No]]
+    - [[#dashboard][Dashboard]]
+- [[#tools][Tools]]
+    - [[#async][async]]
+    - [[#trash-files][Trash files]]
+    - [[#saveplace][saveplace]]
+    - [[#monky][monky]]
+    - [[#ag][ag]]
+    - [[#magit][magit]]
+    - [[#command-log-mode][command-log-mode]]
+    - [[#project-handling][Project handling]]
+    - [[#replace][Replace]]
+- [[#languages][Languages]]
+    - [[#treesit][Treesit]]
+    - [[#go][Go]]
+    - [[#yasnippet][Yasnippet]]
+    - [[#flycheck][Flycheck]]
+    - [[#eldoc][eldoc]]
+    - [[#company][Company]]
+    - [[#json][Json]]
+    - [[#python][Python]]
+    - [[#docker][Docker]]
+    - [[#yaml][Yaml]]
+    - [[#terraform][Terraform]]
+    - [[#markdown][Markdown]]
+    - [[#clojure][Clojure]]
+    - [[#mermaid][Mermaid]]
+    - [[#lsp][LSP]]
+    - [[#common-lisp][Common Lisp]]
+    - [[#parens-1][Parens!!!!]]
+    - [[#latex][Latex]]
+    - [[#scheme][Scheme]]
+    - [[#lua][Lua]]
+    - [[#powershell][Powershell]]
+    - [[#graphviz][Graphviz]]
+    - [[#ocaml][OCAML]]
+
+* Emacs                                                                 
 My emacs configuration file.
+
 
 * OS
 Configuration that depends on the Operative system
@@ -94,6 +170,14 @@ Setting up babel for running code in org mode
 (setq org-confirm-babel-evaluate nil
       org-src-fontify-natively t
       org-src-tab-acts-natively t)
+#+END_SRC
+
+*** toc-org
+Creates automatically a table of contents for you
+#+BEGIN_SRC emacs-lisp
+  (use-package toc-org
+    :defer t
+    :hook (org-mode-hook . toc-org-mode))
 #+END_SRC
 
 *** org-download
