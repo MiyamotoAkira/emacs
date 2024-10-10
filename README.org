@@ -1,7 +1,6 @@
 #+LANGUAGE: en
 #+auto_tangle: t
 
-#+BEGIN_QUOTE
 * Table of Contents                                                     :TOC_3:
 - [[#emacs][Emacs]]
 - [[#os][OS]]
