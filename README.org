@@ -73,6 +73,7 @@ This package improves the look of org-mode on Emacs. Be aware that some fonts do
 #+END_SRC
 
 *** visual-fill-column
+Useful for org present
 #+BEGIN_SRC emacs-lisp
 (use-package visual-fill-column
   :config
@@ -298,34 +299,36 @@ highlight current line
 
 *** Line numbers
  #+BEGIN_SRC emacs-lisp
-  ;; line numbers
-  (global-display-line-numbers-mode)
-
-  ;; We avoid displaying numbers on eshell
-  (dolist (mode '(eshell-mode-hook))
-    (add-hook mode (lambda () (display-line-numbers-mode 0))))
+(global-display-line-numbers-mode)
+#+END_SRC
+We avoid displaying numbers on eshell
+#+BEGIN_SRC emacs-lisp
+(dolist (mode '(eshell-mode-hook))
+        (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+END_SRC
 
 *** Parens
+by default highlight the matching paren
 #+BEGIN_SRC emacs-lisp
-;; by default highlight the matching paren
 (show-paren-mode)
 #+END_SRC
 
 *** Tabs
+Use tabs instead of spaces
 #+BEGIN_SRC emacs-lisp
-;; Use tabs instead of spaces
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
 #+END_SRC
 
+*** Title bar
+full path in title bar
 #+BEGIN_SRC emacs-lisp
-;; full path in title bar
 (setq-default frame-title-format "%b (%f)")
 #+END_SRC
 
+*** Bell
+We don't want a bell
 #+BEGIN_SRC emacs-lisp
-;; no bell
 (setq ring-bell-function 'ignore)
 #+END_SRC
 
@@ -352,49 +355,49 @@ We activate winner mode
       [default default default italic underline success warning error])
 #+END_SRC
 
+*** Selection behaviour
+Now selecting a region behaves as in most applications you overwrite the region
 #+BEGIN_SRC emacs-lisp
-;; Now selecting a region behaves as in most applications
-;; you overwrite the region
 (delete-selection-mode 1)
 #+END_SRC
 
+*** diminish
+This package allows to remove move from the modeline
 #+BEGIN_SRC emacs-lisp
 (use-package diminish
   :defer nil)
 #+END_SRC
 
+*** Prettify symbols
+We use the lambda character λ as a ligature 
 #+BEGIN_SRC emacs-lisp
-;; let's pretify those lambdas
 (defun my-pretty-lambda (lambda-string)
   "Make some word or string show as pretty Unicode symbols.  LAMBDA-STRING is the way that the language declares lambda functions."
   (setq prettify-symbols-alist
-        ;; λ
         '((lambda-string . 955))))
 
 (defun my-pretty-lambda-elixir ()
   "Make some word or string show as pretty Unicode symbols."
   (setq prettify-symbols-alist
-        ;; λ
         '(("fn" . 955))))
 
 (defun my-pretty-lambda-clojure ()
   "Make some word or string show as pretty Unicode symbols."
   (setq prettify-symbols-alist
-        ;; λ
         '(("fn" . 955))))
 
 (global-prettify-symbols-mode 1)
 #+END_SRC
 
-
+*** End of line spaces
+The end of a sentence is a single space. The double space is an old convention
 #+BEGIN_SRC emacs-lisp
-;; The end of a sentence is a single space.
-;; The double space is an old convention
 (setq sentence-end-double-space nil)
 #+END_SRC
 
+*** spaceline
+This is the info line at the bottom of a buffer
 #+BEGIN_SRC emacs-lisp
-;; This is the info line at the bottom of a buffer
 (use-package spaceline
   :defer nil
   :config
@@ -405,7 +408,8 @@ We activate winner mode
 (use-package flx
   :defer 2)
 #+END_SRC
-
+*** which-key
+This will show options for a prefix chord in the minibuffer
 #+BEGIN_SRC emacs-lisp
 (use-package which-key
   :defer nil
@@ -414,8 +418,9 @@ We activate winner mode
   (which-key-mode))
 #+END_SRC
 
+*** smooth-scrolling
+Line by line, instead of half-screen at a time.
 #+BEGIN_SRC emacs-lisp
-;; Line by line, instead of half-screen at a time.
 (use-package smooth-scrolling
   :defer 2
   :config
@@ -430,8 +435,9 @@ We activate winner mode
   (dimmer-mode))
 #+END_SRC
 
+*** disable-mouse
+Maybe one day we change this. It disables the mouse in emacs. Useful to force the use of the keyboard
 #+BEGIN_SRC emacs-lisp
-;; Maybe one day we change this, but don't use the mouse
 (use-package disable-mouse
   :defer 2
   :diminish disable-mouse-global-mode
@@ -439,8 +445,9 @@ We activate winner mode
   (global-disable-mouse-mode))
 #+END_SRC
 
+*** Splitting of buffers
+Favour vertical split over horizontal split
 #+BEGIN_SRC emacs-lisp
-;; Favour vertical split over horizontal split
 (setq split-height-threshold nil)
 (setq split-width-threshold 120)
 
@@ -459,8 +466,9 @@ We activate winner mode
       (select-window current))))
 #+END_SRC
 
+*** Yes or No
+All questions are y or n, for consistency
 #+BEGIN_SRC emacs-lisp
-;; All questions are y or n, for consistency
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 
@@ -492,7 +500,7 @@ This dashboard appears whenever we open emacs
 #+END_SRC
 
 * Tools
-
+*** async
 #+BEGIN_SRC emacs-lisp
 (use-package async)
 #+END_SRC
@@ -835,6 +843,7 @@ Remember that projectile has "C-c p r" for replace in the project
 #+END_SRC
 
 * Languages
+*** Treesit
 #+BEGIN_SRC emacs-lisp
 (setq treesit-language-source-alist
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
@@ -857,9 +866,8 @@ Remember that projectile has "C-c p r" for replace in the project
   (global-treesit-auto-mode))
 #+END_SRC
 
+*** Go
 #+BEGIN_SRC emacs-lisp
-;; Configuration of Go
-
 (use-package go-mode)
 
 (dolist (mapping '((go-mode . go-ts-mode)))
@@ -887,9 +895,9 @@ Remember that projectile has "C-c p r" for replace in the project
 	      ("C-c t b" . go-test-current-benchmark)
               ("C-c t c" . go-test-current-coverage)
               ("C-c x" . go-run)))
-;; end of Configuration of Go
 #+END_SRC
 
+*** Yasnippet
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
   :diminish yas-minor-mode
@@ -910,6 +918,7 @@ Remember that projectile has "C-c p r" for replace in the project
   :diminish yas-minor-mode)
 #+END_SRC
 
+*** Flycheck
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck-pos-tip)
 
@@ -926,12 +935,19 @@ Remember that projectile has "C-c p r" for replace in the project
   ((after-init . global-flycheck-mode)))
 #+END_SRC
 
+*** eldoc
 #+BEGIN_SRC emacs-lisp
 (use-package eldoc
   :diminish
   :hook
   (prog-mode . turn-on-eldoc-mode)
   (cider-repl-mode . turn-on-eldoc-mode))
+
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+(diminish 'eldoc-mode)
+
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -961,6 +977,8 @@ Remember that projectile has "C-c p r" for replace in the project
   ((emacs-lisp-mode . aggressive-indent-mode)))
 #+END_SRC
 
+*** Company
+Basic setup for company
 #+BEGIN_SRC emacs-lisp
 (use-package company
   :defer nil
@@ -1010,12 +1028,12 @@ Remember that projectile has "C-c p r" for replace in the project
 
 #+END_SRC
 
+*** Json
 #+BEGIN_SRC emacs-lisp
 (use-package json-mode)
 #+END_SRC
 
-;; Python setup
-
+*** Python
 #+BEGIN_SRC emacs-lisp
 (use-package pet
   :config
@@ -1079,17 +1097,18 @@ interactive `pyvenv-workon' function before `lsp'"
   (setenv "WORKON_HOME" "~/.pyenv/versions"))
 #+END_SRC
 
-;; end of Python setup
-
+*** Docker
 #+BEGIN_SRC emacs-lisp
 (use-package dockerfile-mode
   :mode "\\.Dockerfile\\'")
 #+END_SRC
 
+*** Yaml
 #+BEGIN_SRC emacs-lisp
 (use-package yaml-mode)
 #+END_SRC
 
+*** Terraform
 #+BEGIN_SRC emacs-lisp
 (use-package terraform-mode
   :hook
@@ -1100,6 +1119,7 @@ interactive `pyvenv-workon' function before `lsp'"
   (company-terraform-init))
 #+END_SRC
 
+*** Markdown
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
   :diminish
@@ -1114,7 +1134,7 @@ interactive `pyvenv-workon' function before `lsp'"
   :diminish)
 #+END_SRC
 
-;; Clojure setup
+*** Clojure
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck-clj-kondo)
 
@@ -1197,8 +1217,7 @@ interactive `pyvenv-workon' function before `lsp'"
              ("h" . kaocha-runner-hide-windows)))
 #+END_SRC
 
-;; end of clojure setup
-
+*** Mermaid
 #+BEGIN_SRC emacs-lisp
 (use-package mermaid-mode
   :mode ("\\.mmd\\'")
@@ -1208,6 +1227,7 @@ interactive `pyvenv-workon' function before `lsp'"
   (setq mermaid-mmdc-location "/home/akira/node_modules/.bin/mmdc"))
 #+END_SRC
 
+*** LSP
 #+BEGIN_SRC emacs-lisp
 ;; LSP setup
 (setq lsp-keymap-prefix "C-c l")
@@ -1262,8 +1282,7 @@ interactive `pyvenv-workon' function before `lsp'"
   :commands lsp-ivy-workspace-symbol)
 #+END_SRC
 
-;; End of LSP setup
-
+*** Common Lisp
 #+BEGIN_SRC emacs-lisp
 (use-package slime
   :config
@@ -1282,8 +1301,8 @@ interactive `pyvenv-workon' function before `lsp'"
   (setq slime-company-major-modes (quote (lisp-mode slime-repl-mode))))
 #+END_SRC
 
-
-;; This one has to happen after all modes that use parens are loaded
+*** Parens!!!!
+This one has to happen after all modes that use parens are loaded
 #+BEGIN_SRC emacs-lisp
 (use-package paredit
   :diminish
@@ -1305,6 +1324,7 @@ interactive `pyvenv-workon' function before `lsp'"
   ((prog-mode . rainbow-delimiters-mode)))
 #+END_SRC
 
+*** Latex
 #+BEGIN_SRC emacs-lisp
 (use-package tex
   :ensure auctex
@@ -1322,12 +1342,14 @@ interactive `pyvenv-workon' function before `lsp'"
   (latex-preview-pane-enable))
 #+END_SRC
 
+*** Scheme
 #+BEGIN_SRC emacs-lisp
 (use-package geiser-mit)
 
 (use-package geiser-chez)
 #+END_SRC
 
+*** Lua
 #+BEGIN_SRC emacs-lisp
 (use-package lua-mode)
 
@@ -1336,15 +1358,17 @@ interactive `pyvenv-workon' function before `lsp'"
 (use-package luarocks)
 #+END_SRC
 
+*** Powershell
 #+BEGIN_SRC emacs-lisp
 (use-package powershell)
 #+END_SRC
 
+*** Graphviz
 #+BEGIN_SRC emacs-lisp
 (use-package graphviz-dot-mode)
 #+END_SRC
 
-;; OCAML setup
+*** OCAML
 #+BEGIN_SRC emacs-lisp
 
 (use-package tuareg
@@ -1378,18 +1402,8 @@ interactive `pyvenv-workon' function before `lsp'"
   ((tuareg.mode . opam-switch-mode)))
 #+END_SRC
 
-;; End of OCAML setup
-
 #+BEGIN_SRC emacs-lisp
 (use-package glsl-mode)
-#+END_SRC
-
-* eldoc
-#+BEGIN_SRC emacs-lisp
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
-(diminish 'eldoc-mode)
 #+END_SRC
 
 For C# Development
