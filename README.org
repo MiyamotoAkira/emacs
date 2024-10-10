@@ -96,6 +96,13 @@ Setting up babel for running code in org mode
       org-src-tab-acts-natively t)
 #+END_SRC
 
+*** org-download
+Allows for the download of images into org buffers
+#+BEGIN_SRC emacs-lisp
+(use-package org-download
+  :after org)
+#+END_SRC
+
 *** org-ref
 #+BEGIN_SRC emacs-lisp
 (use-package org-ref
