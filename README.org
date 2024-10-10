@@ -112,7 +112,7 @@ This is to get the path variable read from the shell environment.
 
 
 * Org Configuration
-This file configures the org mode and associated package
+This file configures the org mode and associated packages
 
 ** Main Org Section
 #+BEGIN_SRC emacs-lisp
