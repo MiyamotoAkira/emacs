@@ -51,12 +51,17 @@
     - [[#project-handling][Project handling]]
     - [[#replace][Replace]]
 - [[#languages][Languages]]
+  - [[#general][General]]
     - [[#treesit][Treesit]]
-    - [[#go][Go]]
     - [[#yasnippet][Yasnippet]]
     - [[#flycheck][Flycheck]]
     - [[#eldoc][eldoc]]
+    - [[#editorconfig][EditorConfig]]
+    - [[#aggressive-indent][aggressive-indent]]
     - [[#company][Company]]
+    - [[#lsp][LSP]]
+  - [[#specific][Specific]]
+    - [[#go][Go]]
     - [[#json][Json]]
     - [[#python][Python]]
     - [[#docker][Docker]]
@@ -65,7 +70,6 @@
     - [[#markdown][Markdown]]
     - [[#clojure][Clojure]]
     - [[#mermaid][Mermaid]]
-    - [[#lsp][LSP]]
     - [[#common-lisp][Common Lisp]]
     - [[#parens-1][Parens!!!!]]
     - [[#latex][Latex]]
@@ -75,9 +79,8 @@
     - [[#graphviz][Graphviz]]
     - [[#ocaml][OCAML]]
 
-* Emacs                                                                 
+* Emacs
 My emacs configuration file.
-
 
 * OS
 Configuration that depends on the Operative system
@@ -109,7 +112,6 @@ This is to get the path variable read from the shell environment.
                                                "GOPATH"))
         (exec-path-from-shell-initialize)))
   #+END_SRC
-
 
 * Org Configuration
 This file configures the org mode and associated packages
@@ -933,6 +935,7 @@ Remember that projectile has "C-c p r" for replace in the project
 #+END_SRC
 
 * Languages
+** General
 *** Treesit
 #+BEGIN_SRC emacs-lisp
 (setq treesit-language-source-alist
@@ -954,37 +957,6 @@ Remember that projectile has "C-c p r" for replace in the project
   (treesit-auto-install 'prompt)
   :config
   (global-treesit-auto-mode))
-#+END_SRC
-
-*** Go
-#+BEGIN_SRC emacs-lisp
-(use-package go-mode)
-
-(dolist (mapping '((go-mode . go-ts-mode)))
-  (add-to-list 'major-mode-remap-alist mapping))
-
-(add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
-(add-to-list 'auto-mode-alist '("/go\\.mod\\'" . go-mod-ts-mode))
-
-(add-hook 'go-mode-hook (lambda ()
-                          (setq tab-width 4)
-                          (setq indent-tabs-mode 1)))
-
-(add-hook 'go-ts-mode-hook (lambda ()
-                             (setq tab-width 4)
-                             (setq indent-tabs-mode 1)
-                             (setq go-ts-mode-indent-offset 4)))
-
-(use-package gotest
-  :diminish
-  :after go-ts-mode
-  :bind (:map go-ts-mode-map
-              ("C-c t f" . go-test-current-file)
-	      ("C-c t t" . go-test-current-test)
-	      ("C-c t p" . go-test-current-project)
-	      ("C-c t b" . go-test-current-benchmark)
-              ("C-c t c" . go-test-current-coverage)
-              ("C-c x" . go-run)))
 #+END_SRC
 
 *** Yasnippet
@@ -1044,6 +1016,7 @@ Remember that projectile has "C-c p r" for replace in the project
 (use-package tagedit)
 #+END_SRC
 
+*** EditorConfig
 #+BEGIN_SRC emacs-lisp
 (use-package editorconfig
   :diminish
@@ -1051,16 +1024,8 @@ Remember that projectile has "C-c p r" for replace in the project
   (editorconfig-mode 1))
 #+END_SRC
 
-;; (use-package highlight-indentation
-;;   :defer nil
-;;   :hook
-;;   ((prog-mode . highlight-indentation-mode)))
-
-;; (use-package highlight-sexp
-;;   :quelpa (abc-mode :fetcher github :repo "daimrod/highlight-sexp")
-;;   :hook
-;;   ((clojure-mode lisp-mode emacs-lisp-mode) . highlight-sexp-mode))
-
+*** aggressive-indent
+It autoindents as soon as you move from a line
 #+BEGIN_SRC emacs-lisp
 (use-package aggressive-indent
   :hook
@@ -1089,6 +1054,105 @@ Basic setup for company
   :config
   (company-quickhelp-mode 1))
 #+END_SRC
+
+
+*** LSP
+#+BEGIN_SRC emacs-lisp
+;; LSP setup
+(setq lsp-keymap-prefix "C-c l")
+
+(use-package lsp-mode
+  :defines lsp-highlight-symbol-at-point
+  :commands (lsp lsp-deferred)
+  :hook (;; (csharp-mode . lsp)
+         (clojure-mode . lsp)
+         (clojurescript-mode . lsp)
+         (clojurec-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :init (setq lsp-eldoc-render-all nil
+              lsp-highlight-symbol-at-point nil
+              lsp-keymap-prefix "C-c l"
+
+              lsp-lens-enable t
+              lsp-signature-auto-activate nil)
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (add-to-list 'lsp-disabled-clients 'omnisharp))
+
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-sideline-update-mode 'point)
+  :bind (:map lsp-ui-mode-map
+              ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+              ([remap xref-find-references] . lsp-ui-peek-find-references))
+  :init (setq lsp-ui-doc-delay 0.5
+              lsp-ui-doc-position 'bottom
+	      lsp-ui-doc-max-width 100)
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-sideline-enable nil)
+  (lsp-ui-doc-enable nil))
+
+(use-package lsp-treemacs
+  :commands lsp-treemacs-errors-list)
+
+
+(use-package dap-mode
+  :after lsp-mode
+  :bind (:map lsp-mode-map
+              ("<f5>" . dap-debug))
+  :config
+  (dap-mode t)
+  (dap-ui-mode t))
+
+(use-package lsp-ivy
+  :commands lsp-ivy-workspace-symbol)
+#+END_SRC
+
+** Specific
+*** Go
+#+BEGIN_SRC emacs-lisp
+(use-package go-mode)
+
+(dolist (mapping '((go-mode . go-ts-mode)))
+  (add-to-list 'major-mode-remap-alist mapping))
+
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
+(add-to-list 'auto-mode-alist '("/go\\.mod\\'" . go-mod-ts-mode))
+
+(add-hook 'go-mode-hook (lambda ()
+                          (setq tab-width 4)
+                          (setq indent-tabs-mode 1)))
+
+(add-hook 'go-ts-mode-hook (lambda ()
+                             (setq tab-width 4)
+                             (setq indent-tabs-mode 1)
+                             (setq go-ts-mode-indent-offset 4)))
+
+(use-package gotest
+  :diminish
+  :after go-ts-mode
+  :bind (:map go-ts-mode-map
+              ("C-c t f" . go-test-current-file)
+	      ("C-c t t" . go-test-current-test)
+	      ("C-c t p" . go-test-current-project)
+	      ("C-c t b" . go-test-current-benchmark)
+              ("C-c t c" . go-test-current-coverage)
+              ("C-c x" . go-run)))
+#+END_SRC
+
+;; (use-package highlight-indentation
+;;   :defer nil
+;;   :hook
+;;   ((prog-mode . highlight-indentation-mode)))
+
+;; (use-package highlight-sexp
+;;   :quelpa (abc-mode :fetcher github :repo "daimrod/highlight-sexp")
+;;   :hook
+;;   ((clojure-mode lisp-mode emacs-lisp-mode) . highlight-sexp-mode))
+
 
 #+BEGIN_SRC emacs-lisp
 (use-package mmm-mode
@@ -1315,61 +1379,6 @@ interactive `pyvenv-workon' function before `lsp'"
   ;; :load-path "/home/akira/code/external/mermaid-mode"
   :config
   (setq mermaid-mmdc-location "/home/akira/node_modules/.bin/mmdc"))
-#+END_SRC
-
-*** LSP
-#+BEGIN_SRC emacs-lisp
-;; LSP setup
-(setq lsp-keymap-prefix "C-c l")
-
-(use-package lsp-mode
-  :defines lsp-highlight-symbol-at-point
-  :commands (lsp lsp-deferred)
-  :hook (;; (csharp-mode . lsp)
-         (clojure-mode . lsp)
-         (clojurescript-mode . lsp)
-         (clojurec-mode . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
-  :init (setq lsp-eldoc-render-all nil
-              lsp-highlight-symbol-at-point nil
-              lsp-keymap-prefix "C-c l"
-
-              lsp-lens-enable t
-              lsp-signature-auto-activate nil)
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  (add-to-list 'lsp-disabled-clients 'omnisharp))
-
-(use-package lsp-ui
-  :commands lsp-ui-mode
-  :config
-  (setq lsp-ui-sideline-update-mode 'point)
-  :bind (:map lsp-ui-mode-map
-              ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-              ([remap xref-find-references] . lsp-ui-peek-find-references))
-  :init (setq lsp-ui-doc-delay 0.5
-              lsp-ui-doc-position 'bottom
-	      lsp-ui-doc-max-width 100)
-  :custom
-  (lsp-ui-peek-always-show t)
-  (lsp-ui-sideline-show-hover t)
-  (lsp-ui-sideline-enable nil)
-  (lsp-ui-doc-enable nil))
-
-(use-package lsp-treemacs
-  :commands lsp-treemacs-errors-list)
-
-
-(use-package dap-mode
-  :after lsp-mode
-  :bind (:map lsp-mode-map
-              ("<f5>" . dap-debug))
-  :config
-  (dap-mode t)
-  (dap-ui-mode t))
-
-(use-package lsp-ivy
-  :commands lsp-ivy-workspace-symbol)
 #+END_SRC
 
 *** Common Lisp
