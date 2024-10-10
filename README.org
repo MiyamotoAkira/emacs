@@ -179,7 +179,7 @@ Creates automatically a table of contents for you
 #+BEGIN_SRC emacs-lisp
   (use-package toc-org
     :defer t
-    :hook (org-mode-hook . toc-org-mode))
+    :hook (org-mode . toc-org-mode))
 #+END_SRC
 
 *** org-download
