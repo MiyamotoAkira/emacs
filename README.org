@@ -49,6 +49,7 @@
     - [[#magit][magit]]
     - [[#command-log-mode][command-log-mode]]
     - [[#project-handling][Project handling]]
+    - [[#flyspell][flyspell]]
     - [[#replace][Replace]]
 - [[#languages][Languages]]
   - [[#general][General]]
@@ -233,15 +234,10 @@ This is a presentation tool for org mode
 (use-package org-present
   :after org
   :bind (("C-c o" . org-present))
-  :config
-  (add-hook 'org-present-mode-hook
-            'jgg/org-present-start)
-  
-  (add-hook 'org-present-mode-quit-hook
-            'jgg/org-present-end)
-  
-  (add-hook 'org-after-navigate-function
-            'jgg/org-present-slide))
+  :hook
+  (org-present-mode . jgg/org-present-start)
+  (org-present-mode-quit . jgg/org-present-end)
+  (org-after-navigate-function . jgg/org-present-slide))
 #+END_SRC
 
 ** Org Roam section
@@ -713,8 +709,8 @@ can have separate set of buffers for each project. And each project can work ind
 
 (use-package all-the-icons-dired
   :after (dired-sidebar all-the-icons)
-  :config
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+  :hook
+  (dired-mode-hook . all-the-icons-dired-mode))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -745,46 +741,47 @@ can have separate set of buffers for each project. And each project can work ind
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(use-package ivy
-  :diminish
-  :bind (("C-c v" . 'ivy-push-view)
-         ("C-c V" .  'ivy-pop-view))
-  :config
-  (ivy-mode 1)
-  (setq ivy-re-builders-alist
-        '((read-file-name-internal . ivy--regex-fuzzy)
-          (t . ivy--regex-plus))))
+  (use-package ivy
+    :diminish
+    :bind (("C-c v" . 'ivy-push-view)
+           ("C-c V" .  'ivy-pop-view))
+    :config
+    (ivy-mode 1)
+    (setq ivy-re-builders-alist
+          '((read-file-name-internal . ivy--regex-fuzzy)
+            (t . ivy--regex-plus))))
 
-(use-package counsel
-  :bind (("M-x" . 'counsel-M-x)
-         ("C-x C-f" . 'counsel-find-file)
-         ("M-y" . 'counsel-yank-pop)
-         ;; :map counsel-mode-map
-         ;; ("f" . 'counsel-describe-function)
-         ;; ("v" . 'counsel-describe-variable)
-         ;; ("l" . 'counsel-find-library)
-         ;; ("i" . 'counsel-info-lookup-symbol)
-         ;; ("u" . 'counsel-unicode-char)
-         ;; ("j" .  'counsel-set-variable)
-         )
-  :config
-  (setq counsel-find-file-ignore-regexp "(?:‘[#.])|(?:[#~]’)|(?:[~]’)"))
+  (use-package counsel
+    :bind (("M-x" . 'counsel-M-x)
+           ("C-x C-f" . 'counsel-find-file)
+           ("M-y" . 'counsel-yank-pop)
+           ;; :map counsel-mode-map
+           ;; ("f" . 'counsel-describe-function)
+           ;; ("v" . 'counsel-describe-variable)
+           ;; ("l" . 'counsel-find-library)
+           ;; ("i" . 'counsel-info-lookup-symbol)
+           ;; ("u" . 'counsel-unicode-char)
+           ;; ("j" .  'counsel-set-variable)
+           )
+    :config
+    (setq counsel-find-file-ignore-regexp "(?:‘[#.])|(?:[#~]’)|(?:[~]’)"))
 
-(use-package swiper
-  :bind (("C-s" . 'swiper-isearch)
-         ("C-r" . 'swiper-isearch-backward)))
+  (use-package swiper
+    :bind (("C-s" . 'swiper-isearch)
+           ("C-r" . 'swiper-isearch-backward)))
 
-(use-package all-the-icons-ivy
-  :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup))
-(use-package helpful
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  :bind
-  ([remap describe-function] . counsel-describe-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([rempa describe-key] . helpful-key))
+  (use-package all-the-icons-ivy
+    :hook (after-init-hook  . all-the-icons-ivy-setup))
+
+  (use-package helpful
+    :custom
+    (counsel-describe-function-function #'helpful-callable)
+    (counsel-describe-variable-function #'helpful-variable)
+    :bind
+    ([remap describe-function] . counsel-describe-function)
+    ([remap describe-command] . helpful-command)
+    ([remap describe-variable] . counsel-describe-variable)
+    ([rempa describe-key] . helpful-key))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -832,32 +829,28 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(use-package pos-tip
-  ;; :pin melpa
-  )
+(use-package pos-tip)
 #+END_SRC
 
+*** flyspell
+Spell checker. We want it only in text and org modes
 #+BEGIN_SRC emacs-lisp
-(use-package flyspell
-  :diminish flyspell-mode
-  :init
-  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+  (use-package flyspell
+    :diminish flyspell-mode
+    :hook
+      (prog-mode . flyspell-prog-mode)
+      ((text-mode org-mode) . (lambda () (flyspell-mode 1)))
+      ((change-log-mode log-edit-mode org-agenda-mode) . (lambda () (flyspell-mode -1)))
 
-  (dolist (hook '(text-mode-hook org-mode-hook))
-    (add-hook hook (lambda () (flyspell-mode 1))))
-
-  (dolist (hook '(change-log-mode-hook log-edit-mode-hook org-agenda-mode-hook))
-    (add-hook hook (lambda () (flyspell-mode -1))))
-
-  :config
-  (setq ;;ispell-program-name "/usr/local/bin/aspell"
-   ispell-local-dictionary "en_GB"
-   ispell-dictionary "english" ; better for aspell
-   ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB")
-   ispell-list-command "--list"
-   ispell-local-dictionary-alist '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "['‘’]"
-                                    t ; Many other characters
-                                    ("-d" "en_GB") nil utf-8))))
+    :config
+      (setq ;;ispell-program-name "/usr/local/bin/aspell"
+       ispell-local-dictionary "en_GB"
+       ispell-dictionary "english" ; better for aspell
+       ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB")
+       ispell-list-command "--list"
+       ispell-local-dictionary-alist '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "['‘’]"
+                                        t ; Many other characters
+                                        ("-d" "en_GB") nil utf-8))))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -999,16 +992,16 @@ Remember that projectile has "C-c p r" for replace in the project
 
 *** eldoc
 #+BEGIN_SRC emacs-lisp
-(use-package eldoc
-  :diminish
-  :hook
-  (prog-mode . turn-on-eldoc-mode)
-  (cider-repl-mode . turn-on-eldoc-mode))
+    (use-package eldoc
+      :diminish
+      :hook
+      (prog-mode . turn-on-eldoc-mode)
+      (cider-repl-mode . turn-on-eldoc-mode)
+      (emacs-lisp-mode . turn-on-eldoc-mode)
+      (lisp-interaction-mode . turn-on-eldoc-mode)
+      (ielm-mode . turn-on-eldoc-mode))
 
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
-(diminish 'eldoc-mode)
+
 
 #+END_SRC
 
