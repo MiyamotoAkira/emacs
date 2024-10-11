@@ -363,7 +363,6 @@ This allows you to see a graph on the browser of the org roam nodes
 #+END_SRC
 
 *** Themes
-
 #+BEGIN_SRC emacs-lisp
 ;; This is the theme we are using
 (use-package solarized-theme
@@ -391,6 +390,16 @@ Solaire makes clear which buffers are not related to a file
 (use-package solaire-mode
   :ensure t
   :hook (after-init . solaire-global-mode))
+#+END_SRC
+
+This package dims non-current buffers
+REVIEW is there a mismatch with solaire?
+#+BEGIN_SRC emacs-lisp
+(use-package dimmer
+  :defer 2
+  :config
+  (dimmer-configure-which-key)
+  (dimmer-mode t))
 #+END_SRC
 
 *** Highlight TODO
@@ -549,13 +558,6 @@ Line by line, instead of half-screen at a time.
   :config
   (smooth-scrolling-mode 1)
   (setq smooth-scroll-margin 5))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(use-package dimmer
-  :defer 2
-  :config
-  (dimmer-mode))
 #+END_SRC
 
 *** disable-mouse
