@@ -204,6 +204,10 @@ Allows for the download of images into org buffers
 
 *** org-present
 This is a presentation tool for org mode
+
+Here is additional setup for when the presentation starts.
+
+We remove things like line numbers, and highlighting of lines
 #+BEGIN_SRC emacs-lisp
 (defun jgg/org-present-start ()
   (org-present-big)
@@ -217,7 +221,10 @@ This is a presentation tool for org mode
   (visual-line-mode 1)
   ;; extra line at the top
   (setq header-line-format " "))
+#+END_SRC
 
+This is the setup for when the presentation ends. Basically revert what has been done in the setup
+#+BEGIN_SRC emacs-lisp
 (defun jgg/org-present-end ()
   (org-present-small)
   (org-remove-inline-images)
@@ -228,7 +235,9 @@ This is a presentation tool for org mode
   (visual-fill-column-mode 0)
   (visual-line-mode 0)
   (setq header-line-format nil))
+#+END_SRC
 
+#+BEGIN_SRC emacs-lisp
 (defun jgg/org-present-slide (buffer-name heading)
   ;; Show only top-level headlines
   (org-overview)
@@ -236,8 +245,9 @@ This is a presentation tool for org mode
   (org-show-entry)
   ;; Show only direct subheadings of the slide but don't expand them
   (org-show-children))
+#+END_SRC
 
-
+#+BEGIN_SRC emacs-lisp
 (use-package org-present
   :after org
   :bind (("C-c o" . org-present))
