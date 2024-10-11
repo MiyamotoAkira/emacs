@@ -146,7 +146,8 @@ the `#+auto_tangle: t` at the top of the org file
 *** org-modern
 This package improves the look of org-mode on Emacs. Be aware that some fonts don't have all the necessary glyphs
 #+BEGIN_SRC emacs-lisp
-(use-package org-modern)
+(use-package org-modern
+  :ensure t)
 (with-eval-after-load 'org (global-org-modern-mode))
 #+END_SRC
 
@@ -162,7 +163,8 @@ Useful for org present
 *** org babel
 Setting up babel for running code in org mode
 #+BEGIN_SRC emacs-lisp
-(use-package ob-go)
+(use-package ob-go
+  :ensure t)
 
 (org-babel-do-load-languages
      'org-babel-load-languages
