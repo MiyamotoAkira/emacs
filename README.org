@@ -21,6 +21,7 @@
 - [[#look-and-feel][Look and Feel]]
     - [[#font-size-modifications][Font size modifications]]
     - [[#themes][Themes]]
+    - [[#highlight-todo][Highlight TODO]]
     - [[#highlight-lines][Highlight Lines]]
     - [[#line-numbers][Line numbers]]
     - [[#parens][Parens]]
@@ -391,6 +392,23 @@ Solaire makes clear which buffers are not related to a file
   :ensure t
   :hook (after-init . solaire-global-mode))
 #+END_SRC
+
+*** Highlight TODO
+Highlight certain words in documents and colorize them   
+#+begin_src emacs-lisp
+(use-package hl-todo
+  :hook ((org-mode . hl-todo-mode)
+         (prog-mode . hl-todo-mode))
+  :config
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-keyword-faces
+        `(("TODO"       warning bold)
+          ("FIXME"      error bold)
+          ("HACK"       font-lock-constant-face bold)
+          ("REVIEW"     font-lock-keyword-face bold)
+          ("NOTE"       success bold)
+          ("DEPRECATED" font-lock-doc-face bold))))
+#+end_src
 
 *** Highlight Lines
 highlight current line
