@@ -29,20 +29,9 @@
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-;; We are organizing files in a sub-directory
-
-
-(add-to-list 'load-path (expand-file-name "submodules" user-emacs-directory))
-
-(require 'init-packaging)
-
-(require 'bind-key)
-
 ;; This is to move setup into an org file
 (require 'org)
 (org-babel-load-file (expand-file-name "README.org" user-emacs-directory))
-
-(put 'upcase-region 'disabled nil)
 
 (setq read-process-output-max (* 512 1024))
 ;;; init.el ends here

@@ -3,6 +3,7 @@
 
 * Table of Contents                                                     :TOC_3:
 - [[#emacs][Emacs]]
+- [[#packaging][Packaging]]
 - [[#os][OS]]
 - [[#org-configuration][Org Configuration]]
   - [[#main-org-section][Main Org Section]]
@@ -19,6 +20,7 @@
     - [[#org-roam][org-roam]]
     - [[#org-roam-ui][org-roam-ui]]
 - [[#look-and-feel][Look and Feel]]
+    - [[#upcase-region][upcase-region]]
     - [[#font-size-modifications][Font size modifications]]
     - [[#themes][Themes]]
     - [[#highlight-todo][Highlight TODO]]
@@ -83,6 +85,41 @@
 
 * Emacs
 My emacs configuration file.
+
+* Packaging
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(require 'bind-key)
+
+(setq package-archives
+      (quote
+       (("gnu" . "https://elpa.gnu.org/packages/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+        ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("melpa" . "https://melpa.org/packages/"))))
+
+(package-initialize)
+
+;; lets refresh the packages
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; By default we ensure everything
+(custom-set-variables '(use-package-always-ensure t))
+
+;; By default we defer everything
+(custom-set-variables '(use-package-always-defer t))
+
+;; t when we need to debug
+(custom-set-variables '(use-package-verbose nil))
+
+;; If the .el version is newer, compile even with .elc present
+;; This is mostly to deal with no-packaged versions ... i believe
+(custom-set-variables '(load-prefer-newer t))
+(use-package auto-compile
+  :defer nil
+  :config (auto-compile-on-load-mode))
+#+END_SRC
 
 * OS
 Configuration that depends on the Operative system
@@ -338,7 +375,11 @@ This allows you to see a graph on the browser of the org roam nodes
 #+END_SRC
 
 * Look and Feel
-
+*** upcase-region
+Let's get it out for now
+#+BEGIN_SRC emacs-lisp
+(put 'upcase-region 'disabled nil)
+#+END_SRC
 *** Font size modifications
 
 #+BEGIN_SRC emacs-lisp
