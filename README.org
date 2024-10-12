@@ -644,7 +644,6 @@ All questions are y or n, for consistency
 #+END_SRC
 
 
-
 *** Dashboard
 This dashboard appears whenever we open emacs
 #+BEGIN_SRC emacs-lisp
@@ -658,7 +657,9 @@ This dashboard appears whenever we open emacs
   (setq dashboard-banner-logo-title "May the Force be with you")
   (setq dashboard-startup-banner 'logo)
   (setq dashboard-center-content t)
+  (setq dashboard-icon-type 'all-the-icons)
   (setq dashboard-projects-backend 'projectile)
+  (setq dashboard-projects-switch-function 'projectile-persp-switch-project)
   (setq dashboard-items '((recents . 5)
                           (bookmarks . 5)
                           (projects . 5)
