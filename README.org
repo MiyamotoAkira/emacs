@@ -1140,6 +1140,12 @@ Basic setup for company
   (company-quickhelp-mode 1))
 #+END_SRC
 
+This is a company front-end with icons
+#+BEGIN_SRC emacs-lisp
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+#+END_SRC
+
 
 *** LSP
 #+BEGIN_SRC emacs-lisp
