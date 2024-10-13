@@ -87,6 +87,8 @@
 My emacs configuration file.
 
 * Packaging
+
+This setups the basic packaging system, with the packages repositories and some additional tooling.
 #+BEGIN_SRC emacs-lisp
 (require 'package)
 (require 'bind-key)
@@ -99,8 +101,10 @@ My emacs configuration file.
         ("melpa" . "https://melpa.org/packages/"))))
 
 (package-initialize)
+#+END_SRC
 
-;; lets refresh the packages
+This refreshes the packages unless we have them already
+#+BEGIN_SRC emacs-lisp
 (unless package-archive-contents
   (package-refresh-contents))
 
@@ -116,6 +120,7 @@ My emacs configuration file.
 ;; If the .el version is newer, compile even with .elc present
 ;; This is mostly to deal with no-packaged versions ... i believe
 (custom-set-variables '(load-prefer-newer t))
+
 (use-package auto-compile
   :defer nil
   :config (auto-compile-on-load-mode))
@@ -182,7 +187,6 @@ This file configures the org mode and associated packages
     ;; (org-special-ctrl-k t)
     )
 #+END_SRC
-
 
 ** Org Utilities
 *** auto tangle
@@ -531,7 +535,7 @@ Automatically reread from disk if the underlying file changes
 #+END_SRC
 
 *** winner mode
-We activate winner mode
+We activate winner mode. This allows you to go to previous windows configuration.
 #+BEGIN_SRC emacs-lisp
 (winner-mode 1)
 #+END_SRC
@@ -655,7 +659,6 @@ All questions are y or n, for consistency
 (use-package page-break-lines
   :defer nil)
 #+END_SRC
-
 
 *** Dashboard
 This dashboard appears whenever we open emacs
@@ -1145,7 +1148,6 @@ This is a company front-end with icons
 (use-package company-box
   :hook (company-mode . company-box-mode))
 #+END_SRC
-
 
 *** LSP
 #+BEGIN_SRC emacs-lisp
