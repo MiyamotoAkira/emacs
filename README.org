@@ -32,16 +32,19 @@
     - [[#bell][Bell]]
     - [[#auto-revert][Auto revert]]
     - [[#winner-mode][winner mode]]
+    - [[#ansi-colors-setup][ansi colors setup]]
     - [[#selection-behaviour][Selection behaviour]]
     - [[#diminish][diminish]]
     - [[#prettify-symbols][Prettify symbols]]
     - [[#end-of-line-spaces][End of line spaces]]
     - [[#spaceline][spaceline]]
+    - [[#flx][flx]]
     - [[#which-key][which-key]]
     - [[#smooth-scrolling][smooth-scrolling]]
     - [[#disable-mouse][disable-mouse]]
     - [[#splitting-of-buffers][Splitting of buffers]]
     - [[#yes-or-no][Yes or No]]
+    - [[#page-break-lines][page-break-lines]]
     - [[#dashboard][Dashboard]]
 - [[#tools][Tools]]
     - [[#async][async]]
@@ -52,6 +55,11 @@
     - [[#magit][magit]]
     - [[#command-log-mode][command-log-mode]]
     - [[#project-handling][Project handling]]
+    - [[#dired-sidebar][dired-sidebar]]
+    - [[#html][html]]
+    - [[#ace-window][ace-window]]
+    - [[#all-the-icons][all-the-icons]]
+    - [[#shut-up][shut-up]]
     - [[#flyspell][flyspell]]
     - [[#replace][Replace]]
 - [[#languages][Languages]]
@@ -535,11 +543,12 @@ Automatically reread from disk if the underlying file changes
 #+END_SRC
 
 *** winner mode
-We activate winner mode. This allows you to go to previous windows configuration.
+This allows you to go to previous windows configuration.
 #+BEGIN_SRC emacs-lisp
 (winner-mode 1)
 #+END_SRC
 
+*** ansi colors setup
 #+BEGIN_SRC emacs-lisp
 (setq ansi-color-faces-vector
       [default default default italic underline success warning error])
@@ -552,14 +561,14 @@ Now selecting a region behaves as in most applications you overwrite the region
 #+END_SRC
 
 *** diminish
-This package allows to remove move from the modeline
+This package allows to remove modes from the modeline. Needs to be added as a keyword on use-package setup for a mode.
 #+BEGIN_SRC emacs-lisp
 (use-package diminish
   :defer nil)
 #+END_SRC
 
 *** Prettify symbols
-We use the lambda character λ as a ligature 
+We use the lambda character λ as a ligature.
 #+BEGIN_SRC emacs-lisp
 (defun my-pretty-lambda (lambda-string)
   "Make some word or string show as pretty Unicode symbols.  LAMBDA-STRING is the way that the language declares lambda functions."
@@ -586,7 +595,7 @@ The end of a sentence is a single space. The double space is an old convention
 #+END_SRC
 
 *** spaceline
-This is the info line at the bottom of a buffer
+This is the info line at the bottom of a buffer. 
 #+BEGIN_SRC emacs-lisp
 (use-package spaceline
   :defer nil
@@ -594,6 +603,9 @@ This is the info line at the bottom of a buffer
   (spaceline-emacs-theme))
 #+END_SRC
 
+*** flx
+Fuzzy search
+TODO is it useful now with ivy at all?
 #+BEGIN_SRC emacs-lisp
 (use-package flx
   :defer 2)
@@ -655,13 +667,15 @@ All questions are y or n, for consistency
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 
+*** page-break-lines
+This converts form feed (^L) into horizontal lines 
 #+BEGIN_SRC emacs-lisp
 (use-package page-break-lines
   :defer nil)
 #+END_SRC
 
 *** Dashboard
-This dashboard appears whenever we open emacs
+This dashboard appears whenever we open emacs.
 #+BEGIN_SRC emacs-lisp
 (use-package dashboard
   :ensure t
@@ -684,6 +698,7 @@ This dashboard appears whenever we open emacs
 
 * Tools
 *** async
+Allows for the use of async code within emacs
 #+BEGIN_SRC emacs-lisp
 (use-package async)
 #+END_SRC
@@ -714,7 +729,6 @@ Automatically save the last place we were on files when closing
 
 *** monky
 Like magit but for Mercurial
-
 #+BEGIN_SRC emacs-lisp
 (use-package monky
   :bind (("C-x M-g" . monky-status)))
@@ -745,6 +759,7 @@ Porcelain for git
 
 *** command-log-mode
 This will show on a tab on the side the keybindings used
+TODO Doesn't seem to work and hasn't been updated in years
 #+BEGIN_SRC emacs-lisp
 (use-package command-log-mode
   :custom
@@ -762,8 +777,8 @@ can have separate set of buffers for each project. And each project can work ind
   (projectile-mode +1)
   (setq projectile-completion-system 'ivy)
   (setq projectile-project-search-path '("~/code/"
-                                         "~/code/codurance/"
                                          "~/code/personal/"
+                                         "~/code/twoormore"
                                          "~/code/externals/")))
 
 (use-package perspective
@@ -780,12 +795,17 @@ can have separate set of buffers for each project. And each project can work ind
   :bind ("C-c M-p P" . projectile-persp-switch-project))
 #+END_SRC
 
+
+*** dired-sidebar
+Directory tree browsing that uses dired
 #+BEGIN_SRC emacs-lisp
 (use-package dired-sidebar
   :commands (dired-sidebar-toggle-sidebar)
   :bind (([f8] . dired-sidebar-toggle-sidebar)))
 #+END_SRC
 
+*** html
+Adding some keybindings for the hmtl mode map
 #+BEGIN_SRC emacs-lisp
 (add-hook 'mhtml-mode-hook (lambda ()
                              (define-key html-mode-map (kbd "M-o") nil)
@@ -793,11 +813,15 @@ can have separate set of buffers for each project. And each project can work ind
                              (define-key html-mode-map (kbd "M-o") 'ace-window)))
 #+END_SRC
 
+*** ace-window
+quickly move between windows using M-o number
 #+BEGIN_SRC emacs-lisp
 (use-package ace-window
   :bind (("M-o" . ace-window)))
 #+END_SRC
 
+*** all-the-icons
+Lots of icons to work with emacs
 #+BEGIN_SRC emacs-lisp
 (use-package all-the-icons
   :defer 2)
@@ -806,8 +830,17 @@ can have separate set of buffers for each project. And each project can work ind
   :after (dired-sidebar all-the-icons)
   :hook
   (dired-mode-hook . all-the-icons-dired-mode))
+
+(use-package all-the-icons-ivy
+  :hook (after-init-hook  . all-the-icons-ivy-setup))
+
+(use-package spaceline-all-the-icons 
+  :after spaceline
+  :config (spaceline-all-the-icons-theme))
 #+END_SRC
 
+*** shut-up
+Reduces the amount of messages being throw my emacs and some packages
 #+BEGIN_SRC emacs-lisp
 (use-package shut-up
   :defer 2)
@@ -836,47 +869,44 @@ can have separate set of buffers for each project. And each project can work ind
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-  (use-package ivy
-    :diminish
-    :bind (("C-c v" . 'ivy-push-view)
-           ("C-c V" .  'ivy-pop-view))
-    :config
-    (ivy-mode 1)
-    (setq ivy-re-builders-alist
-          '((read-file-name-internal . ivy--regex-fuzzy)
-            (t . ivy--regex-plus))))
+(use-package ivy
+  :diminish
+  :bind (("C-c v" . 'ivy-push-view)
+         ("C-c V" .  'ivy-pop-view))
+  :config
+  (ivy-mode 1)
+  (setq ivy-re-builders-alist
+        '((read-file-name-internal . ivy--regex-fuzzy)
+          (t . ivy--regex-plus))))
 
-  (use-package counsel
-    :bind (("M-x" . 'counsel-M-x)
-           ("C-x C-f" . 'counsel-find-file)
-           ("M-y" . 'counsel-yank-pop)
-           ;; :map counsel-mode-map
-           ;; ("f" . 'counsel-describe-function)
-           ;; ("v" . 'counsel-describe-variable)
-           ;; ("l" . 'counsel-find-library)
-           ;; ("i" . 'counsel-info-lookup-symbol)
-           ;; ("u" . 'counsel-unicode-char)
-           ;; ("j" .  'counsel-set-variable)
-           )
-    :config
-    (setq counsel-find-file-ignore-regexp "(?:‘[#.])|(?:[#~]’)|(?:[~]’)"))
+(use-package counsel
+  :bind (("M-x" . 'counsel-M-x)
+         ("C-x C-f" . 'counsel-find-file)
+         ("M-y" . 'counsel-yank-pop)
+         ;; :map counsel-mode-map
+         ;; ("f" . 'counsel-describe-function)
+         ;; ("v" . 'counsel-describe-variable)
+         ;; ("l" . 'counsel-find-library)
+         ;; ("i" . 'counsel-info-lookup-symbol)
+         ;; ("u" . 'counsel-unicode-char)
+         ;; ("j" .  'counsel-set-variable)
+         )
+  :config
+  (setq counsel-find-file-ignore-regexp "(?:‘[#.])|(?:[#~]’)|(?:[~]’)"))
 
-  (use-package swiper
-    :bind (("C-s" . 'swiper-isearch)
-           ("C-r" . 'swiper-isearch-backward)))
+(use-package swiper
+  :bind (("C-s" . 'swiper-isearch)
+         ("C-r" . 'swiper-isearch-backward)))
 
-  (use-package all-the-icons-ivy
-    :hook (after-init-hook  . all-the-icons-ivy-setup))
-
-  (use-package helpful
-    :custom
-    (counsel-describe-function-function #'helpful-callable)
-    (counsel-describe-variable-function #'helpful-variable)
-    :bind
-    ([remap describe-function] . counsel-describe-function)
-    ([remap describe-command] . helpful-command)
-    ([remap describe-variable] . counsel-describe-variable)
-    ([rempa describe-key] . helpful-key))
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([rempa describe-key] . helpful-key))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
