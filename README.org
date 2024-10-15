@@ -62,6 +62,7 @@
     - [[#all-the-icons][all-the-icons]]
     - [[#shut-up][shut-up]]
     - [[#vertico][Vertico]]
+    - [[#vertico-posframe][Vertico PosFrame]]
     - [[#save-history][Save history]]
     - [[#marginalia][Marginalia]]
     - [[#orderless][Orderless]]
@@ -886,6 +887,16 @@ It also updates the buffer with the possible completions as you type
   (setq vertico-cycle t)
   (setq vertico-resize nil)
   (vertico-mode 1))
+#+END_SRC
+
+*** Vertico PosFrame
+Having vertico use posframe. Instead of the minibuffer it uses posframe to show
+the completions where you are located
+#+BEGIN_SRC emacs-lisp
+(use-package vertico-posframe
+  :defer nil
+  :config
+  (vertico-posframe-mode 1))
 #+END_SRC
 
 *** Save history
