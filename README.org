@@ -62,6 +62,7 @@
     - [[#ace-window][ace-window]]
     - [[#all-the-icons][all-the-icons]]
     - [[#shut-up][shut-up]]
+    - [[#nov][Nov]]
     - [[#vertico][Vertico]]
     - [[#vertico-posframe][Vertico PosFrame]]
     - [[#save-history][Save history]]
@@ -74,9 +75,15 @@
     - [[#insert-lines][Insert lines]]
     - [[#backup-directoryfiles][Backup directory/files]]
     - [[#flyspell][flyspell]]
+    - [[#structurizr][Structurizr]]
+    - [[#plantuml][Plantuml]]
+    - [[#elfeed][elfeed]]
+    - [[#vterm][vterm]]
+    - [[#pomm][Pomm]]
     - [[#replace][Replace]]
 - [[#languages][Languages]]
   - [[#general][General]]
+    - [[#eglot][Eglot]]
     - [[#treesit][Treesit]]
     - [[#yasnippet][Yasnippet]]
     - [[#flycheck][Flycheck]]
@@ -105,8 +112,11 @@
     - [[#ocaml][OCAML]]
 
 * Emacs
-My emacs configuration file. This README.org file gets "tangled" (converted) to a file called README.el, extracting the code snippets
-to create the final file that is loaded by init.el
+My emacs configuration file. This README.org file gets "tangled" (converted) to a
+file called README.el, extracting the code snippets to create the final file that
+is loaded by init.el
+
+
 
 * Packaging
 
@@ -880,6 +890,8 @@ Reduces the amount of messages being throw my emacs and some packages
   :defer 2)
 #+END_SRC
 
+*** Nov
+This package allows to read epub files from inside Emacs
 #+BEGIN_SRC emacs-lisp
 (use-package nov
   :mode ("\\.epub\\'" . nov-mode)
@@ -1054,26 +1066,25 @@ Spell checker. We want it only in text and org modes
   :defer 2)
 #+END_SRC
 
+*** Structurizr
+This is my own mod to deal with the structurizr format.
+TODO This need to be converted to use ts
 #+BEGIN_SRC emacs-lisp
 (if (file-directory-p "~/code/personal/structurizr-mode")
     (progn
       (add-to-list 'load-path "~/code/personal/structurizr-mode")
       (require 'structurizr-mode)))
+#+END_SRC
 
+*** Plantuml
+Mode to use plantuml withing emacs
+#+BEGIN_SRC emacs-lisp
 (use-package plantuml-mode
   :config
   (setq plantuml-jar-path "~/bin/plantuml.jar")
   (setq plantuml-default-exec-mode 'jar)
   (add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode)))
-
-;; Package management visual improvements
-;; (use-package paradox
-;;   :defer nil
-;;   :custom
-;;   (paradox-github-token t)
-;;   :config
-;;   (paradox-enable))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -1083,6 +1094,7 @@ Spell checker. We want it only in text and org modes
   )
 #+END_SRC
 
+*** elfeed
 #+BEGIN_SRC emacs-lisp
 (use-package elfeed
   :commands elfeed
@@ -1093,26 +1105,22 @@ Spell checker. We want it only in text and org modes
   (make-directory elfeed-db-directory t))
 #+END_SRC
 
+*** vterm
+A shell terminal
 #+BEGIN_SRC emacs-lisp
 (use-package vterm
   :ensure t
   :bind (("C-q" . vterm-send-next-key)))
 #+END_SRC
 
+*** Pomm
+Pomodoro library to be used within Emacs
 #+BEGIN_SRC emacs-lisp
 (use-package pomm
   :commands (pomm pomm-third-time)
   :custom
   (alert-default-style 'libnotify)
   (pomm-audio-enabled t))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(add-hook 'eglot-managed-mode-hook
-          (lambda ()
-            (bind-keys :map eglot-mode-map
-                       ("C-c e a" . eglot-code-actions)
-                       ("C-c e r" . eglot-rename))))
 #+END_SRC
 
 *** Replace
@@ -1125,6 +1133,15 @@ Remember that projectile has "C-c p r" for replace in the project
 
 * Languages
 ** General
+*** Eglot
+Some additional configuration for Eglot
+#+BEGIN_SRC emacs-lisp
+(add-hook 'eglot-managed-mode-hook
+          (lambda ()
+            (bind-keys :map eglot-mode-map
+                       ("C-c e a" . eglot-code-actions)
+                       ("C-c e r" . eglot-rename))))
+#+END_SRC
 *** Treesit
 #+BEGIN_SRC emacs-lisp
 (setq treesit-language-source-alist
