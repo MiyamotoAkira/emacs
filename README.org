@@ -105,7 +105,8 @@
     - [[#ocaml][OCAML]]
 
 * Emacs
-My emacs configuration file.
+My emacs configuration file. This README.org file gets "tangled" (converted) to a file called README.el, extracting the code snippets
+to create the final file that is loaded by init.el
 
 * Packaging
 
