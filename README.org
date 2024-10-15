@@ -41,6 +41,7 @@
     - [[#spaceline][spaceline]]
     - [[#flx][flx]]
     - [[#which-key][which-key]]
+    - [[#which-key-posframe][which-key posframe]]
     - [[#smooth-scrolling][smooth-scrolling]]
     - [[#disable-mouse][disable-mouse]]
     - [[#splitting-of-buffers][Splitting of buffers]]
@@ -632,6 +633,14 @@ This will show options for a prefix chord in the minibuffer
   (which-key-mode))
 #+END_SRC
 
+*** which-key posframe
+This allows which-key to use posframe
+#+BEGIN_SRC emacs-lisp
+(use-package which-key-posframe
+  :defer nil
+  :config
+  (which-key-posframe-mode))
+#+END_SRC
 *** smooth-scrolling
 Line by line, instead of half-screen at a time.
 #+BEGIN_SRC emacs-lisp
