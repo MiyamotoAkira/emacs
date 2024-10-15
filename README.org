@@ -937,6 +937,7 @@ It provides enhanced versions of some commands. It has a preview facility
          ("M-s M-o" . consult-outline)
          ;; Search the current buffer
          ("M-s M-l" . consult-line)
+         ([remap isearch-forward] . consult-line)
          ;; Switch to another buffer, or bookmarked file, or recently
          ;; opened file.
          ("M-s M-b" . consult-buffer)))
