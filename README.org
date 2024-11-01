@@ -1399,60 +1399,97 @@ This is a company front-end with icons
 #+END_SRC
 
 *** Python
+
+#+BEGIN_SRC emacs-lisp
+(setq major-mode-remap-alist
+      '((python-mode . python-ts-mode)))
+#+END_SRC
+
+This package allows to get the right environment.
+python-base-mode-hook works for python-mode and python-ts-mode.
+The -10 tells emacs to load it as soon as possible
+TODO can :hook do that -10?
 #+BEGIN_SRC emacs-lisp
 (use-package pet
+  :defer nil
   :config
   (add-hook 'python-base-mode-hook 'pet-mode -10))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
 
 ;; Copied from https://ddavis.io/posts/emacs-python-lsp/
-(defun dd/py-workon-project-venv ()
-  "Call pyenv-workon with the current projectile project name.
-This will return the full path of the associated virtual
-environment found in $WORKON_HOME, or nil if the environment does
-not exist."
-  (let ((pname (projectile-project-name)))
-    (pyvenv-workon pname)
-    (if (file-directory-p pyvenv-virtual-env)
-        pyvenv-virtual-env
-      (pyvenv-deactivate))))
+;; (defun dd/py-workon-project-venv ()
+;;   "Call pyenv-workon with the current projectile project name.
+;; This will return the full path of the associated virtual
+;; environment found in $WORKON_HOME, or nil if the environment does
+;; not exist."
+;;   (let ((pname (projectile-project-name)))
+;;     (pyvenv-workon pname)
+;;     (if (file-directory-p pyvenv-virtual-env)
+;;         pyvenv-virtual-env
+;;       (pyvenv-deactivate))))
 
-(defun dd/py-auto-lsp ()
-  "Turn on lsp mode in a Python project with some automated logic.
-Try to automatically determine which pyenv virtual environment to
-activate based on the project name, using
-`dd/py-workon-project-venv'. If successful, call `lsp'. If we
-cannot determine the virtualenv automatically, first call the
-interactive `pyvenv-workon' function before `lsp'"
-  (interactive)
-  (let ((pvenv (dd/py-workon-project-venv)))
-    (if pvenv
-        (lsp)
-      (progn
-        (call-interactively #'pyvenv-workon)
-        (lsp)))))
+;; (defun dd/py-auto-lsp ()
+;;   "Turn on lsp mode in a Python project with some automated logic.
+;; Try to automatically determine which pyenv virtual environment to
+;; activate based on the project name, using
+;; `dd/py-workon-project-venv'. If successful, call `lsp'. If we
+;; cannot determine the virtualenv automatically, first call the
+;; interactive `pyvenv-workon' function before `lsp'"
+;;   (interactive)
+;;   (let ((pvenv (dd/py-workon-project-venv)))
+;;     (if pvenv
+;;         (lsp)
+;;       (progn
+;;         (call-interactively #'pyvenv-workon)
+;;         (lsp)))))
 
-(use-package python-mode
-  :init
-  (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-  (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-  :bind (:map python-mode-map
-              ("C-C C-a" . #'dd/py-auto-lsp)))
+;; (use-package python-mode
+;;   :init
+;;   (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+;;   (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+;;   ;; :bind (:map python-mode-map
+;;   ;;             ("C-C C-a" . #'dd/py-auto-lsp))
+;;   )
+
+(use-package python
+  :hook ((python-ts-mode . eglot-ensure)))
 
 (use-package poetry)
-
-(autoload 'python-mode "python-mode")
 
 (use-package python-docstring)
 
 (use-package apheleia
   :diminish
   :init (apheleia-global-mode +1))
+#+END_SRC
 
+
+This mode handles the black formatting for python
+#+BEGIN_SRC emacs-lisp
 (use-package blacken
-  :hook ((python-mode . blacken-mode)))
+  :hook ((python-base-mode . blacken-mode)))
+#+END_SRC
 
+This package allows the use of isort when saving a python file
+#+BEGIN_SRC emacs-lisp
+(use-package python-isort
+  :hook ((python-base-mode . python-isort-on-save-mode)))
+#+END_SRC
+
+This package allows the running of pytest within emacs
+TODO this is not loading correctly
+#+BEGIN_SRC emacs-lisp
+(use-package python-pytest
+  :after python-ts-mode
+  :bind (:map python-ts-mode-map
+              ("C-c t" . python-pytest-dispatch)))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
 (use-package company-jedi
-  :hook ((python.mode . (lambda () (add-to-list 'company-backends 'company-jedi)))))
+  :hook ((python-base-mode . (lambda () (add-to-list 'company-backends 'company-jedi)))))
 
 ;; (use-package pyenv
 ;;   :quelpa (pyenv :fetcher github :repo "aiguofer/pyenv.el"))
