@@ -1445,14 +1445,6 @@ TODO can :hook do that -10?
 ;;         (call-interactively #'pyvenv-workon)
 ;;         (lsp)))))
 
-;; (use-package python-mode
-;;   :init
-;;   (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-;;   (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-;;   ;; :bind (:map python-mode-map
-;;   ;;             ("C-C C-a" . #'dd/py-auto-lsp))
-;;   )
-
 (use-package python
   :hook ((python-ts-mode . eglot-ensure)))
 
@@ -1482,9 +1474,7 @@ This package allows the running of pytest within emacs
 TODO this is not loading correctly
 #+BEGIN_SRC emacs-lisp
 (use-package python-pytest
-  :after python-ts-mode
-  :bind (:map python-ts-mode-map
-              ("C-c t" . python-pytest-dispatch)))
+  :bind (("C-c t" . python-pytest-dispatch)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
