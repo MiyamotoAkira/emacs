@@ -110,6 +110,7 @@
     - [[#powershell][Powershell]]
     - [[#graphviz][Graphviz]]
     - [[#ocaml][OCAML]]
+    - [[#c][C#]]
 
 * Emacs
 My emacs configuration file. This README.org file gets "tangled" (converted) to a
@@ -1147,6 +1148,7 @@ Some additional configuration for Eglot
 (setq treesit-language-source-alist
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
         (css "https://github.com/tree-sitter/tree-sitter-css")
+        (c-sharp "https://github.com/tree-sitter/tree-sitter-c-sharp")
         (go "https://github.com/tree-sitter/tree-sitter-go" "v0.19.1")
         (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
         (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
@@ -1706,6 +1708,7 @@ This one has to happen after all modes that use parens are loaded
 #+END_SRC
 
 *** OCAML
+You will need to download opam and Merlin
 #+BEGIN_SRC emacs-lisp
 
 (use-package tuareg
@@ -1743,10 +1746,11 @@ This one has to happen after all modes that use parens are loaded
 (use-package glsl-mode)
 #+END_SRC
 
+*** C#
 For C# Development
 Download https://github.com/omajid/csproj-mode into ~/code/externals/csproj-mode
 
-
-For Ocaml
-Download opam, Merlin
-
+#+BEGIN_SRC emacs-lisp
+(setq major-mode-remap-alist
+      '((csharp-mode . csharp-ts-mode)))
+#+END_SRC
