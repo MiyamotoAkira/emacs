@@ -903,9 +903,12 @@ This package allows to read epub files from inside Emacs
 *** Vertico
 Vertico shows the completion in vertical mode, rather than grid format
 It also updates the buffer with the possible completions as you type
+
+Is currently pinned to melpa stable, as there was some issues with the 20241105 version
 #+BEGIN_SRC emacs-lisp
 (use-package vertico
   :defer nil
+  :pin melpa-stable
   :config
   (setq vertico-cycle t)
   (setq vertico-resize nil)
