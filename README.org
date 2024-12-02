@@ -1381,9 +1381,6 @@ This is a company front-end with icons
   :config
   (dap-mode t)
   (dap-ui-mode t))
-
-(use-package lsp-ivy
-  :commands lsp-ivy-workspace-symbol)
 #+END_SRC
 
 ** Specific
@@ -1477,44 +1474,25 @@ TODO can :hook do that -10?
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-
-;; Copied from https://ddavis.io/posts/emacs-python-lsp/
-;; (defun dd/py-workon-project-venv ()
-;;   "Call pyenv-workon with the current projectile project name.
-;; This will return the full path of the associated virtual
-;; environment found in $WORKON_HOME, or nil if the environment does
-;; not exist."
-;;   (let ((pname (projectile-project-name)))
-;;     (pyvenv-workon pname)
-;;     (if (file-directory-p pyvenv-virtual-env)
-;;         pyvenv-virtual-env
-;;       (pyvenv-deactivate))))
-
-;; (defun dd/py-auto-lsp ()
-;;   "Turn on lsp mode in a Python project with some automated logic.
-;; Try to automatically determine which pyenv virtual environment to
-;; activate based on the project name, using
-;; `dd/py-workon-project-venv'. If successful, call `lsp'. If we
-;; cannot determine the virtualenv automatically, first call the
-;; interactive `pyvenv-workon' function before `lsp'"
-;;   (interactive)
-;;   (let ((pvenv (dd/py-workon-project-venv)))
-;;     (if pvenv
-;;         (lsp)
-;;       (progn
-;;         (call-interactively #'pyvenv-workon)
-;;         (lsp)))))
-
 (use-package python
   :hook ((python-ts-mode . eglot-ensure)))
 
 (use-package poetry)
 
 (use-package python-docstring)
+#+END_SRC
 
+The apheleia package formats python, js and go by default
+#+BEGIN_SRC emacs-lisp
 (use-package apheleia
   :diminish
-  :init (apheleia-global-mode +1))
+  :defines
+  apheleia-formatters
+  apheleia-mode-alist
+  :init (apheleia-global-mode +1)
+  :config
+  (setf (alist-get 'prettier-json apheleia-formatters)
+        '("prettier" "--stdin-filepath" filepath)))
 #+END_SRC
 
 
