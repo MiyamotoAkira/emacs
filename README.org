@@ -110,7 +110,6 @@
     - [[#powershell][Powershell]]
     - [[#graphviz][Graphviz]]
     - [[#ocaml][OCAML]]
-    - [[#c][C#]]
 
 * Emacs
 My emacs configuration file. This README.org file gets "tangled" (converted) to a
@@ -1803,13 +1802,4 @@ You will need to download opam and Merlin
 
 #+BEGIN_SRC emacs-lisp
 (use-package glsl-mode)
-#+END_SRC
-
-*** C#
-For C# Development
-Download https://github.com/omajid/csproj-mode into ~/code/externals/csproj-mode
-
-#+BEGIN_SRC emacs-lisp
-(setq major-mode-remap-alist
-      '((csharp-mode . csharp-ts-mode)))
 #+END_SRC
