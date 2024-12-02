@@ -1148,6 +1148,20 @@ Some additional configuration for Eglot
 #+END_SRC
 *** Treesit
 #+BEGIN_SRC emacs-lisp
+(dolist (modes
+         '(("\\.tsx\\'" . tsx-ts-mode)
+           ("\\.js\\'"  . typescript-ts-mode)
+           ("\\.mjs\\'" . typescript-ts-mode)
+           ("\\.mts\\'" . typescript-ts-mode)
+           ("\\.cjs\\'" . typescript-ts-mode)
+           ("\\.ts\\'"  . typescript-ts-mode)
+           ("\\.jsx\\'" . tsx-ts-mode)
+           ("\\.json\\'" .  json-ts-mode)
+           ("\\.Dockerfile\\'" . dockerfile-ts-mode)
+           ("\\.go\\'" . go-ts-mode)
+           ("/go\\.mod\\'" . go-mod-ts-mode)))
+  (add-to-list 'auto-mode-alist modes))
+
 (setq treesit-language-source-alist
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
         (css "https://github.com/tree-sitter/tree-sitter-css")
@@ -1160,15 +1174,61 @@ Some additional configuration for Eglot
         (make "https://github.com/alemuller/tree-sitter-make")
         (markdown "https://github.com/ikatyang/tree-sitter-markdown")
         (python "https://github.com/tree-sitter/tree-sitter-python")
-        (toml "https://github.com/tree-sitter/tree-sitter-toml")
-        (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+        (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "v0.20.1" "src")
+        (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "src")
+        (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "typescript/src")
+        (toml "https://github.com/tree-sitter/tree-sitter-toml" "v0.5.1")
+        (yaml "https://github.com/ikatyang/tree-sitter-yaml" "v0.5.0")))
+
+;; (dolist (grammar
+;;       '((bash ("https://github.com/tree-sitter/tree-sitter-bash"))
+;;         (css ("https://github.com/tree-sitter/tree-sitter-css"))
+;;         (c-sharp ("https://github.com/tree-sitter/tree-sitter-c-sharp"))
+;;         (go ("https://github.com/tree-sitter/tree-sitter-go" "v0.19.1"))
+;;         (gomod ("https://github.com/camdencheek/tree-sitter-go-mod"))
+;;         (dockerfile ("https://github.com/camdencheek/tree-sitter-dockerfile"))
+;;         (html ("https://github.com/tree-sitter/tree-sitter-html"))
+;;         (json ("https://github.com/tree-sitter/tree-sitter-json"))
+;;         (make ("https://github.com/alemuller/tree-sitter-make"))
+;;         (markdown ("https://github.com/ikatyang/tree-sitter-markdown"))
+;;         (python ("https://github.com/tree-sitter/tree-sitter-python"))
+;;         (javascript ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.20.1" "src"))
+;;         (tsx ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.1" "src"))
+;;         (typescript ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "typescript/src"))
+;;         (toml ("https://github.com/tree-sitter/tree-sitter-toml"))
+;;         (yaml ("https://github.com/ikatyang/tree-sitter-yaml"))))
+;;   (add-to-list 'treesit-language-source-alist grammar)
+;;   (unless (treesit-language-available-p (car grammar))
+;;     (treesit-install-language-grammar (car grammar))))
+
+ (dolist (mapping
+            '((python-mode . python-ts-mode)
+              (csharp-mode . csharp-ts-mode)
+              (css-mode . css-ts-mode)
+              (typescript-mode . typescript-ts-mode)
+              (js-mode . typescript-ts-mode)
+              (js2-mode . typescript-ts-mode)
+              (go-mode . go-ts-mode)
+              (c-mode . c-ts-mode)
+              (c++-mode . c++-ts-mode)
+              (c-or-c++-mode . c-or-c++-ts-mode)
+              (bash-mode . bash-ts-mode)
+              (css-mode . css-ts-mode)
+              (json-mode . json-ts-mode)
+              (js-json-mode . json-ts-mode)
+              (sh-mode . bash-ts-mode)
+              (sh-base-mode . bash-ts-mode)))
+   (add-to-list 'major-mode-remap-alist mapping))
 
 (use-package treesit-auto
   :custom
   (treesit-auto-install 'prompt)
   :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 #+END_SRC
+
+#+RESULTS:
 
 *** Yasnippet
 #+BEGIN_SRC emacs-lisp
@@ -1332,12 +1392,8 @@ This is a company front-end with icons
 #+BEGIN_SRC emacs-lisp
 (use-package go-mode)
 
-(dolist (mapping '((go-mode . go-ts-mode)))
-  (add-to-list 'major-mode-remap-alist mapping))
-
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
 (add-to-list 'auto-mode-alist '("/go\\.mod\\'" . go-mod-ts-mode))
-
 (add-hook 'go-mode-hook (lambda ()
                           (setq tab-width 4)
                           (setq indent-tabs-mode 1)))
