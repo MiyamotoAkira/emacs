@@ -1343,6 +1343,9 @@ This is a company front-end with icons
          (clojure-mode . lsp)
          (clojurescript-mode . lsp)
          (clojurec-mode . lsp)
+         ((tsx-ts-mode
+           typescript-ts-mode
+           js-ts-mode) . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :init (setq lsp-eldoc-render-all nil
               lsp-highlight-symbol-at-point nil
