@@ -1485,7 +1485,9 @@ TODO can :hook do that -10?
 (use-package python-docstring)
 #+END_SRC
 
-The apheleia package formats python, js and go by default
+The apheleia package formats python (black), js (prettier)  and go (gofmt) by default.
+
+We have added some configuration for prettier, so it uses the file name to infer the parser to use (to distinguish between js/ts/css)
 #+BEGIN_SRC emacs-lisp
 (use-package apheleia
   :diminish
@@ -1568,9 +1570,15 @@ TODO this is not loading correctly
 #+END_SRC
 
 *** Clojure
+Kondo working with flycheck
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck-clj-kondo)
+#+END_SRC
 
+Cider is a project tooling for clojure.
+
+In config we remove some of the completions from lsp-mode, to use the cider setup
+#+BEGIN_SRC  emacs-lisp
 (use-package cider
   :pin melpa-stable
   :hook
@@ -1586,6 +1594,9 @@ TODO this is not loading correctly
   (setq lsp-enable-completion nil)
   (setq lsp-enable-indentation nil))
 
+#+END_SRC
+
+#+BEGIN_SRC  emacs-lisp
 (use-package clojure-mode
   :diminish
   :pin melpa-stable
@@ -1609,6 +1620,10 @@ TODO this is not loading correctly
    (clojure-mode . column-enforce-mode)
    (clojure-mode . flycheck-mode)))
 
+#+END_SRC
+
+This is the basic treesiter mode for clojure
+#+BEGIN_SRC  emacs-lisp
 (use-package clojure-ts-mode)
 
 ;; (use-package midje-mode
@@ -1639,6 +1654,10 @@ TODO this is not loading correctly
 (use-package clojure-mode-extra-font-locking
   :pin melpa-stable)
 
+#+END_SRC
+
+Kaocha is a test runner for clojure
+#+BEGIN_SRC  emacs-lisp
 (use-package kaocha-runner
   :init
   (bind-keys :prefix-map ar-emacs-kaocha-prefix-map
@@ -1651,6 +1670,7 @@ TODO this is not loading correctly
 #+END_SRC
 
 *** Mermaid
+For mermaid you need to have downloaded the mermaid cli tool using `npm install -g @mermaid-js/mermaid-cli`
 #+BEGIN_SRC emacs-lisp
 (use-package mermaid-mode
   :mode ("\\.mmd\\'")
