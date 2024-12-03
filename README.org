@@ -1501,12 +1501,6 @@ We have added some configuration for prettier, so it uses the file name to infer
 #+END_SRC
 
 
-This mode handles the black formatting for python
-#+BEGIN_SRC emacs-lisp
-(use-package blacken
-  :hook ((python-base-mode . blacken-mode)))
-#+END_SRC
-
 This package allows the use of isort when saving a python file
 #+BEGIN_SRC emacs-lisp
 (use-package python-isort
