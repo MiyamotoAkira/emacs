@@ -1357,6 +1357,10 @@ This is a company front-end with icons
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
   (add-to-list 'lsp-disabled-clients 'omnisharp))
 
+#+END_SRC
+
+This add ui elements to lsp mode
+#+BEGIN_SRC emacs-lisp
 (use-package lsp-ui
   :commands lsp-ui-mode
   :config
@@ -1373,9 +1377,17 @@ This is a company front-end with icons
   (lsp-ui-sideline-enable nil)
   (lsp-ui-doc-enable nil))
 
+#+END_SRC
+
+This links lsp with treemacs
+#+BEGIN_SRC emacs-lisp
 (use-package lsp-treemacs
   :commands lsp-treemacs-errors-list)
 
+#+END_SRC
+
+We are adding a debugger mode to lsp
+#+BEGIN_SRC emacs-lisp
 
 (use-package dap-mode
   :after lsp-mode
