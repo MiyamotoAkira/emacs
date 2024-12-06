@@ -1472,13 +1472,9 @@ Adding support for tailwind
   (setq web-mode-code-indent-offset 4))
 
 (use-package web-mode
-  :mode ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.tsx\\'" "\\.jsx\\'")
+  :mode ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'" "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'")
   :hook
-  ((web-mode . my-web-mode-hook)
-   (web-mode . (lambda ()
-                 (when (string-equal "tsx" (file-name-extension buffer-file-name))
-                   (setup-tide-mode))))))
-
+  ((web-mode . my-web-mode-hook)))
 #+END_SRC
 
 *** Json
