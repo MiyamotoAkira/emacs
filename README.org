@@ -1398,6 +1398,22 @@ We are adding a debugger mode to lsp
   (dap-ui-mode t))
 #+END_SRC
 
+Adding support for tailwind
+#+BEGIN_SRC emacs-lisp
+(use-package lsp-tailwindcss
+  :init (setq lsp-tailwindcss-add-on-mode t)
+  :config
+  (dolist (tw-major-mode
+           '(css-mode
+             css-ts-mode
+             typescript-mode
+             typescript-ts-mode
+             tsx-ts-mode
+             js2-mode
+             js-ts-mode))
+    (add-to-list 'lsp-tailwindcss-major-modes tw-major-mode)))
+#+END_SRC
+
 ** Specific
 *** Go
 #+BEGIN_SRC emacs-lisp
