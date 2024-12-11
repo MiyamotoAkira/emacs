@@ -1028,15 +1028,19 @@ The behaviour change if you pass the default UNIVERSAL argument.  Without it, a 
 #+END_SRC
 
 *** Backup directory/files
+We put all backup files on a single place
 #+BEGIN_SRC emacs-lisp
-;; We put all backup files on a single place
 (setq backup-directory-alist
       `(("." . ,(expand-file-name "backups" user-emacs-directory))))
+#+END_SRC
 
-;; Make sure that tramp uses it as well
+Make sure that tramp uses it as well
+#+BEGIN_SRC emacs-lisp
 (setq tramp-backup-directory-alist backup-directory-alist)
+#+END_SRC
 
-;; And even if the files are in version control
+And even if the files are in version control
+#+BEGIN_SRC emacs-lisp
 (setq vc-make-backup-files t)
 #+END_SRC
 
