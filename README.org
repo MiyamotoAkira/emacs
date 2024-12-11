@@ -99,6 +99,7 @@
     - [[#docker][Docker]]
     - [[#yaml][Yaml]]
     - [[#terraform][Terraform]]
+    - [[#elixir][Elixir]]
     - [[#markdown][Markdown]]
     - [[#clojure][Clojure]]
     - [[#mermaid][Mermaid]]
@@ -1165,6 +1166,7 @@ Some additional configuration for Eglot
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
         (css "https://github.com/tree-sitter/tree-sitter-css")
         (c-sharp "https://github.com/tree-sitter/tree-sitter-c-sharp")
+        (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
         (go "https://github.com/tree-sitter/tree-sitter-go" "v0.19.1")
         (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
         (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
@@ -1344,6 +1346,7 @@ This is a company front-end with icons
          (clojure-mode . lsp)
          (clojurescript-mode . lsp)
          (clojurec-mode . lsp)
+         (elixir-ts-mode . lsp)
          ((tsx-ts-mode
            typescript-ts-mode
            js-ts-mode) . lsp-deferred)
@@ -1571,6 +1574,16 @@ TODO this is not loading correctly
 (use-package company-terraform
   :config
   (company-terraform-init))
+#+END_SRC
+
+*** Elixir
+#+BEGIN_SRC emacs-lisp
+(use-package elixir-ts-mode
+    :ensure t)
+
+(use-package exunit
+  :hook
+  ((elixir-mode . exunit-mode)))
 #+END_SRC
 
 *** Markdown
