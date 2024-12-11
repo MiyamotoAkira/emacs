@@ -1232,6 +1232,7 @@ Some additional configuration for Eglot
 *** Yasnippet
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
+  :pin melpa-stable
   :diminish yas-minor-mode
   ;; :defines tools-map
   ;; :bind (:map yas-minor-mode-map
