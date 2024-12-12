@@ -1034,6 +1034,8 @@ We put all backup files on a single place
       `(("." . ,(expand-file-name "backups" user-emacs-directory))))
 #+END_SRC
 
+We move auto-save files out into a specific directory.
+This is so it doesn't cause issue with language tooling
 #+BEGIN_SRC emacs-lisp
 (let ((auto-save-dir (locate-user-emacs-file "emacs-save")))
   (setq auto-save-file-name-transforms
