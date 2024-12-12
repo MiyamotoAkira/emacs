@@ -1034,6 +1034,14 @@ We put all backup files on a single place
       `(("." . ,(expand-file-name "backups" user-emacs-directory))))
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+(let ((auto-save-dir (locate-user-emacs-file "emacs-save")))
+  (setq auto-save-file-name-transforms
+        `((".*" ,(expand-file-name "\\2" auto-save-dir) t)))
+  (unless (file-exists-p auto-save-dir)
+    (make-directory auto-save-dir)))
+#+END_SRC
+
 Make sure that tramp uses it as well
 #+BEGIN_SRC emacs-lisp
 (setq tramp-backup-directory-alist backup-directory-alist)
