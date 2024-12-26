@@ -1628,6 +1628,10 @@ TODO this is not loading correctly
   :config
   (unbind-key "M-o" heex-ts-mode-map))
 
+(use-package mix
+  :config
+  (add-hook 'elixir-ts-mode-hook 'mix-minor-mode))
+
 (use-package exunit
   :diminish t
   :bind
