@@ -213,17 +213,17 @@ This file configures the org mode and associated packages
 
 ** Main Org Section
 #+BEGIN_SRC emacs-lisp
-  (use-package org
-    :defer 2
-    :config
-    (setq org-startup-truncated nil)
-    (setq org-directory "~/org")
-    (setq org-agenda-files '("~/org/agendas/"))
-    (require 'ox-md nil t)
-    ;; (org-startup-indented t)
-    ;; (org-special-ctrl-a/e t)
-    ;; (org-special-ctrl-k t)
-    )
+(use-package org
+  :defer 2
+  :config
+  (setq org-startup-truncated nil)
+  (setq org-directory "~/org")
+  (setq org-agenda-files '("~/org/agendas/"))
+  (require 'ox-md nil t)
+  ;; (org-startup-indented t)
+  ;; (org-special-ctrl-a/e t)
+  ;; (org-special-ctrl-k t)
+  )
 #+END_SRC
 
 ** Org Utilities
