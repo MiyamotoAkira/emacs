@@ -1185,7 +1185,10 @@ Some additional configuration for Eglot
            ("\\.json\\'" .  json-ts-mode)
            ("\\.Dockerfile\\'" . dockerfile-ts-mode)
            ("\\.go\\'" . go-ts-mode)
-           ("/go\\.mod\\'" . go-mod-ts-mode)))
+           ("/go\\.mod\\'" . go-mod-ts-mode)
+           ("\\.ex" . elixir-ts-mode)
+           ("\\.iex" . elixir-ts-mode)
+           ("\\.heex" . heex-ts-mode)))
   (add-to-list 'auto-mode-alist modes))
 
 (setq treesit-language-source-alist
