@@ -1386,7 +1386,9 @@ This is a company front-end with icons
               lsp-keymap-prefix "C-c l"
 
               lsp-lens-enable t
-              lsp-signature-auto-activate nil)
+              lsp-signature-auto-activate nil
+              lsp-apply-edits-after-file-operations nil
+              lsp-before-save-edits nil)
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
   (add-to-list 'lsp-disabled-clients 'omnisharp))
