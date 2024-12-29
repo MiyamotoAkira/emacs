@@ -671,11 +671,11 @@ Line by line, instead of half-screen at a time.
 *** disable-mouse
 Maybe one day we change this. It disables the mouse in emacs. Useful to force the use of the keyboard
 #+BEGIN_SRC emacs-lisp
-(use-package disable-mouse
-  :defer 2
-  :diminish disable-mouse-global-mode
-  :config
-  (global-disable-mouse-mode))
+;; (use-package disable-mouse
+;;   :defer 2
+;;   :diminish disable-mouse-global-mode
+;;   :config
+;;   (global-disable-mouse-mode))
 #+END_SRC
 
 *** Splitting of buffers
