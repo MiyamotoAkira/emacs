@@ -1412,7 +1412,7 @@ This add ui elements to lsp mode
   (lsp-ui-sideline-enable t)
   (lsp-ui-doc-enable t)
   (lsp-ui-peek-enable t)
-  (lsp-ui-peek-show-directory y))
+  (lsp-ui-peek-show-directory t))
 
 #+END_SRC
 
