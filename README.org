@@ -403,6 +403,7 @@ This is the main setup of org roam
          (("C-M-i" . completion-at-point)
           ("C-c z t" . org-roam-tag-add)
           ("C-c z a" . org-roam-alias-add)
+          ;; Declared after this setup
           ("C-c z I" . org-roam-node-insert-immediate))
          :map org-roam-dailies-map
          ("Y" . org-roam-dailies-capture-yesterday)
@@ -412,8 +413,11 @@ This is the main setup of org roam
   :config
   (require 'org-roam-dailies)
   (org-roam-setup))
+#+END_SRC
 
-;; Immediate creation of a node without jumping to it
+
+Immediate creation of a node without jumping to it. This is to not break the flow when creating a note.
+#+BEGIN_SRC elisp
 (defun org-roam-node-insert-immediate (arg &rest args)
   (interactive "P")
   (let ((args (cons arg args))
