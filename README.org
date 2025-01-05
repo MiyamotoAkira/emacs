@@ -375,7 +375,7 @@ This is the main setup of org roam
                          "#+title: ${title}\n#+date: %<%Y-%m-%d>\n")
       :unnarrowed t)
      ("l" "literary notes" plain
-      "\n* Source\n\nAuthor: %^{Author}\nTitle: $^{Title}\nYear: %^{Year}\n\n* Idea: %?"
+      "\n* Source\n\nAuthor: %^{Author}\nTitle: %^{Title}\nYear: %^{Year}\n\n* Idea: %?"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                          "#+title: ${title}\n#+date: %<%Y-%m-%d>\n#+filetags: LiteraryNote\n")
       :unnarrowed t)))
