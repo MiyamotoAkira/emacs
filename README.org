@@ -1369,15 +1369,20 @@ This is a company front-end with icons
 #+END_SRC
 
 *** LSP
+Basic lsp setup
+
+We hook a few modes into lsp (others we maybe use eglot)
+
+We make sure that we hook the ui mode
+`lsp-apply-edits-after-file-operations nil` is there because otherwise the LSP for Typescript kills emacs on
+certain scenarios
 #+BEGIN_SRC emacs-lisp
-;; LSP setup
 (setq lsp-keymap-prefix "C-c l")
 
 (use-package lsp-mode
   :defines lsp-highlight-symbol-at-point
   :commands (lsp lsp-deferred)
-  :hook (;; (csharp-mode . lsp)
-         (clojure-mode . lsp)
+  :hook ((clojure-mode . lsp)
          (clojurescript-mode . lsp)
          (clojurec-mode . lsp)
          (elixir-ts-mode . lsp)
@@ -1396,6 +1401,20 @@ This is a company front-end with icons
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
   (add-to-list 'lsp-disabled-clients 'omnisharp))
+#+END_SRC
+
+The below is a wrapper that allows me to add the display-action to lsp-find-definition.
+This is because sometimes I want to open the definition in a separate buffer
+#+BEGIN_SRC emacs-lisp
+(defun jgg/lsp-find-definition-other (original-function &optional arg)
+  (interactive "P")
+  (if arg
+      (funcall original-function :display-action 'window)
+      (funcall original-function)))
+
+(advice-add 'lsp-find-definition :around #'jgg/lsp-find-definition-other)
+(advice-remove 'lsp-find-definition #'jgg/lsp-find-definition-other)
+
 
 #+END_SRC
 
