@@ -1404,7 +1404,8 @@ certain scenarios
 #+END_SRC
 
 The below is a wrapper that allows me to add the display-action to lsp-find-definition.
-This is because sometimes I want to open the definition in a separate buffer
+This is because sometimes I want to open the definition in a separate buffer.
+If we wanted to removed we need to call (advice-remove 'lsp-find-definition #'jgg/lsp-find-definition-other)
 #+BEGIN_SRC emacs-lisp
 (defun jgg/lsp-find-definition-other (original-function &optional arg)
   (interactive "P")
@@ -1413,9 +1414,20 @@ This is because sometimes I want to open the definition in a separate buffer
       (funcall original-function)))
 
 (advice-add 'lsp-find-definition :around #'jgg/lsp-find-definition-other)
-(advice-remove 'lsp-find-definition #'jgg/lsp-find-definition-other)
+#+END_SRC
 
+The below is a wrapper that allows me to add the display-action to lsp-find-definition.
+This is because sometimes I want to open the definition in a separate buffer.
+If we wanted to removed we need to call (advice-remove 'lsp-find-definition #'jgg/lsp-find-definition-other)
+#+BEGIN_SRC emacs-lisp
+(defun jgg/lsp-find-in-other-buffer (original-function &optional arg)
+  (interactive "P")
+  (if arg
+      (funcall original-function :display-action 'window)
+      (funcall original-function)))
 
+(advice-add 'lsp-find-definition :around #'jgg/lsp-find-in-other-buffer)
+(advice-add 'lsp-find-type-definition :around #'jgg/lsp-find-in-other-buffer)
 #+END_SRC
 
 This add ui elements to lsp mode
